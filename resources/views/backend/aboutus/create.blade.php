@@ -1,6 +1,16 @@
 @extends('layouts.backend')
 
 @section('content')
+
+    <div class="errors" style="text-align: center">
+        @if ($errors->any())
+            @foreach ($errors->all() as $errors)
+                <h4 class="text-danger " style="color:red;">{{ $errors }}
+                </h4>
+            @endforeach
+        @endif
+    </div>
+
     <h2 style="text-align: center;">Create New About Us</h2>
     {{-- {{ dd($About Uss ->title) }} --}}
     <div class="card card-warning">
@@ -26,7 +36,12 @@
                     <!-- text input -->
                     <div class="form-group">
                         {!! Form::label('description', 'Description') !!}
-                        {!! Form::textarea('description', null, ['class' => 'form-control', 'placeholder' => 'Enter Description',  'rows' => 4, 'cols' => 50]) !!}
+                        {!! Form::textarea('description', null, [
+                            'class' => 'form-control',
+                            'placeholder' => 'Enter Description',
+                            'rows' => 4,
+                            'cols' => 50,
+                        ]) !!}
                     </div>
                 </div>
             </div>
@@ -36,10 +51,14 @@
                     <!-- text input -->
                     <div class="form-group">
                         {!! Form::label('image', 'Image') !!}
-                        
-                            <div id="img-preview"></div>
-                            {!! Form::file('image', [ 'id' => 'choose-file', 'style' => 'margin-bottom:1rem; object-fit: cover;', 'accept' => 'image/*']) !!}
-                        
+
+                        <div id="img-preview"></div>
+                        {!! Form::file('image', [
+                            'id' => 'choose-file',
+                            'style' => 'margin-bottom:1rem; object-fit: cover;',
+                            'accept' => 'image/*',
+                        ]) !!}
+
                     </div>
                 </div>
             </div>
@@ -54,11 +73,11 @@
     <script>
         const chooseFile = document.getElementById("choose-file");
         const imgPreview = document.getElementById("img-preview");
-    
+
         chooseFile.addEventListener("change", function() {
             getImgData();
         });
-    
+
         function getImgData() {
             const files = chooseFile.files[0];
             if (files) {

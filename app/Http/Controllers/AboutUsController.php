@@ -49,32 +49,59 @@ class AboutUsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(AboutUs $aboutUs)
+    public function show()
     {
-        //
+        $aboutus = AboutUs::get();
+        $count = AboutUs::count();
+        return view('backend.aboutus.list',compact('aboutus','count'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(AboutUs $aboutUs)
+    public function edit($id)
     {
-        //
+        $aboutus = AboutUs::findOrFail($id);
+        return view('backend.aboutus.edit',compact('aboutus'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, AboutUs $aboutUs)
+    public function update(AboutUsRequest $request, $id)
     {
-        //
+        $aboutus = AboutUs::findOrFail($id);
+
+        $aboutus->title = $request->title;
+        $aboutus->description = $request->description;
+
+        if ($request->hasFile('image')) {
+            if ($aboutus->image != null) {
+                $previousImagePath = public_path('public/Image/' . $aboutus->image);
+
+                if (file_exists($previousImagePath)) {
+                    unlink($previousImagePath);
+                }
+            }
+            $file = $request->file('image');
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move(public_path('public/Image'), $filename);
+            $aboutus->update([
+                'image' => $filename,
+            ]);
+        }
+        
+        $aboutus->save();
+
+        return redirect(route('backend.aboutus.list'));
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(AboutUs $aboutUs)
+    public function destroy(AboutUs $id)
     {
-        //
+        $id->delete();
+        return redirect(route('backend.aboutus.list'));
     }
 }

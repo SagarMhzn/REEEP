@@ -90,7 +90,7 @@ class MenuController extends Controller
 
         $update->slug = Str::slug($request->title);
         $update->order = $request->order;
-        // dd($parent_id);
+
         $update->save();
 
         // $menus = Menu::with('child')->where('parent_id',$parent_id)->get();

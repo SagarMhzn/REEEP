@@ -55,12 +55,11 @@ Route::name('backend.')->middleware('auth')->group(function () {
         Route::get('/dashboard/about-us/create', [AboutUsController::class, 'create'])->name('create');
         Route::post('/dashboard/about-us/create', [AboutUsController::class, 'store'])->name('store');
 
-        // Route::get('/dashboard/about-us/list', [AboutUsController::class, 'show'])->name('list');
-        // Route::get('/dashboard/about-us/list/{id}', [AboutUsController::class, 'showChild'])->name('childlist');
+        Route::get('/dashboard/about-us/list', [AboutUsController::class, 'show'])->name('list');
 
-        // Route::get('/dashboard/about-us/edit/{id}', [AboutUsController::class, 'edit'])->name('edit');
-        // Route::put('/dashboard/about-us/edit/{id}', [AboutUsController::class, 'update'])->name('update');
+        Route::get('/dashboard/about-us/edit/{id}', [AboutUsController::class, 'edit'])->name('edit');
+        Route::put('/dashboard/about-us/edit/{id}', [AboutUsController::class, 'update'])->name('update');
 
-        // Route::get('/dashboard/about-us/delete/{id}', [AboutUsController::class, 'destroy'])->name('delete');
+        Route::get('/dashboard/about-us/delete/{id}', [AboutUsController::class, 'destroy'])->name('delete');
     });
 });
