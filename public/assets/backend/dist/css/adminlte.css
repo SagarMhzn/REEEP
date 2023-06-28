@@ -52416,3 +52416,18 @@ a.text-muted:hover {
   color: #3f474e;
 }
 /*# sourceMappingURL=adminlte.css.map */
+
+.btn-menu{
+  height: 80%;
+}
+
+.menu-header{
+  width: 80%;
+  margin: auto;
+}
+
+#img-preview{
+  max-height: 10rem;
+  max-width: 10rem;
+  justify-items: center;
+}

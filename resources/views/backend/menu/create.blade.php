@@ -16,7 +16,7 @@
                     <!-- text input -->
                     <div class="form-group">
                         {!! Form::label('title', 'Title') !!}
-                        {!! Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'Enter ...']) !!}
+                        {!! Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'Enter Title']) !!}
                     </div>
                 </div>
                 <div class="col-sm-6">
@@ -61,12 +61,7 @@
                     <!-- select -->
                     <div class="form-group">
                         {!! Form::label('order', 'Select Order') !!}
-                        {!! Form::select(
-                            'order',
-                            ['' => 'Select order', '1' => 'Order 1', '2' => 'Order 2', '3' => 'Order 3', '4' => 'Order 4', '5' => 'Order 5'],
-                            null,
-                            ['class' => 'form-control'],
-                        ) !!}
+                        {!! Form::text('order', null, ['class' => 'form-control', 'placeholder' => 'Enter Order']) !!}
                     </div>
                 </div>
             </div>

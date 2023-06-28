@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AboutUs;
 use Illuminate\Http\Request;
+use App\Http\Requests\AboutUsRequest;
 
 class AboutUsController extends Controller
 {
@@ -20,15 +21,29 @@ class AboutUsController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.aboutus.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(AboutUsRequest $request)
     {
-        //
+        $aboutus = new AboutUs();
+
+        $aboutus->title = $request->title;
+        $aboutus->description = $request->description;
+
+        if ($request->file('image')) {
+            $file = $request->file('image');
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move(public_path('public/Image'), $filename);
+            $aboutus->image = $filename;
+        }
+
+        $aboutus->save();
+
+        return redirect()->back();
     }
 
     /**

@@ -54,15 +54,20 @@ class MenuController extends Controller
     {
         $menus = Menu::with('child')->OrderBy('order')->where('parent_id', null)->get();
         $count = Menu::with('child')->OrderBy('order')->where('parent_id', null)->count();
-        return view('backend.menu.list',compact('menus','count'));
+
+        $parent_id = Menu::value('parent_id');
+        return view('backend.menu.list',compact('menus','count','parent_id'));
     }
 
     public function showChild($id)
     {
-        // dd($id);
         $menus = Menu::with('child')->OrderBy('order')->where('parent_id',$id)->get();
         $count = Menu::with('child')->OrderBy('order')->where('parent_id',$id)->count();
-        return view('backend.menu.list',compact('menus','count'));
+
+        $parent_id = $id;
+        $parent_title = Menu::where('id',$id)->value('title');
+
+        return view('backend.menu.list',compact('menus','count','parent_id','parent_title'));
     }
 
     public function edit($id){
@@ -85,7 +90,7 @@ class MenuController extends Controller
 
         $update->slug = Str::slug($request->title);
         $update->order = $request->order;
-// dd($parent_id);
+        // dd($parent_id);
         $update->save();
 
         // $menus = Menu::with('child')->where('parent_id',$parent_id)->get();
