@@ -26,8 +26,8 @@ class MenuRequest extends FormRequest
         $rule1 = [
             'parent_id' => 'nullable|numeric',
             'slug' => 'nullable|string',
-            'status' => 'boolean',
-            'order' => 'numeric',
+            'status' => 'boolean|required',
+            'order' => 'numeric|required',
         ];
 
         if ($this->isMethod('POST')) {

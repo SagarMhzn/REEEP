@@ -11,7 +11,7 @@
 
 
         <div class="card-body">
-            {!! Form::open(['route' => ['backend.menu-update' ,$update->id], 'method' => 'POST']) !!}
+            {!! Form::open(['route' => ['backend.menu.update' ,$update->id], 'method' => 'POST']) !!}
             {!! csrf_field() !!}
 
             @method('put')
