@@ -10,7 +10,7 @@ use App\Http\Requests\MenuRequest;
 class MenuController extends Controller
 {
     public function index(){
-        return view('menu.menuTreeview',compact('menus','allMenus'));
+        // return view('menu.menuTreeview',compact('menus','allMenus'));
     }
     
     public function create(){
@@ -18,29 +18,30 @@ class MenuController extends Controller
         return view('backend.menu.create',compact('menus'));
     }
 
-    public function store(Request $request)
+    public function store(MenuRequest $request)
     {
-        $request->validate([
-           'title' => 'required|unique',
-           'parents' =>'nullable',
-        ]);
+        
 
         $menu = new Menu;
         
         $menu->title = $request->title;
         $menu->status = $request->status;
         
-        if($request->checked == 1){
-            $menu->parent_id = NULL;
-        }else{
-            $menu->parent_id = $request->parents;
-        }
+        $menu->parent_id = $request->parents;
+
+        $parent_id = $menu->parent_id;
+
+        
         $menu->slug = Str::slug($request->title);
         $menu->order = $request->order;
 
         $menu->save();
 
-        return view('home');
+        if($parent_id != Null){
+            return redirect(route('backend.menu.childlist',$parent_id));
+        }elseif($parent_id == Null){
+            return redirect(route('backend.menu.list'));
+        }
 
 
         // $input = $request->all();
@@ -73,18 +74,35 @@ class MenuController extends Controller
 
     public function update(MenuRequest $request, $id){
 
-        $menus = Menu::findOrFail($id);
+        $update = Menu::findOrFail($id);
 
-        $menus->title = $request->title;
-        $menus->status = $request->status;
+        $update->title = $request->title;
+        $update->status = $request->status;
         
-        $menus->parent_id = $request->parents;
+        $update->parent_id = $request->parents;
         
-        $menus->slug = Str::slug($request->title);
-        $menus->order = $request->order;
+        $parent_id = $update->parent_id;
 
-        $menus->save();
+        $update->slug = Str::slug($request->title);
+        $update->order = $request->order;
+// dd($parent_id);
+        $update->save();
 
-        return view('home');
+        // $menus = Menu::with('child')->where('parent_id',$parent_id)->get();
+        // $count = Menu::with('child')->OrderBy('order')->where('parent_id',$parent_id)->count();
+
+        // return view('backend.menu.list', compact('menus','count'));
+
+        if($parent_id != Null){
+            return redirect(route('backend.menu.childlist',$parent_id));
+        }elseif($parent_id == Null){
+            return redirect(route('backend.menu.list'));
+        }
+
+    }
+
+    public function destroy(Menu $id){
+        $id->delete();
+        return redirect(route('backend.menu.list'));
     }
 }

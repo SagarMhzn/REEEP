@@ -36,19 +36,19 @@
                         <td>{{ $items->order }}</td>
                         <td class="d-flex">
                             <a href="
-                            {{ route('backend.menu-childlist', $items->id) }}
+                            {{ route('backend.menu.childlist', $items->id) }}
                             "
                                 class="text-decoration-none fs-4">
                                 <div class="btn btn-success mr-1"><i class="fas fa-eye"></i></div>
                             </a>
                             <a href="
-                            {{ route('backend.menu-edit', $items->id) }}
+                            {{ route('backend.menu.edit', $items->id) }}
                             "
                                 class="text-decoration-none fs-4">
                                 <div class="btn btn-warning mr-1"><i class="fas fa-edit"></i></div>
                             </a>
                             <a href="
-                            {{-- {{ route('backend.menu.show', $items->id) }} --}}
+                            {{ route('backend.menu.delete', $items->id) }}
                             "
                                 class="text-decoration-none fs-4">
                                 <div class="btn btn-danger mr-1"><i class="fas fa-trash"></i></div>

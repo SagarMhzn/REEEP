@@ -103,7 +103,7 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="{{route('backend.menu-create')}}" class="nav-link">
+                                <a href="{{route('backend.menu.create')}}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Create</p>
                                 </a>
@@ -111,7 +111,7 @@
 
                             
                             <li class="nav-item">
-                                <a href="{{route('backend.menu-list')}}" class="nav-link">
+                                <a href="{{route('backend.menu.list')}}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>List</p>
                                 </a>

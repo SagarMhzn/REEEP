@@ -9,7 +9,7 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-            {!! Form::open(['route' => 'backend.menu-store', 'method' => 'POST']) !!}
+            {!! Form::open(['route' => 'backend.menu.store', 'method' => 'POST']) !!}
             {!! csrf_field() !!}
             <div class="row">
                 <div class="col-sm-6">
