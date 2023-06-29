@@ -1,10 +1,12 @@
 <?php
 
+use App\Models\WorkingArea;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\AboutUsController;
+use App\Http\Controllers\WorkingAreaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,4 +64,18 @@ Route::name('backend.')->middleware('auth')->group(function () {
 
         Route::get('/dashboard/about-us/delete/{id}', [AboutUsController::class, 'destroy'])->name('delete');
     });
+
+    Route::name('workingareas.')->group(function () {
+
+        Route::get('/dashboard/working-areas/create', [WorkingAreaController::class, 'create'])->name('create');
+        Route::post('/dashboard/working-areas/create', [WorkingAreaController::class, 'store'])->name('store');
+
+        Route::get('/dashboard/working-areas/list', [WorkingAreaController::class, 'show'])->name('list');
+
+        Route::get('/dashboard/working-areas/edit/{id}', [WorkingAreaController::class, 'edit'])->name('edit');
+        Route::put('/dashboard/working-areas/edit/{id}', [WorkingAreaController::class, 'update'])->name('update');
+
+        Route::get('/dashboard/working-areas/delete/{id}', [WorkingAreaController::class, 'destroy'])->name('delete');
+    });
+
 });
