@@ -53,8 +53,7 @@ class AboutUsController extends Controller
     public function show()
     {
         $aboutus = AboutUs::get();
-        $count = AboutUs::count();
-        return view('backend.aboutus.list',compact('aboutus','count'));
+        return view('backend.aboutus.list',compact('aboutus'));
     }
 
     /**

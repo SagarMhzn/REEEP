@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class NewsAndEvent extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['title', 'description', 'image', 'date'];
+
+    protected  $table = 'news_and_events';
+
+    protected $guarded = [];
 }

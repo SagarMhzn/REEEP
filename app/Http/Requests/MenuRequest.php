@@ -28,6 +28,7 @@ class MenuRequest extends FormRequest
             'slug' => 'nullable|string',
             'status' => 'boolean|required',
             'order' => 'numeric|required',
+            
         ];
 
         if ($this->isMethod('POST')) {

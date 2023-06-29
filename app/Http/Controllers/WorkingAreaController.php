@@ -52,8 +52,7 @@ class WorkingAreaController extends Controller
     public function show(WorkingArea $workingArea)
     {
         $workingarea = WorkingArea::get();
-        $count = WorkingArea::count();
-        return view('backend.workingareas.list',compact('workingarea','count'));
+        return view('backend.workingareas.list',compact('workingarea'));
     }
 
     /**

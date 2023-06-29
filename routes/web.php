@@ -1,12 +1,14 @@
 <?php
 
 use App\Models\WorkingArea;
+use App\Models\NewsAndEvent;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\WorkingAreaController;
+use App\Http\Controllers\NewsAndEventController;
 
 /*
 |--------------------------------------------------------------------------
@@ -76,6 +78,19 @@ Route::name('backend.')->middleware('auth')->group(function () {
         Route::put('/dashboard/working-areas/edit/{id}', [WorkingAreaController::class, 'update'])->name('update');
 
         Route::get('/dashboard/working-areas/delete/{id}', [WorkingAreaController::class, 'destroy'])->name('delete');
+    });
+
+    Route::name('news-and-events.')->group(function () {
+
+        Route::get('/dashboard/news-and-events/create', [NewsAndEventController::class, 'create'])->name('create');
+        Route::post('/dashboard/news-and-events/create', [NewsAndEventController::class, 'store'])->name('store');
+
+        Route::get('/dashboard/news-and-events/list', [NewsAndEventController::class, 'show'])->name('list');
+
+        Route::get('/dashboard/news-and-events/edit/{id}', [NewsAndEventController::class, 'edit'])->name('edit');
+        Route::put('/dashboard/news-and-events/edit/{id}', [NewsAndEventController::class, 'update'])->name('update');
+
+        Route::get('/dashboard/news-and-events/delete/{id}', [NewsAndEventController::class, 'destroy'])->name('delete');
     });
 
 });
