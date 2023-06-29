@@ -138,7 +138,7 @@
 
                             
                             <li class="nav-item">
-                                <a href="{{route('backend.menu.list')}}" class="nav-link">
+                                <a href="{{route('backend.aboutus.list')}}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>List</p>
                                 </a>
