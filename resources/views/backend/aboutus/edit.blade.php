@@ -62,11 +62,11 @@
                         <div id="img-preview">
 
                             @if ($aboutus->image)
-                                <img src="{{ url('public/Image/' . $aboutus->image) }}" width="200px" height="150px"
+                                <img src="{{ url('public/Image/aboutus/' . $aboutus->image) }}" width="200px" height="150px"
                                     style="object-fit: cover" alt="Image" />
                             @else
-                                <img src="{{ url('public/Image/no-image.jpg') }}" width="200px" height="150px"
-                                    style="object-fit: cover" alt="Image" />
+                                <img src="" width="200px" height="150px"
+                                    style="object-fit: cover" alt="No image Provided" />
                             @endif
 
                         </div>

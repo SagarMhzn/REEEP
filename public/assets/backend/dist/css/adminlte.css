@@ -52419,6 +52419,7 @@ a.text-muted:hover {
 
 .btn-menu{
   height: 80%;
+  margin-top: .2rem;
 }
 
 .menu-header{

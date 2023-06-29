@@ -7,6 +7,10 @@
 
         <h2 style="text-align: center;">About-Us List</h2>
 
+
+        <a href="{{ route('backend.aboutus.create') }}" class="btn btn-primary btn-menu">
+            <i class="fas fa-plus"></i>
+        </a>
     </div>
 
 
@@ -15,7 +19,7 @@
 
             <div class="card-body">
                 <table class="table">
-                    <thead class="table-dark">
+                    <thead class="table-dark text-center">
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Title</th>
@@ -28,20 +32,22 @@
                         @foreach ($aboutus as $keys => $items)
                             <tr>
                                 <th scope="row">{{ $keys + 1 }}</th>
-                                <td>{{ $items->title }}</td>
-                                <td>
+                                <td class="text-center">{{ $items->title }}</td>
+                                <td class="text-center">
                                     {{ $items->description }}
                                 </td>
-                                <td>
+                                <td class="text-center">
                                     @if ($items->image)
-                                        <img src="{{ url('public/Image/' . $items->image) }}" width="250px" height="200px"
+                                        <img src="{{ url('public/Image/aboutus/' . $items->image) }}" width="250px" height="200px"
                                             style="object-fit: cover" alt="Image" />
                                     @else
-                                        <img src="{{ url('public/Image/no-image.jpg') }}" width="250px" height="200px"
-                                            style="object-fit: cover" alt="Image" />
+                                        {{-- <img src="{{ url('public/Image/no-image.jpg') }}" width="250px" height="200px"
+                                            style="object-fit: cover" alt="Image" /> --}}
+
+                                            <i >~~~ No Image ~~~</i>
                                     @endif
                                 </td>
-                                <td class="d-flex">
+                                <td class="d-flex text-center justify-content-xl-between">
                                     <a href="
                             {{ route('backend.aboutus.edit', $items->id) }}
                             "

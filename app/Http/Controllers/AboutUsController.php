@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\AboutUs;
 use Illuminate\Http\Request;
 use App\Http\Requests\AboutUsRequest;
+use Illuminate\Routing\Route;
 
 class AboutUsController extends Controller
 {
@@ -37,13 +38,13 @@ class AboutUsController extends Controller
         if ($request->file('image')) {
             $file = $request->file('image');
             $filename = date('YmdHi') . $file->getClientOriginalName();
-            $file->move(public_path('public/Image'), $filename);
+            $file->move(public_path('public/Image/aboutus'), $filename);
             $aboutus->image = $filename;
         }
 
         $aboutus->save();
 
-        return redirect()->back();
+        return redirect(route('backend.aboutus.list'));
     }
 
     /**
@@ -77,7 +78,7 @@ class AboutUsController extends Controller
 
         if ($request->hasFile('image')) {
             if ($aboutus->image != null) {
-                $previousImagePath = public_path('public/Image/' . $aboutus->image);
+                $previousImagePath = public_path('public/Image/aboutus/' . $aboutus->image);
 
                 if (file_exists($previousImagePath)) {
                     unlink($previousImagePath);
@@ -85,7 +86,7 @@ class AboutUsController extends Controller
             }
             $file = $request->file('image');
             $filename = date('YmdHi') . $file->getClientOriginalName();
-            $file->move(public_path('public/Image'), $filename);
+            $file->move(public_path('public/Image/aboutus'), $filename);
             $aboutus->update([
                 'image' => $filename,
             ]);
