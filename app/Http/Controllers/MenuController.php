@@ -9,37 +9,39 @@ use App\Http\Requests\MenuRequest;
 
 class MenuController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         // return view('menu.menuTreeview',compact('menus','allMenus'));
     }
-    
-    public function create(){
+
+    public function create()
+    {
         $menus = Menu::with('child')->whereNUll('parent_id')->get();
-        return view('backend.menu.create',compact('menus'));
+        return view('backend.menu.create', compact('menus'));
     }
 
     public function store(MenuRequest $request)
     {
-        
+
 
         $menu = new Menu;
-        
+
         $menu->title = $request->title;
         $menu->status = $request->status;
-        
+
         $menu->parent_id = $request->parents;
 
         $parent_id = $menu->parent_id;
 
-        
+
         $menu->slug = Str::slug($request->title);
         $menu->order = $request->order;
 
         $menu->save();
 
-        if($parent_id != Null){
-            return redirect(route('backend.menu.childlist',$parent_id));
-        }elseif($parent_id == Null){
+        if ($parent_id != Null) {
+            return redirect(route('backend.menu.childlist', $parent_id));
+        } elseif ($parent_id == Null) {
             return redirect(route('backend.menu.list'));
         }
 
@@ -56,36 +58,38 @@ class MenuController extends Controller
         $count = Menu::with('child')->OrderBy('order')->where('parent_id', null)->count();
 
         $parent_id = Menu::value('parent_id');
-        return view('backend.menu.list',compact('menus','count','parent_id'));
+        return view('backend.menu.list', compact('menus', 'count', 'parent_id'));
     }
 
     public function showChild($id)
     {
-        $menus = Menu::with('child')->OrderBy('order')->where('parent_id',$id)->get();
-        $count = Menu::with('child')->OrderBy('order')->where('parent_id',$id)->count();
+        $menus = Menu::with('child')->OrderBy('order')->where('parent_id', $id)->get();
+        $count = Menu::with('child')->OrderBy('order')->where('parent_id', $id)->count();
 
         $parent_id = $id;
-        $parent_title = Menu::where('id',$id)->value('title');
+        $parent_title = Menu::where('id', $id)->value('title');
 
-        return view('backend.menu.list',compact('menus','count','parent_id','parent_title'));
+        return view('backend.menu.list', compact('menus', 'count', 'parent_id', 'parent_title'));
     }
 
-    public function edit($id){
-        $update = Menu::with('child')->where('id',$id)->first();
+    public function edit($id)
+    {
+        $update = Menu::with('child')->where('id', $id)->first();
         $menus = Menu::with('child')->whereNUll('parent_id')->get();
 
-        return view('backend.menu.edit',compact('update','menus'));
+        return view('backend.menu.edit', compact('update', 'menus'));
     }
 
-    public function update(MenuRequest $request, $id){
+    public function update(MenuRequest $request, $id)
+    {
 
         $update = Menu::findOrFail($id);
 
         $update->title = $request->title;
         $update->status = $request->status;
-        
+
         $update->parent_id = $request->parents;
-        
+
         $parent_id = $update->parent_id;
 
         $update->slug = Str::slug($request->title);
@@ -98,16 +102,19 @@ class MenuController extends Controller
 
         // return view('backend.menu.list', compact('menus','count'));
 
-        if($parent_id != Null){
-            return redirect(route('backend.menu.childlist',$parent_id));
-        }elseif($parent_id == Null){
+        if ($parent_id != Null) {
+            return redirect(route('backend.menu.childlist', $parent_id));
+        } elseif ($parent_id == Null) {
             return redirect(route('backend.menu.list'));
         }
-
     }
 
-    public function destroy(Menu $id){
+    public function destroy(Menu $id)
+    {
+        $parentId = $id->parent_id;
+        Menu::where('parent_id', $id->id)->update(['parent_id' => $parentId]);
         $id->delete();
+
         return redirect(route('backend.menu.list'));
     }
 }
