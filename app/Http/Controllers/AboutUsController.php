@@ -102,6 +102,14 @@ class AboutUsController extends Controller
      */
     public function destroy(AboutUs $id)
     {
+
+        if ($id->image != null) {
+            $imagePath = public_path('public/Image/aboutus/' . $id->image);
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
+            }
+        }
+
         $id->delete();
         return redirect(route('backend.aboutus.list'));
     }

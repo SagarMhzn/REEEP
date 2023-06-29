@@ -38,7 +38,7 @@
                                 </td>
                                 <td class="text-center">
                                     @if ($items->logo)
-                                        <img src="{{ url('public/Image/workingarea/' . $items->logo) }}" width="250px" height="100px"
+                                        <img src="{{ url('public/Image/workingarea/' . $items->logo) }}" width="150px" height="100px"
                                             style="object-fit: fit" alt="Image" />
                                     @else
                                         {{-- <img src="{{ url('public/Image/no-image.jpg') }}" width="250px" height="200px"
