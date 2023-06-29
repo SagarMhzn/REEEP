@@ -101,6 +101,13 @@ class WorkingAreaController extends Controller
      */
     public function destroy(WorkingArea $id)
     {
+
+        if ($id->logo != null) {
+            $imagePath = public_path('public/Image/workingarea/' . $id->logo);
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
+            }
+        }
         $id->delete();
         return redirect(route('backend.workingareas.list'));
     }
