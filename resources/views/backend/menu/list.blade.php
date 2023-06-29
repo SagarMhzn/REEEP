@@ -13,7 +13,7 @@
 </div>
 
 
-    @if ($count != 0)
+    @if (count($menus) != 0)
         <div class="card card-warning">
 
             <div class="card-body">

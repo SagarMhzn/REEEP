@@ -55,21 +55,19 @@ class MenuController extends Controller
     public function show()
     {
         $menus = Menu::with('child')->OrderBy('order')->where('parent_id', null)->get();
-        $count = Menu::with('child')->OrderBy('order')->where('parent_id', null)->count();
 
         $parent_id = Menu::value('parent_id');
-        return view('backend.menu.list', compact('menus', 'count', 'parent_id'));
+        return view('backend.menu.list', compact('menus', 'parent_id'));
     }
 
     public function showChild($id)
     {
         $menus = Menu::with('child')->OrderBy('order')->where('parent_id', $id)->get();
-        $count = Menu::with('child')->OrderBy('order')->where('parent_id', $id)->count();
 
         $parent_id = $id;
         $parent_title = Menu::where('id', $id)->value('title');
 
-        return view('backend.menu.list', compact('menus', 'count', 'parent_id', 'parent_title'));
+        return view('backend.menu.list', compact('menus', 'parent_id', 'parent_title'));
     }
 
     public function edit($id)
@@ -96,11 +94,6 @@ class MenuController extends Controller
         $update->order = $request->order;
 
         $update->save();
-
-        // $menus = Menu::with('child')->where('parent_id',$parent_id)->get();
-        // $count = Menu::with('child')->OrderBy('order')->where('parent_id',$parent_id)->count();
-
-        // return view('backend.menu.list', compact('menus','count'));
 
         if ($parent_id != Null) {
             return redirect(route('backend.menu.childlist', $parent_id));
