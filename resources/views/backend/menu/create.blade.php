@@ -1,6 +1,16 @@
 @extends('layouts.backend')
 
 @section('content')
+
+
+<div class="errors" style="text-align: center">
+    @if ($errors->any())
+        @foreach ($errors->all() as $errors)
+            <h4 class="text-danger " style="color:red;">{{ $errors }}
+            </h4>
+        @endforeach
+    @endif
+</div>
     <h2 style="text-align: center;">Create New Menus</h2>
     {{-- {{ dd($menus ->title) }} --}}
     <div class="card card-warning">
