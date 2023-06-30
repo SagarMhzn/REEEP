@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\AboutUsController;
+use App\Http\Controllers\KnowledgeController;
 use App\Http\Controllers\WorkingAreaController;
 use App\Http\Controllers\NewsAndEventController;
 use App\Http\Controllers\PartnerController;
@@ -107,5 +108,7 @@ Route::prefix('dashboard')->name('backend.')->middleware('auth')->group(function
         Route::get('/partners/delete/{partners}', [PartnerController::class, 'destroy'])->name('delete');
     });
 
+    Route::resource('knowledge',KnowledgeController::class);
+    Route::put('/knowledge/update/{knowledge}', [KnowledgeController::class, 'update'])->name('knowledge.update');
 
 });

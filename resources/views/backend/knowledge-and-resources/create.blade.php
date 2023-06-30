@@ -11,29 +11,22 @@
         @endif
     </div>
 
-    <h2 style="text-align: center;">Partners</h2>
-    {{-- {{ dd($Working Areass ->title) }} --}}
+    <h2 style="text-align: center;">Knowledge and Resources</h2>
+    {{-- {{ dd($Knowledge and Resourcess ->title) }} --}}
     <div class="card card-warning">
         <div class="card-header">
-            <h3 class="card-title">Create New Partners</h3>
+            <h3 class="card-title">Create New Knowledge and Resources</h3>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-            {!! Form::open(['route' => 'backend.partners.store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+            {!! Form::open(['route' => 'backend.knowledge.store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
             {!! csrf_field() !!}
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-12">
                     <!-- text input -->
                     <div class="form-group">
                         {!! Form::label('title', 'Title') !!}
                         {!! Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'Enter Title']) !!}
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <!-- text input -->
-                    <div class="form-group">
-                        {!! Form::label('abbreviations', 'Abbreviations') !!}
-                        {!! Form::text('abbreviations', null, ['class' => 'form-control', 'placeholder' => 'Enter abbreviations']) !!}
                     </div>
                 </div>
             </div>
@@ -57,14 +50,40 @@
                 <div class="col-sm">
                     <!-- text input -->
                     <div class="form-group">
-                        {!! Form::label('logo', 'Logo' !!}
+                        {!! Form::label('image', 'Image') !!}
 
                         <div id="img-preview"></div>
-                        {!! Form::file('logo', [
+                        {!! Form::file('image', [
                             'id' => 'choose-file',
                             'style' => 'margin-bottom:1rem; object-fit: cover;',
                             'accept' => 'image/*',
                         ]) !!}
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm">
+                    <!-- text input -->
+                    <div class="form-group">
+                        {!! Form::label('documents', 'Documents') !!}
+
+                        <div id="img-preview"></div>
+                        {!! Form::file('documents', [
+                            'id' => 'choose-file',
+                            'style' => 'margin-bottom:1rem; object-fit: cover;',
+                            'accept' => '.pdf,.xlxs,.xlx,.docx,.doc,.csv,.txt',
+                        ]) !!}
+
+                    </div>
+                </div>
+
+                <div class="col-sm">
+                    <!-- text input -->
+                    <div class="form-group">
+                        {!! Form::label('source', 'Source Link') !!}
+                        {!! Form::text('source', null, ['class' => 'form-control', 'placeholder' => 'Enter source']) !!}
                     </div>
                 </div>
             </div>
