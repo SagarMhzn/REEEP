@@ -38,8 +38,7 @@
                                 </td>
                                 <td class="text-center">
                                     @if ($items->image)
-                                        <img src="{{ url('public/Image/aboutus/' . $items->image) }}" width="250px" height="200px"
-                                            style="object-fit: cover" alt="Image" />
+                                        <img src="{{ url('public/Image/aboutus/' . $items->image) }}" class="image-prev" alt="Image" />
                                     @else
                                         {{-- <img src="{{ url('public/Image/no-image.jpg') }}" width="250px" height="200px"
                                             style="object-fit: cover" alt="Image" /> --}}

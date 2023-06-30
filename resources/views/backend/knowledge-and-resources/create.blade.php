@@ -61,9 +61,7 @@
 
                     </div>
                 </div>
-            </div>
-
-            <div class="row">
+            
                 <div class="col-sm">
                     <!-- text input -->
                     <div class="form-group">
@@ -79,17 +77,11 @@
                     </div>
                 </div>
 
-                <div class="col-sm">
-                    <!-- text input -->
-                    <div class="form-group">
-                        {!! Form::label('source', 'Source Link') !!}
-                        {!! Form::text('source', null, ['class' => 'form-control', 'placeholder' => 'Enter source']) !!}
-                    </div>
-                </div>
+                
             </div>
 
 
-            {!! Form::submit('Create Menu', ['class' => 'btn btn-success']) !!}
+            {!! Form::submit('Create', ['class' => 'btn btn-success']) !!}
 
             {!! Form::close() !!}
         </div>

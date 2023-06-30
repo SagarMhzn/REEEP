@@ -5,7 +5,7 @@
     {{-- {{ dd($parent_id) }} --}}
     <div class="d-flex justify-content-between menu-header">
 
-        <h2 style="text-align: center;">Working Areas List</h2>
+        <h2 style="text-align: center;">News and Events List</h2>
 
 
         <a href="{{ route('backend.news-and-events.create') }}" class="btn btn-primary btn-menu">
@@ -46,8 +46,7 @@
                                 </td>
                                 <td class="text-center">
                                     @if ($items->image)
-                                        <img src="{{ url('public/Image/news-and-events/' . $items->image) }}" width="150px" height="100px"
-                                            style="object-fit: fit" alt="Image" />
+                                        <img src="{{ url('public/Image/news-and-events/' . $items->image) }}" class="image-prev" alt="Image" />
                                     @else
                                         {{-- <img src="{{ url('public/Image/no-image.jpg') }}" width="250px" height="200px"
                                             style="object-fit: cover" alt="Image" /> --}}
@@ -80,6 +79,6 @@
 </div> --}}
     @else
         <div class="card-header">
-            {{ __('There are currently no About Us Articles! ') }} </div>
+            {{ __('There are currently no News and Events Articles! ') }} </div>
     @endif
 @endsection

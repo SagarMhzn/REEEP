@@ -64,7 +64,7 @@
             </div>
 
 
-            {!! Form::submit('Create Menu', ['class' => 'btn btn-success']) !!}
+            {!! Form::submit('Create ', ['class' => 'btn btn-success']) !!}
 
             {!! Form::close() !!}
         </div>

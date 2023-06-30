@@ -24,7 +24,7 @@ class KnowledgeRequest extends FormRequest
         return [
             'title' => 'required|string|max:50',
             'description' => 'nullable|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,gif|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,gif|max:20000',
             'source' => 'nullable|url',
             'documents' => 'nullable|mimes:pdf,xlxs,xlx,docx,doc,csv,txt|max:50000',
         ];
