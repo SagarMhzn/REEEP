@@ -11,11 +11,11 @@
         @endif
     </div>
 
-    <h2 style="text-align: center;">Create New About Us</h2>
+    <h2 style="text-align: center;">Working Areas</h2>
     {{-- {{ dd($About Uss ->title) }} --}}
     <div class="card card-warning">
         <div class="card-header">
-            <h3 class="card-title">Create New About Us</h3>
+            <h3 class="card-title">Update Working Areas</h3>
         </div>
         <!-- /.card-header -->
         <div class="card-body">

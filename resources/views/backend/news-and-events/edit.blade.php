@@ -13,11 +13,11 @@
 
     {{-- {{ dd($nae) }} --}}
 
-    <h2 style="text-align: center;">Create New News and Events</h2>
+    <h2 style="text-align: center;">News and Events</h2>
     {{-- {{ dd($News and Eventss ->title) }} --}}
     <div class="card card-warning">
         <div class="card-header">
-            <h3 class="card-title">Create New News and Events</h3>
+            <h3 class="card-title">Update News and Events</h3>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
