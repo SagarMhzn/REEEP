@@ -2,7 +2,7 @@
 
 @section('content')
 
-{{-- {{ dd($knowledge) }} --}}
+    {{-- {{ dd($knowledge) }} --}}
 
     <div class="errors" style="text-align: center">
         @if ($errors->any())
@@ -64,14 +64,13 @@
                         <div id="img-preview">
 
                             @if ($knowledge->image)
-                                <img src="{{ url('public/Image/knowledge-and-resources/images/' . $knowledge->image) }}" 
-                                width="200px" height="150px"
-                                    style="object-fit: fit" alt="Image" />
+                                <img src="{{ url('public/Image/knowledge-and-resources/images/' . $knowledge->image) }}"
+                                    width="200px" height="150px" style="object-fit: fit" alt="Image" />
                             @else
                                 {{-- <img src="" width="200px" height="150px"
                                     style="object-fit: fit" alt="No image Provided" /> --}}
 
-                                    <i >~~~ No Image ~~~</i>
+                                <i>~~~ No Image ~~~</i>
                             @endif
 
                         </div>
@@ -83,23 +82,20 @@
 
                     </div>
                 </div>
-            </div>
-
-            <div class="row">
+                
                 <div class="col-sm">
                     <!-- text input -->
                     <div class="form-group">
                         {!! Form::label('documents', 'Documents') !!}
-<br>
+                        <br>
                         <div id="doc-preview">
 
                             @if ($knowledge->documents)
-                                <a href="{{ url('public/Image/knowledge-and-resources/documents/' . $knowledge->documents) }}" 
+                                <a href="{{ url('public/Image/knowledge-and-resources/documents/' . $knowledge->documents) }}"
                                     alt="Document" target="_blank"> {{ Str::substr($knowledge->documents, 12) }}
                                 </a>
                             @else
-
-                                    <i >~~~ No Documents ~~~</i>
+                                <i>~~~ No Documents ~~~</i>
                             @endif
 
                         </div>
@@ -112,7 +108,7 @@
                             'accept' => '.pdf,.doc,.docx,.svg,.xlsx',
                         ]) !!}
 
-                        
+
                         <button id="preview-btn" style="display: none;">Preview</button>
 
                         {{-- <div id="img-preview"></div>
@@ -125,17 +121,11 @@
                     </div>
                 </div>
 
-                <div class="col-sm">
-                    <!-- text input -->
-                    <div class="form-group">
-                        {!! Form::label('source', 'Source Link') !!}
-                        {!! Form::text('source', $knowledge->source, ['class' => 'form-control', 'placeholder' => 'Enter source']) !!}
-                    </div>
-                </div>
+
             </div>
 
 
-            {!! Form::submit('Create Knowledge and Resource', ['class' => 'btn btn-success']) !!}
+            {!! Form::submit('Update', ['class' => 'btn btn-success']) !!}
 
             {!! Form::close() !!}
         </div>
@@ -163,33 +153,33 @@
         }
     </script>
 
-<script>
-    const fileInput = document.getElementById('choose-doc');
-    const fileNameDisplay = document.getElementById('file-name');
-    const previewButton = document.getElementById('preview-btn');
-    const docPreviewDiv = document.getElementById('doc-preview');
+    <script>
+        const fileInput = document.getElementById('choose-doc');
+        const fileNameDisplay = document.getElementById('file-name');
+        const previewButton = document.getElementById('preview-btn');
+        const docPreviewDiv = document.getElementById('doc-preview');
 
-    fileInput.addEventListener('change', function() {
-        if (fileInput.files.length > 0) {
-            const fileName = fileInput.files[0].name;
-            fileNameDisplay.textContent = fileName;
-            previewButton.style.display = 'inline'; // Show preview button
-            docPreviewDiv.style.display = 'none'; // Hide doc preview div
-        } else {
-            fileNameDisplay.textContent = '';
-            previewButton.style.display = 'none'; // Hide preview button
-            docPreviewDiv.style.display = 'block'; // Show doc preview div
-        }
-    });
+        fileInput.addEventListener('change', function() {
+            if (fileInput.files.length > 0) {
+                const fileName = fileInput.files[0].name;
+                fileNameDisplay.textContent = fileName;
+                previewButton.style.display = 'inline'; // Show preview button
+                docPreviewDiv.style.display = 'none'; // Hide doc preview div
+            } else {
+                fileNameDisplay.textContent = '';
+                previewButton.style.display = 'none'; // Hide preview button
+                docPreviewDiv.style.display = 'block'; // Show doc preview div
+            }
+        });
 
-    previewButton.addEventListener('click', function(event) {
-        event.preventDefault(); // Prevent form submission
-        if (fileInput.files.length > 0) {
-            const fileURL = URL.createObjectURL(fileInput.files[0]);
-            window.open(fileURL, '_blank'); // Open document in a new tab/window
-        }
-    });
-</script>
+        previewButton.addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent form submission
+            if (fileInput.files.length > 0) {
+                const fileURL = URL.createObjectURL(fileInput.files[0]);
+                window.open(fileURL, '_blank'); // Open document in a new tab/window
+            }
+        });
+    </script>
 
 
 

@@ -38,8 +38,7 @@
                                 </td>
                                 <td class="text-center">
                                     @if ($items->logo)
-                                        <img src="{{ url('public/Image/partners/' . $items->logo) }}" width="150px" height="100px"
-                                            style="object-fit: fit" alt="Logo" />
+                                        <img src="{{ url('public/Image/partners/' . $items->logo) }}" class="image-prev" alt="Logo" />
                                     @else
                                         {{-- <img src="{{ url('public/Image/no-image.jpg') }}" width="250px" height="200px"
                                             style="object-fit: cover" alt="Image" /> --}}
@@ -72,6 +71,6 @@
 </div> --}}
     @else
         <div class="card-header">
-            {{ __('There are currently no About Us Articles! ') }} </div>
+            {{ __('There are currently no Partners informations! ') }} </div>
     @endif
 @endsection

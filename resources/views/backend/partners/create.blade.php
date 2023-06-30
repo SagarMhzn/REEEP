@@ -57,7 +57,7 @@
                 <div class="col-sm">
                     <!-- text input -->
                     <div class="form-group">
-                        {!! Form::label('logo', 'Logo' !!}
+                        {!! Form::label('logo', 'Logo') !!}
 
                         <div id="img-preview"></div>
                         {!! Form::file('logo', [
@@ -70,7 +70,7 @@
             </div>
 
 
-            {!! Form::submit('Create Menu', ['class' => 'btn btn-success']) !!}
+            {!! Form::submit('Create ', ['class' => 'btn btn-success']) !!}
 
             {!! Form::close() !!}
         </div>

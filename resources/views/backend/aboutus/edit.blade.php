@@ -81,7 +81,7 @@
             </div>
 
 
-            {!! Form::submit('Create Menu', ['class' => 'btn btn-success']) !!}
+            {!! Form::submit('Update', ['class' => 'btn btn-success']) !!}
 
             {!! Form::close() !!}
         </div>

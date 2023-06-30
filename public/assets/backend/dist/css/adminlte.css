@@ -52436,3 +52436,9 @@ a.text-muted:hover {
 .resources{
   padding-left: 2rem;
 }
+
+.image-prev{
+  max-width: 100px;
+  max-height: 75px;
+  object-fit: fill;
+}

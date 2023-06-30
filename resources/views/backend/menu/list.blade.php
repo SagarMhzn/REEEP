@@ -73,6 +73,6 @@
 </div> --}}
     @else
         <div class="card-header">
-            {{ __('There are no child! ') }} </div>
+            {{ __('There are no Menus! ') }} </div>
     @endif
 @endsection
