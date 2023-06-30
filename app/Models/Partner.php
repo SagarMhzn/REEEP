@@ -14,4 +14,7 @@ class Partner extends Model
     protected $fillable = [
         'title', 'abbreviations', 'logo', 'description',
     ];
+
+    protected $guarded = [];
+    
 }

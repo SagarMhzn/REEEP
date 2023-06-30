@@ -11,7 +11,7 @@
         @endforeach
     @endif
 </div>
-    <h2 style="text-align: center;">Create New Menus</h2>
+    <h2 style="text-align: center;">Menus</h2>
     {{-- {{ dd($menus ->title) }} --}}
     <div class="card card-warning">
         <div class="card-header">

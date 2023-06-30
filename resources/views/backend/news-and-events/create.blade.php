@@ -11,7 +11,7 @@
         @endif
     </div>
 
-    <h2 style="text-align: center;">Create New News and Events</h2>
+    <h2 style="text-align: center;">News and Events</h2>
     {{-- {{ dd($Working Areass ->title) }} --}}
     <div class="card card-warning">
         <div class="card-header">
