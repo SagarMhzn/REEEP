@@ -11,15 +11,15 @@
         @endif
     </div>
 
-    <h2 style="text-align: center;">Working Areas</h2>
-    {{-- {{ dd($Working Areass ->title) }} --}}
+    <h2 style="text-align: center;">Banners</h2>
+    {{-- {{ dd($Bannerss ->title) }} --}}
     <div class="card card-warning">
         <div class="card-header">
-            <h3 class="card-title">Create New Working Areas</h3>
+            <h3 class="card-title">Create New Banners</h3>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-            {!! Form::open(['route' => 'backend.workingareas.store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+            {!! Form::open(['route' => 'backend.banners.store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
             {!! csrf_field() !!}
             <div class="row">
                 <div class="col-sm-12">
@@ -35,14 +35,15 @@
                 <div class="col-sm-12">
                     <!-- text input -->
                     <div class="form-group">
-                        {!! Form::label('description', 'Description') !!}
-                        {!! Form::textarea('description', null, [
+                        {!! Form::label('caption', 'Captions') !!}
+                        {!! Form::textarea('caption', null, [
                             'class' => 'form-control',
-                            'placeholder' => 'Enter Description',
+                            'placeholder' => 'Enter caption',
                             'rows' => 4,
                             'cols' => 50,
                         ]) !!}
                     </div>
+                    
                 </div>
             </div>
 
@@ -50,13 +51,13 @@
                 <div class="col-sm">
                     <!-- text input -->
                     <div class="form-group">
-                        {!! Form::label('logo', 'Logo') !!}
+                        {!! Form::label('banner-file', 'File') !!}
 
                         <div id="img-preview"></div>
-                        {!! Form::file('logo', [
+                        {!! Form::file('banner-file', [
                             'id' => 'choose-file',
                             'style' => 'margin-bottom:1rem; object-fit: cover;',
-                            'accept' => 'image/*',
+                            'accept' => 'image/,video/*',
                         ]) !!}
 
                     </div>
