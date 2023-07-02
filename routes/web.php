@@ -1,17 +1,19 @@
 <?php
 
+use App\Models\Banner;
 use App\Models\WorkingArea;
 use App\Models\NewsAndEvent;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LangController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\AboutUsController;
+use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\KnowledgeController;
 use App\Http\Controllers\WorkingAreaController;
 use App\Http\Controllers\NewsAndEventController;
-use App\Http\Controllers\PartnerController;
-use App\Models\Banner;
+use App\Models\Lang;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +42,10 @@ Route::get('/working_areas', [HomeController::class, 'viewWorkingAreas'])->name(
 // Route::get('/about-us',[HomeController::class, 'viewAbout'])->name('about');
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+Route::get('/lang/home',[LangController::class, 'view']);
+Route::get('/lang/change',[LangController::class, 'change'])->name('changeLang');
+    
 
 Route::prefix('dashboard')->name('backend.')->middleware('auth')->group(function () {
 
@@ -114,5 +120,6 @@ Route::prefix('dashboard')->name('backend.')->middleware('auth')->group(function
 
     Route::resource('banner',BannerController::class);
     // Route::put('/banner/update/{banner}', [BannerController::class, 'update'])->name('banner.update');
-
+    
+    Route::resource('lang',LangController::class);
 });
