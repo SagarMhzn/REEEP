@@ -12,21 +12,27 @@
     </div>
 
     <h2 style="text-align: center;">Working Areas</h2>
-    {{-- {{ dd($Working Areass ->title) }} --}}
+    {{-- {{ dd($About Uss ->title) }} --}}
     <div class="card card-warning">
         <div class="card-header">
-            <h3 class="card-title">Create New Working Areas</h3>
+            <h3 class="card-title">Update Working Areas</h3>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-            {!! Form::open(['route' => 'backend.workingareas.store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+            {!! Form::open([
+                'route' => ['backend.workingareas.update', $workingarea->id],
+                'method' => 'POST',
+                'enctype' => 'multipart/form-data',
+            ]) !!}
             {!! csrf_field() !!}
+
+            @method('put')
             <div class="row">
                 <div class="col-sm-12">
                     <!-- text input -->
                     <div class="form-group">
                         {!! Form::label('title', 'Title') !!}
-                        {!! Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'Enter Title']) !!}
+                        {!! Form::text('title', $workingarea->title, ['class' => 'form-control', 'placeholder' => 'Enter Title']) !!}
                     </div>
                 </div>
             </div>
@@ -36,7 +42,7 @@
                     <!-- text input -->
                     <div class="form-group">
                         {!! Form::label('description', 'Description') !!}
-                        {!! Form::textarea('description', null, [
+                        {!! Form::textarea('description', $workingarea->description, [
                             'class' => 'form-control',
                             'placeholder' => 'Enter Description',
                             'rows' => 4,
@@ -48,11 +54,24 @@
 
             <div class="row">
                 <div class="col-sm">
-                    <!-- text input -->
-                    <div class="form-group">
+
+                    <div class="form-group d-flex" style="flex-direction: column ">
+
                         {!! Form::label('logo', 'Logo') !!}
 
-                        <div id="img-preview"></div>
+                        <div id="img-preview">
+
+                            @if ($workingarea->logo)
+                                <img src="{{ url('public/Image/workingarea/' . $workingarea->logo) }}" width="200px" height="150px"
+                                    style="object-fit: fit" alt="Image" />
+                            @else
+                                {{-- <img src="" width="200px" height="150px"
+                                    style="object-fit: fit" alt="No image Provided" /> --}}
+
+                                    <i >~~~ No Image ~~~</i>
+                            @endif
+
+                        </div>
                         {!! Form::file('logo', [
                             'id' => 'choose-file',
                             'style' => 'margin-bottom:1rem; object-fit: cover;',
@@ -64,7 +83,7 @@
             </div>
 
 
-            {!! Form::submit('Create ', ['class' => 'btn btn-success']) !!}
+            {!! Form::submit('Update', ['class' => 'btn btn-success']) !!}
 
             {!! Form::close() !!}
         </div>
@@ -85,7 +104,7 @@
                 fileReader.readAsDataURL(files);
                 fileReader.addEventListener("load", function() {
                     imgPreview.style.display = "block";
-                    imgPreview.innerHTML = '<div><img src="' + this.result + '" height=150 width=200 /></div>';
+                    imgPreview.innerHTML = '<div><img src="' + this.result + '" height=150px width=200px /></div>';
                 });
             }
         }

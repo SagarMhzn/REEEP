@@ -11,6 +11,7 @@ use App\Http\Controllers\KnowledgeController;
 use App\Http\Controllers\WorkingAreaController;
 use App\Http\Controllers\NewsAndEventController;
 use App\Http\Controllers\PartnerController;
+use App\Models\Banner;
 
 /*
 |--------------------------------------------------------------------------
@@ -110,5 +111,8 @@ Route::prefix('dashboard')->name('backend.')->middleware('auth')->group(function
 
     Route::resource('knowledge',KnowledgeController::class);
     Route::put('/knowledge/update/{knowledge}', [KnowledgeController::class, 'update'])->name('knowledge.update');
+
+    Route::resource('banner',BannerController::class);
+    // Route::put('/banner/update/{banner}', [BannerController::class, 'update'])->name('banner.update');
 
 });
