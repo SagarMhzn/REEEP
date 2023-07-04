@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Lang;
 use App\Models\Banner;
 use App\Models\WorkingArea;
 use App\Models\NewsAndEvent;
@@ -8,12 +9,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LangController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\BannerController;
 use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\KnowledgeController;
 use App\Http\Controllers\WorkingAreaController;
 use App\Http\Controllers\NewsAndEventController;
-use App\Models\Lang;
 
 /*
 |--------------------------------------------------------------------------

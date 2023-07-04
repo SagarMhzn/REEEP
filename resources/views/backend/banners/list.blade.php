@@ -5,16 +5,16 @@
     {{-- {{ dd($parent_id) }} --}}
     <div class="d-flex justify-content-between menu-header">
 
-        <h2 style="text-align: center;">Working Areas List</h2>
+        <h2 style="text-align: center;">Banner List</h2>
 
 
-        <a href="{{ route('backend.workingareas.create') }}" class="btn btn-primary btn-menu">
+        <a href="{{ route('backend.banner.create') }}" class="btn btn-primary btn-menu">
             <i class="fas fa-plus"></i>
         </a>
     </div>
 
 
-    @if (count($workingarea) != 0)
+    @if (count($banner) != 0)
         <div class="card card-warning">
 
             <div class="card-body">
@@ -23,42 +23,53 @@
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Title</th>
-                            <th scope="col">Description</th>
-                            <th scope="col">Image</th>
+                            <th scope="col">Banner Order</th>
+                            <th scope="col">Caption</th>
+                            <th scope="col">Banner File</th>
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($workingarea as $keys => $items)
+                        @foreach ($banner as $keys => $items)
                             <tr>
                                 <th scope="row">{{ $keys + 1 }}</th>
                                 <td class="text-center">{{ $items->title }}</td>
                                 <td class="text-center">
-                                    {{ $items->description }}
+                                    {{ $items->banner_order }}
                                 </td>
                                 <td class="text-center">
-                                    @if ($items->logo)
-                                        <img src="{{ url('public/Image/workingarea/' . $items->logo) }}" class="image-prev" alt="Image" />
+                                    {{ $items->caption }}
+                                </td>
+                                <td class="text-center">
+                                    @if ($items->banner_file)
+                                        <img src="{{ url('public/Image/banners/' . $items->banner_file) }}"
+                                            class="image-prev" alt="Image" />
                                     @else
                                         {{-- <img src="{{ url('public/Image/no-image.jpg') }}" width="250px" height="200px"
                                             style="object-fit: cover" alt="Image" /> --}}
 
-                                            <i >~~~ No Image ~~~</i>
+                                        <i>~~~ No Image ~~~</i>
                                     @endif
+                                    <p>
+
+                                        {{ substr($items->banner_file, 12) }}
+                                    </p>
+
                                 </td>
                                 <td class="d-flex text-center justify-content-xl-between">
                                     <a href="
-                            {{ route('backend.workingareas.edit', $items->id) }}
-                            "
+                                    {{ route('backend.banner.edit', $items->id) }}
+                                    "
                                         class="text-decoration-none fs-4">
                                         <div class="btn btn-warning mr-1"><i class="fas fa-edit"></i></div>
                                     </a>
-                                    <a href="
-                            {{ route('backend.workingareas.delete', $items->id) }}
-                            "
-                                        class="text-decoration-none fs-4">
-                                        <div class="btn btn-danger mr-1"><i class="fas fa-trash"></i></div>
-                                    </a>
+
+                                    <form action="{{ route('backend.banner.destroy', $items->id) }}" method="POST">
+                                        @method('delete')
+                                        @csrf
+                                        <button class="text-decoration-none fs-4 btn btn-danger mr-1"><i
+                                                class="fas fa-trash"></i></button>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach
@@ -71,6 +82,6 @@
 </div> --}}
     @else
         <div class="card-header">
-            {{ __('There are currently no Working Areas Articles! ') }} </div>
+            {{ __('There are currently no Banners! ') }} </div>
     @endif
 @endsection
