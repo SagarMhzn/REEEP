@@ -22,10 +22,10 @@ class LangRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title.en' => 'required|string|max:50',
-            'title.ne' => 'required|string|max:50',
-            'description.en' => 'required|string|max:255',
-            'description.ne' => 'required|string|max:255',
+            'title.en' => 'required|string',
+            'title.ne' => 'required|string',
+            'description.en' => 'required|string',
+            'description.ne' => 'required|string',
         ];
     }
 }

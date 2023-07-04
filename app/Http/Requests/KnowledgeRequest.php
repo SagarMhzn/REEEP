@@ -22,11 +22,11 @@ class KnowledgeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|string|max:50',
-            'description' => 'nullable|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,gif|max:20000',
+            'title' => 'required|string',
+            'description' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpeg,png,gif',
             'source' => 'nullable|url',
-            'documents' => 'nullable|mimes:pdf,xlxs,xlx,docx,doc,csv,txt|max:50000',
+            'documents' => 'nullable|mimes:pdf,xlxs,xlx,docx,doc,csv,txt',
         ];
     }
 }

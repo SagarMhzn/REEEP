@@ -23,9 +23,9 @@ class WorkingAreaRequest extends FormRequest
     {
 
         return [
-            'title' => 'required|string|max:50',
-            'description' => 'required|string|max:255',
-            'logo' => 'nullable|image|mimes:jpeg,png,gif|max:20000'
+            'title' => 'required|string',
+            'description' => 'required|string',
+            'logo' => 'nullable|image|mimes:jpeg,png,gif'
         ];
     }
 }

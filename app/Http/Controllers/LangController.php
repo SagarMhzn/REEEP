@@ -60,7 +60,7 @@ class LangController extends Controller
         ];
         $lang->save();
 
-        return redirect()->back();
+        return redirect(route('backend.lang.index'));
         // return redirect(route('backend.lang.index'));
     }
 
@@ -85,15 +85,25 @@ class LangController extends Controller
      */
     public function edit(Lang $lang)
     {
-        //
+        return view('backend.lang.edit', compact('lang'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Lang $lang)
+    public function update(LangRequest $request, Lang $lang)
     {
-        //
+        $lang->title = [
+            'en' => $request['title']['en'],
+            'ne' => $request['title']['ne'],
+        ];
+        $lang->description = [
+            'en' => $request['description']['en'],
+            'ne' => $request['description']['ne'],
+        ];
+        $lang->save();
+
+        return redirect(route('backend.lang.index'));
     }
 
     /**
@@ -101,7 +111,6 @@ class LangController extends Controller
      */
     public function destroy(Lang $lang)
     {
-        
         $lang->delete();
         return redirect()->back();
     }

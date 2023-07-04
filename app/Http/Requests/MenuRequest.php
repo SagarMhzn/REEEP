@@ -33,7 +33,7 @@ class MenuRequest extends FormRequest
 
         if ($this->isMethod('POST')) {
             $rule2 = [
-                'title' => 'string|unique:menus|max:100',
+                'title' => 'string|unique:menus',
             ];
         } elseif ($this->isMethod('PUT')) {
             $rule2 = [
