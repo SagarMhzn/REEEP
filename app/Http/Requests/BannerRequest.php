@@ -25,9 +25,9 @@ class BannerRequest extends FormRequest
 
 
         $rule1 = [
-            'title' => 'required|string|max:50',
-            'caption' => 'nullable|string|max:150',
-            'banner_file' => 'required|file|mimes:jpeg,png,gif,mp4,avi,mov|max:100240',
+            'title' => 'required|string',
+            'caption' => 'nullable|string',
+            'banner_file' => 'required|file|mimes:jpeg,png,gif,mp4,avi,mov',
         ];
 
         if ($this->isMethod('POST')) {

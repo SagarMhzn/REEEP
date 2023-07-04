@@ -22,10 +22,10 @@ class PartnerRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|string|max:50',
-            'abbreviations' => 'nullable|string|max:255',
-            'description' => 'nullable|string|max:255',
-            'logo' => 'nullable|image|mimes:jpeg,png,gif|max:20000',
+            'title' => 'required|string',
+            'abbreviations' => 'nullable|string',
+            'description' => 'nullable|string',
+            'logo' => 'nullable|image|mimes:jpeg,png,gif',
         ];
     }
 }

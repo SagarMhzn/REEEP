@@ -22,8 +22,8 @@ class AboutUsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|string|max:50',
-            'description' => 'required|string|max:255',
+            'title' => 'required|string',
+            'description' => 'required|string',
             'image' => 'nullable|image|mimes:jpeg,png,gif|max:20000'
         ];
     }

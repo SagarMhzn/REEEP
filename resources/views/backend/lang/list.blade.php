@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="d-flex justify-content-between menu-header">
+    {{-- <div class="d-flex justify-content-between menu-header">
         <h2 style="text-align: center;">Language List</h2>
         <div class="row">
             <div class="col-md col-md-offset-6 text-right">
@@ -15,8 +15,8 @@
                 </select>
             </div>
         </div>
-    </div>
-{{-- {{ dd($lang) }} --}}
+    </div> --}}
+    {{-- {{ dd($lang) }} --}}
     @if (count($lang) != 0)
         <div class="card card-warning">
             <div class="card-body">
@@ -33,27 +33,30 @@
                         @foreach ($lang as $key => $item)
                             <tr>
                                 <th scope="row">{{ $key + 1 }}</th>
-                                <td class="text-center">
-                                    {{ $item->title[session('locale')] }}
-                                   
+                                <td class="">
+                                    {{ $item->title['en'] }}
+                                    <hr>
+                                    {{ $item->title['ne'] }}
                                 </td>
-                                <td class="text-center">
-                                    {{ $item->description[session('locale')] }}
-                                   
+                                <td class="">
+                                    {{ $item->description['en'] }}
+                                    <hr>
+                                    {{ $item->description['ne'] }}
+
                                 </td>
-                                <td class="d-flex text-center justify-content-xl-between">
+                                <td class=" d-flex text-center justify-content-xl-around">
                                     <a href="
-                                    {{-- {{ route('backend.lang.edit', $item->id) }} --}}
-                                    " class="text-decoration-none fs-4">
+                            {{ route('backend.lang.edit', $item->id) }}
+                            "
+                                        class="text-decoration-none fs-4">
                                         <div class="btn btn-warning mr-1"><i class="fas fa-edit"></i></div>
                                     </a>
 
-                                    <form action="{{ route('backend.lang.destroy', $item->id) }}" method="POST">
-                                    @csrf
-                                    @method('delete')
-                                        <button
-                                            class="btn btn-danger mr-1"><i class="fas fa-trash"></i>
-                                        </button>
+                                    <form action="{{ route('backend.lang.destroy', $item->id) }}" method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <button class="btn btn-danger mr-1"><i class="fas fa-trash"></i></button>
+
                                     </form>
                                 </td>
                             </tr>
@@ -69,13 +72,11 @@
     @endif
 
     <script type="text/javascript">
-  
         var url = "{{ route('changeLang') }}";
-      
-        $(".changeLang").change(function(){
-            window.location.href = url + "?lang="+ $(this).val();
+
+        $(".changeLang").change(function() {
+            window.location.href = url + "?lang=" + $(this).val();
         });
-      
     </script>
 
 @endsection

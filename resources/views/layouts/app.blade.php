@@ -153,6 +153,8 @@
     <script src="{{ asset('assets/vendor/php-email-form/validate.js') }}"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBfFgGrcAobgjJjdMgIXsQMIfm_VlBDaXM&callback=initMap" async
         defer></script>
+{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
+
     <script>
         function initMap() {
             // Define the coordinates for the requested place
