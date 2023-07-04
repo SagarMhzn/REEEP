@@ -19,14 +19,22 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-            {!! Form::open(['route' => 'backend.banners.store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+            {!! Form::open(['route' => 'backend.banner.store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
             {!! csrf_field() !!}
             <div class="row">
-                <div class="col-sm-12">
+                <div class="col-sm-6">
                     <!-- text input -->
                     <div class="form-group">
                         {!! Form::label('title', 'Title') !!}
                         {!! Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'Enter Title']) !!}
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <!-- text input -->
+                    <div class="form-group">
+                        {!! Form::label('banner_order', 'Banner Order') !!}
+                        {!! Form::text('banner_order', null, ['class' => 'form-control', 'placeholder' => 'Enter Banner Order']) !!}
                     </div>
                 </div>
             </div>
@@ -39,7 +47,7 @@
                         {!! Form::textarea('caption', null, [
                             'class' => 'form-control',
                             'placeholder' => 'Enter caption',
-                            'rows' => 4,
+                            'rows' => 2,
                             'cols' => 50,
                         ]) !!}
                     </div>
@@ -54,10 +62,10 @@
                         {!! Form::label('banner-file', 'File') !!}
 
                         <div id="img-preview"></div>
-                        {!! Form::file('banner-file', [
+                        {!! Form::file('banner_file', [
                             'id' => 'choose-file',
                             'style' => 'margin-bottom:1rem; object-fit: cover;',
-                            'accept' => 'image/,video/*',
+                            'accept' => 'image/*,video/*',
                         ]) !!}
 
                     </div>
