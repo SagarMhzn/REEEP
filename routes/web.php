@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LangController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\PartnerController;
@@ -123,4 +124,6 @@ Route::prefix('dashboard')->name('backend.')->middleware('auth')->group(function
     // Route::put('/banner/update/{banner}', [BannerController::class, 'update'])->name('banner.update');
     
     Route::resource('lang',LangController::class);
+
+    Route::resource('album',AlbumController::class);
 });
