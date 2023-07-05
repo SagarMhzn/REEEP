@@ -2,6 +2,7 @@
 
 use App\Models\Lang;
 use App\Models\Banner;
+use App\Models\Gallery;
 use App\Models\WorkingArea;
 use App\Models\NewsAndEvent;
 use Illuminate\Support\Facades\Auth;
@@ -12,6 +13,7 @@ use App\Http\Controllers\MenuController;
 use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\AboutUsController;
+use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\KnowledgeController;
 use App\Http\Controllers\WorkingAreaController;
@@ -126,4 +128,6 @@ Route::prefix('dashboard')->name('backend.')->middleware('auth')->group(function
     Route::resource('lang',LangController::class);
 
     Route::resource('album',AlbumController::class);
+
+    Route::resource('gallery',GalleryController::class);
 });
