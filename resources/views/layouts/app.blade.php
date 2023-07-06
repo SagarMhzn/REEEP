@@ -35,7 +35,7 @@
     <header id="header" class="fixed-top d-flex align-items-center">
         <div class="container d-flex align-items-center justify-content-between flex-column">
 
-            <div class="logo justify-content-around" style="display: flex; flex-direction:row;">
+            <div class="logo" style="display: flex; flex-direction:row; justify-content:space-between;">
                 <div class="logo-items">
                     <a href="{{ url('/') }}"><img src="{{ asset('logo/Emblem_of_Nepal.png') }}" alt=""
                             class="img-fluid" id="logo"></a>
@@ -62,22 +62,23 @@
             </div>
             <div>
                 <nav id="navbar" class="navbar">
-                    <ul>
-                        <li><a class="active" href="#home">Home</a></li>
+                    
+                        @include('partials.homemenu')
+                        {{-- <li><a class="active" href="#home">Home</a></li>
                         <li><a href="#aboutus">About Us</a></li>
                         <li><a href="#workingareas">Working<br /> Areas</a></li>
                         <li><a href="#NaE">News <br />and Events</a></li>
                         <li><a href="#partners">Partners</a></li>
                         <li><a href="#KaR">Knowledge <br />and resources</a></li>
-                        <li><a href="#contactus">Contact Us</a></li>
-                    </ul>
+                        <li><a href="#contactus">Contact Us</a></li> --}}
+                    
                     <i class="bi bi-list mobile-nav-toggle"></i>
                 </nav><!-- .navbar -->
             </div>
         </div>
     </header><!-- End Header -->
 
-    <main>
+    <main class="py-5">
         @yield('content')
     </main>
 

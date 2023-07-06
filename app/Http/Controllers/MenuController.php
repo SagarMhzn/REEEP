@@ -16,7 +16,7 @@ class MenuController extends Controller
 
     public function create()
     {
-        $menus = Menu::with('child')->whereNUll('parent_id')->get();
+        $menus = Menu::with('children')->whereNUll('parent_id')->get();
         return view('backend.menu.create', compact('menus'));
     }
 
@@ -54,7 +54,7 @@ class MenuController extends Controller
 
     public function show()
     {
-        $menus = Menu::with('child')->OrderBy('order')->where('parent_id', null)->get();
+        $menus = Menu::with('children')->OrderBy('order')->where('parent_id', null)->get();
 
         $parent_id = Menu::value('parent_id');
         return view('backend.menu.list', compact('menus', 'parent_id'));
@@ -62,7 +62,7 @@ class MenuController extends Controller
 
     public function showChild($id)
     {
-        $menus = Menu::with('child')->OrderBy('order')->where('parent_id', $id)->get();
+        $menus = Menu::with('children')->OrderBy('order')->where('parent_id', $id)->get();
 
         $parent_id = $id;
         $parent_title = Menu::where('id', $id)->value('title');
@@ -72,8 +72,8 @@ class MenuController extends Controller
 
     public function edit($id)
     {
-        $update = Menu::with('child')->where('id', $id)->first();
-        $menus = Menu::with('child')->whereNUll('parent_id')->get();
+        $update = Menu::with('children')->where('id', $id)->first();
+        $menus = Menu::with('children')->whereNUll('parent_id')->get();
 
         return view('backend.menu.edit', compact('update', 'menus'));
     }
@@ -99,6 +99,20 @@ class MenuController extends Controller
             return redirect(route('backend.menu.childlist', $parent_id));
         } elseif ($parent_id == Null) {
             return redirect(route('backend.menu.list'));
+        }
+    }
+
+    public function toggle($id)
+    {
+        $menu = Menu::findOrFail($id);
+        if ($menu->status == 0) {
+            $menu->status = !$menu->status;
+            $menu->save();
+            return redirect()->back();
+        }elseif($menu->status == 1){
+            $menu->status = !$menu->status;
+            $menu->save();
+            return redirect()->back();
         }
     }
 

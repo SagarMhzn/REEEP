@@ -3,14 +3,14 @@
 @section('content')
 
     {{-- {{ dd($parent_id) }} --}}
-<div class="d-flex justify-content-between menu-header">
+    <div class="d-flex justify-content-between menu-header">
 
-    <h2 style="text-align: center;">{{ $parent_title ?? 'Menu List' }}</h2>
-    <a href="{{ route('backend.menu.create') }}" class="btn btn-primary btn-menu">
-        <i class="fas fa-plus"></i>
-    </a>
-    
-</div>
+        <h2 style="text-align: center;">{{ $parent_title ?? 'Menu List' }}</h2>
+        <a href="{{ route('backend.menu.create') }}" class="btn btn-primary btn-menu">
+            <i class="fas fa-plus"></i>
+        </a>
+
+    </div>
 
 
     @if (count($menus) != 0)
@@ -40,7 +40,16 @@
                                         N/A
                                     @endif
                                 </td>
-                                <td>{{ $items->status }}</td>
+                                <td>
+                                    <button class="btn  {{ $items->status == 0 ? 'btn-danger' : 'btn-success' }}">
+                                    <a href="{{ route('backend.menu.toggleStatus', ['id' => $items->id]) }}"
+                                        style="text-decoration-color: white; color:white;">
+                                        {{ $items->status == 0 ? 'In-Active!' : 'Active!' }}
+                                    </a>
+                                </button>
+
+
+                                </td>
                                 <td>{{ $items->order }}</td>
                                 <td class="d-flex">
                                     <a href="

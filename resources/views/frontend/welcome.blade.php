@@ -7,14 +7,18 @@
             <div id="carouselSection" class="carousel slide" data-bs-ride="carousel">
 
                 <div class="carousel-inner col-8">
-                    <div class="carousel-item active">
-                        <img src="{{ asset('banners/solar_panel.jpg') }}" class="carousel-img" alt="a">
+                    @foreach ($data['banner'] as $key=>$banner )
+                    
+                    <div class="carousel-item {{$key == 0 ? 'active' : '' }}">
+                        <img src="{{ asset('public/Image/banners/' . $banner->banner_file) }}" class="carousel-img" alt="No file found">
                         <div class="carousel-caption d-none d-md-block">
-                            <h5>First slide label</h5>
-                            <p>Some representative placeholder content for the first slide.</p>
+                            <h5>{{ $banner->title }}</h5>
+                            <p>{{ $banner->caption }}</p>
                         </div>
                     </div>
-                    <div class="carousel-item">
+
+                    @endforeach
+                    {{-- <div class="carousel-item">
                         <img src="{{ asset('banners/solar_to_electric.jpg') }}" class="carousel-img" alt="b">
                         <div class="carousel-caption d-none d-md-block">
                             <h5>First slide label</h5>
@@ -27,7 +31,7 @@
                             <h5>First slide label</h5>
                             <p>Some representative placeholder content for the first slide.</p>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
                 <button class="carousel-control-prev col-2" type="button" data-bs-target="#carouselSection" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -51,13 +55,13 @@
         <div class="about-hero">
             <div class="container" data-aos="fade-up">
                 <div class="about-hero" align="center">
-                    <a href=" {{ route('about') }}">
-                        <h2>About NEEP</h2>
+                    <a href=" {{ route('frontend.about') }}">
+                        <h2>About NEEEP</h2>
                     </a>
                     <h4>Nepal Energy Efficiency Programme</h4>
                     <p>The new consitution of Nepal underlines the role of reliable and affordable energy and its
                         sustainable use for the fulfillment of basic needs and the economic growth of the country. However,
-                        despite continuous endeavors Nepal’s energy supply and demand balance, particularly electricity
+                        despite continuous endeavors Nepal's energy supply and demand balance, particularly electricity
                         still remains in deficit. According to international energy statistics and by regional comparison
                         Nepal shows a high energy intensity, indicating a generally inefficient use of energy in the
                         country. The Government of Nepal has recognised the problem and as part of its Nationally Determined
@@ -86,7 +90,7 @@
         <div class="working_area_section">
             <div class="row">
                 <div class=" col">
-                    <a href="{{ route('workingareas') }}">
+                    <a href="{{ route('frontend.workingareas') }}">
 
                         <img src="{{ asset('banners/img1.jpg') }}" class="working-img" alt="">
                         <div class="card-body">
@@ -101,7 +105,7 @@
                 </div>
 
                 <div class=" col">
-                    <a href="{{ route('workingareas') }}">
+                    <a href="{{ route('frontend.workingareas') }}">
 
                         <img src="{{ asset('banners/img1.jpg') }}" class="working-img" alt="">
                         <div class="card-body">
@@ -116,7 +120,7 @@
                 </div>
 
                 <div class=" col">
-                    <a href="{{ route('workingareas') }}">
+                    <a href="{{ route('frontend.workingareas') }}">
 
                         <img src="{{ asset('banners/img1.jpg') }}" class="working-img" alt="">
                         <div class="card-body">
@@ -131,7 +135,7 @@
                 </div>
 
                 <div class=" col">
-                    <a href="{{ route('workingareas') }}">
+                    <a href="{{ route('frontend.workingareas') }}">
 
                         <img src="{{ asset('banners/img1.jpg') }}" class="working-img" alt="">
                         <div class="card-body">
@@ -146,7 +150,7 @@
                 </div>
 
                 <div class=" col">
-                    <a href="{{ route('workingareas') }}">
+                    <a href="{{ route('frontend.workingareas') }}">
 
                         <img src="{{ asset('banners/img1.jpg') }}" class="working-img" alt="">
                         <div class="card-body">
@@ -224,14 +228,6 @@
                 <div class="col-lg-4">
 
                     <div class="sidebar">
-
-                        <h3 class="sidebar-title">Search</h3>
-                        <div class="sidebar-item search-form">
-                            <form action="">
-                                <input type="text">
-                                <button type="submit"><i class="bi bi-search"></i></button>
-                            </form>
-                        </div>
 
                         <h3 class="sidebar-title">Recent Posts</h3>
                         <div class="sidebar-item recent-posts">
