@@ -8,8 +8,8 @@
 
 </option>
 
-@if (!empty($item['child']))
-    @foreach ($item['child'] as $child)
+@if (!empty($item['children']))
+    @foreach ($item['children'] as $child)
         @include('partials.option', ['item' => $child, 'depth' => $depth + 1])
     @endforeach
 @endif

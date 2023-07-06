@@ -36,23 +36,29 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/about-us', [HomeController::class, 'viewAbout'])->name('about');
-Route::get('/working_areas', [HomeController::class, 'viewWorkingAreas'])->name('workingareas');
+//HomeController Routes
+
+Route::name('frontend.')->group(function () {
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/about-us', [HomeController::class, 'about'])->name('about');
+Route::get('/areas', [HomeController::class, 'workingareas'])->name('workingareas');
 // Route::get('/about-us',[HomeController::class, 'viewNews'])->name('news');
 // Route::get('/about-us',[HomeController::class, 'viewContactUs'])->name('about');
 // Route::get('/about-us',[HomeController::class, 'viewAbout'])->name('about');
 // Route::get('/about-us',[HomeController::class, 'viewAbout'])->name('about');
 // Route::get('/about-us',[HomeController::class, 'viewAbout'])->name('about');
 // Route::get('/about-us',[HomeController::class, 'viewAbout'])->name('about');
-
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+});
 
 Route::get('/lang/home',[LangController::class, 'view']);
 Route::get('/lang/change',[LangController::class, 'change'])->name('changeLang');
-    
+
 
 Route::prefix('dashboard')->name('backend.')->middleware('auth')->group(function () {
-
+    
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    
     Route::name('menu.')->group(function () {
 
         Route::get('/menu/create', [MenuController::class, 'create'])->name('create');
@@ -65,6 +71,8 @@ Route::prefix('dashboard')->name('backend.')->middleware('auth')->group(function
         Route::put('/menu/edit/{id}', [MenuController::class, 'update'])->name('update');
 
         Route::get('/menu/delete/{id}', [MenuController::class, 'destroy'])->name('delete');
+
+        Route::get('/menu/toggle-status/{id}' , [MenuController::class, 'toggle'])->name('toggleStatus');
     });
 
     Route::name('aboutus.')->group(function () {
@@ -131,3 +139,4 @@ Route::prefix('dashboard')->name('backend.')->middleware('auth')->group(function
 
     Route::resource('gallery',GalleryController::class);
 });
+
