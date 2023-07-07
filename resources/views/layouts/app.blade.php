@@ -6,8 +6,6 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
     <title>REEEP</title>
-    <meta content="" name="description">
-    <meta content="" name="keywords">
 
     <!-- Favicons -->
     <link href="{{ asset('assets/img/favicon.png') }}" rel="icon">
@@ -27,15 +25,16 @@
 
     <!-- Template Main CSS File -->
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
 
     <!-- ======= Header ======= -->
     <header id="header" class="fixed-top d-flex align-items-center">
-        <div class="container d-flex align-items-center justify-content-between flex-column">
+        <div class="container d-flex  justify-content-between flex-column">
 
-            <div class="logo" style="display: flex; flex-direction:row; justify-content:space-between;">
+            <div class="logo d-flex justify-content-sm-evenly">
                 <div class="logo-items">
                     <a href="{{ url('/') }}"><img src="{{ asset('logo/Emblem_of_Nepal.png') }}" alt=""
                             class="img-fluid" id="logo"></a>
@@ -43,36 +42,42 @@
 
 
                 <div class="logo-items">
-                    <h3 class="text-light"><a href="{{ url('/') }}">REEEP</a></h3>
+                    <a href="{{ url('/') }}"><img src="{{ asset('logo/reeep_logo_new-PhotoRoom.png') }}"
+                            alt="" class="img-fluid" id="logo"></a>
 
                     <h6>Renewable Energy and Energy Efficiency Programme</h6>
                 </div>
 
 
 
-                <div class="logo-items">
-                    <a href="#"><img src="{{ asset('logo/giz.png') }}" alt="" class="img-fluid"
+                <div class="logo-items align-items-center">
+                    <a href="#"><img src="{{ asset('logo/giz-logo.png') }}" alt="" class="img-fluid"
                             id="logo2"></a>
                 </div>
 
                 <div class="logo-items">
-                    <a href="#"><img src="{{ asset('logo/nepal-germany.jpg') }}" alt="" class="img-fluid"
-                            id="logo2"></a>
+                    <a href="#"><img src="{{ asset('logo/nepal-germany.jpg') }}" alt="" class=""
+                            id="logo3"></a>
                 </div>
             </div>
-            <div>
+            <div class="align-items-center mx-auto">
                 <nav id="navbar" class="navbar">
-                    
-                        @include('partials.homemenu')
-                        {{-- <li><a class="active" href="#home">Home</a></li>
+
+                    @include('partials.homemenu')
+                    {{-- <li><a class="active" href="#home">Home</a></li>
                         <li><a href="#aboutus">About Us</a></li>
                         <li><a href="#workingareas">Working<br /> Areas</a></li>
                         <li><a href="#NaE">News <br />and Events</a></li>
                         <li><a href="#partners">Partners</a></li>
                         <li><a href="#KaR">Knowledge <br />and resources</a></li>
                         <li><a href="#contactus">Contact Us</a></li> --}}
+
+                        <label class="switch mx-4" >
+                            <input type="checkbox" class="changeLang"
+                                {{ session()->get('locale') == 'ne' ? 'checked' : '' }}>
+                            <span class="slider"></span>
+                        </label>
                     
-                    <i class="bi bi-list mobile-nav-toggle"></i>
                 </nav><!-- .navbar -->
             </div>
         </div>
@@ -154,7 +159,15 @@
     <script src="{{ asset('assets/vendor/php-email-form/validate.js') }}"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBfFgGrcAobgjJjdMgIXsQMIfm_VlBDaXM&callback=initMap" async
         defer></script>
-{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
+    
+        <script type="text/javascript">
+            var url = "{{ route('changeLang') }}";
+        
+            $(".changeLang").change(function() {
+                var lang = $(this).is(":checked") ? 'ne' : 'en';
+                window.location.href = url + "?lang=" + lang;
+            });
+        </script>
 
     <script>
         function initMap() {

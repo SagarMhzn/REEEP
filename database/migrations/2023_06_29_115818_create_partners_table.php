@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('abbreviations')->nullable();
             $table->string('logo')->nullable();
-            $table->string('description')->nullable();
+            $table->longText('description')->nullable();
             $table->timestamps();
         });
     }

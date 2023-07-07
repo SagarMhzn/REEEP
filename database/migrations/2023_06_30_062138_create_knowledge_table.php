@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('knowledge', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('description')->nullable();
+            $table->longText('description')->nullable();
             $table->string('image')->nullable();
             $table->string('source')->nullable();
             $table->string('documents')->nullable();
