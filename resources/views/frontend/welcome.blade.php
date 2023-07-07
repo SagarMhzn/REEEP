@@ -7,37 +7,24 @@
             <div id="carouselSection" class="carousel slide" data-bs-ride="carousel">
 
                 <div class="carousel-inner col-8">
-                    @foreach ($data['banner'] as $key=>$banner )
-                    
-                    <div class="carousel-item {{$key == 0 ? 'active' : '' }}">
-                        <img src="{{ asset('public/Image/banners/' . $banner->banner_file) }}" class="carousel-img" alt="No file found">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>{{ $banner->title }}</h5>
-                            <p>{{ $banner->caption }}</p>
+                    @foreach ($data['banner'] as $key => $banner)
+                        <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+                            <img src="{{ asset('public/Image/banners/' . $banner->banner_file) }}" class="carousel-img"
+                                alt="No file found">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>{{ $banner->title }}</h5>
+                                <p>{{ $banner->caption }}</p>
+                            </div>
                         </div>
-                    </div>
-
                     @endforeach
-                    {{-- <div class="carousel-item">
-                        <img src="{{ asset('banners/solar_to_electric.jpg') }}" class="carousel-img" alt="b">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>First slide label</h5>
-                            <p>Some representative placeholder content for the first slide.</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="{{ asset('banners/NEEEP_working.jpg') }}" class="carousel-img" alt="c">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>First slide label</h5>
-                            <p>Some representative placeholder content for the first slide.</p>
-                        </div>
-                    </div> --}}
                 </div>
-                <button class="carousel-control-prev col-2" type="button" data-bs-target="#carouselSection" data-bs-slide="prev">
+                <button class="carousel-control-prev col-2" type="button" data-bs-target="#carouselSection"
+                    data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
                 </button>
-                <button class="carousel-control-next col-2" type="button" data-bs-target="#carouselSection" data-bs-slide="next">
+                <button class="carousel-control-next col-2" type="button" data-bs-target="#carouselSection"
+                    data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
@@ -54,21 +41,12 @@
     <section id="about" class="about">
         <div class="about-hero">
             <div class="container" data-aos="fade-up">
-                <div class="about-hero" align="center">
+                <div class="about-hero" >
                     <a href=" {{ route('frontend.about') }}">
-                        <h2>About NEEEP</h2>
+                        <h2 align="center">About NEEEP</h2>
                     </a>
-                    <h4>Nepal Energy Efficiency Programme</h4>
-                    <p>The new consitution of Nepal underlines the role of reliable and affordable energy and its
-                        sustainable use for the fulfillment of basic needs and the economic growth of the country. However,
-                        despite continuous endeavors Nepal's energy supply and demand balance, particularly electricity
-                        still remains in deficit. According to international energy statistics and by regional comparison
-                        Nepal shows a high energy intensity, indicating a generally inefficient use of energy in the
-                        country. The Government of Nepal has recognised the problem and as part of its Nationally Determined
-                        Contributions (NDCs) committed to adopt a low-carbon development pathway. Nepal intends to develop
-                        cross-sectoral approaches for an economy based on low emissions. Hereby, energy efficiency is
-                        particularly important for the Government of Nepal. However, so far energy efficiency is not yet
-                        recognized as an essential component of energy supply in Nepal.</p>
+                    <h4 align="center">{{ $data['aboutmain']->title }}</h4>
+                    <p>{{$data['aboutmain']->description}}</p>
                 </div>
             </div>
         </div>
@@ -76,7 +54,7 @@
 
     <section id="workingareas"></section>
 
-    
+
 
     <section id="works" class="works">
         <div class="work-hero">
@@ -88,82 +66,47 @@
         </div>
 
         <div class="working_area_section">
-            <div class="row">
-                <div class=" col">
-                    <a href="{{ route('frontend.workingareas') }}">
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                @foreach ($data['area'] as $item)
+                    {{-- <div class="col">
+                        <div class="card">
+                            <a href="{{ route('frontend.workingareas', $item->id) }}">
 
-                        <img src="{{ asset('banners/img1.jpg') }}" class="working-img" alt="">
-                        <div class="card-body">
-                            <div class="card-title">
-                                <h1> area 1 </h1>
-                            </div>
-                            <div class="work-body">
-                                <h5> This is area 1 description.</h5>
+                                <img src="{{ asset('public/Image/workingarea/' . $item->logo) }}" class="working-img"
+                                    alt="Working Area Image not Found">
+                                <div class="card-body">
+                                    <div class="card-title">
+                                        <h3> {{ $item->title }} </h3>
+                                    </div>
+                                    <div class="work-body">
+                                        <h5> {{ $item->description }}.</h5>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div> --}}
+
+
+                    <div class="col">
+                        <div class="card mb-3" style="max-width: 540px">
+                            <div class="row g-0">
+                                <div class="col-md-6 text-center">
+                                    <img src="{{ asset('public/Image/workingarea/' . $item->logo) }}" class="working-img"
+                                        alt="Working Area Image not Found">
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ $item->title }}</h5>
+                                        <p class="card-text work-body ">
+                                            {{ $item->description }}
+                                        </p>
+
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </a>
-                </div>
-
-                <div class=" col">
-                    <a href="{{ route('frontend.workingareas') }}">
-
-                        <img src="{{ asset('banners/img1.jpg') }}" class="working-img" alt="">
-                        <div class="card-body">
-                            <div class="card-title">
-                                <h1> area 1 </h1>
-                            </div>
-                            <div class="work-body">
-                                <h5> This is area 1 description.</h5>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class=" col">
-                    <a href="{{ route('frontend.workingareas') }}">
-
-                        <img src="{{ asset('banners/img1.jpg') }}" class="working-img" alt="">
-                        <div class="card-body">
-                            <div class="card-title">
-                                <h1> area 1 </h1>
-                            </div>
-                            <div class="work-body">
-                                <h5> This is area 1 description.</h5>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class=" col">
-                    <a href="{{ route('frontend.workingareas') }}">
-
-                        <img src="{{ asset('banners/img1.jpg') }}" class="working-img" alt="">
-                        <div class="card-body">
-                            <div class="card-title">
-                                <h1> area 1 </h1>
-                            </div>
-                            <div class="work-body">
-                                <h5> This is area 1 description.</h5>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class=" col">
-                    <a href="{{ route('frontend.workingareas') }}">
-
-                        <img src="{{ asset('banners/img1.jpg') }}" class="working-img" alt="">
-                        <div class="card-body">
-                            <div class="card-title">
-                                <h1> area 1 </h1>
-                            </div>
-                            <div class="work-body">
-                                <h5> This is area 1 description.</h5>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
+                    </div>
+                @endforeach
             </div>
         </div>
     </section>

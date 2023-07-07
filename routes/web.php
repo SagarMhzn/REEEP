@@ -33,7 +33,7 @@ use App\Http\Controllers\NewsAndEventController;
 Auth::routes();
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect(route('frontend.home'));
 });
 
 //HomeController Routes
@@ -55,9 +55,9 @@ Route::get('/lang/home',[LangController::class, 'view']);
 Route::get('/lang/change',[LangController::class, 'change'])->name('changeLang');
 
 
-Route::prefix('dashboard')->name('backend.')->middleware('auth')->group(function () {
+Route::prefix('/dashboard')->name('backend.')->middleware('auth')->group(function () {
     
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/home', [HomeController::class, 'admin_index'])->name('backend.home');
     
     Route::name('menu.')->group(function () {
 

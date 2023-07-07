@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <section id="breadcrumbs" class="breadcrumbs">
+    <section id="breadcrumbs" class="breadcrumbs py-4">
         <div class="breadcrumb-hero">
             <div class="container">
                 <div class="breadcrumb-hero">
@@ -21,8 +21,8 @@
     <section id="about" class="about">
         <div class="about-hero">
             <div class="container" data-aos="fade-up">
-                <div class="about-hero" align="center">
-                    <h2>About NEEP</h2>
+                <div class="about-hero" >
+                    <h2 align="center">About NEEP</h2>
                     </a>
                     <h4>Nepal Energy Efficiency Programme</h4>
                     <p>The new consitution of Nepal underlines the role of reliable and affordable energy and its
