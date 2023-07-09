@@ -83,7 +83,7 @@
         </div>
     </header><!-- End Header -->
 
-    <main class="py-5">
+    <main class="" style="margin-top:60px">
         @yield('content')
     </main>
 

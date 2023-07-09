@@ -32,8 +32,14 @@ class AboutUsController extends Controller
     {
         $aboutus = new AboutUs();
 
-        $aboutus->title = $request->title;
-        $aboutus->description = $request->description;
+        $aboutus->title = [
+            'en' => $request['title']['en'],
+            'ne' => $request['title']['ne'],
+        ];
+        $aboutus->description = [
+            'en' => $request['description']['en'],
+            'ne' => $request['description']['ne'],
+        ];
 
         if ($request->file('image')) {
             $file = $request->file('image');
@@ -72,8 +78,14 @@ class AboutUsController extends Controller
     {
         $aboutus = AboutUs::findOrFail($id);
 
-        $aboutus->title = $request->title;
-        $aboutus->description = $request->description;
+        $aboutus->title = [
+            'en' => $request['title']['en'],
+            'ne' => $request['title']['ne'],
+        ];
+        $aboutus->description = [
+            'en' => $request['description']['en'],
+            'ne' => $request['description']['ne'],
+        ];
 
         if ($request->hasFile('image')) {
             if ($aboutus->image != null) {

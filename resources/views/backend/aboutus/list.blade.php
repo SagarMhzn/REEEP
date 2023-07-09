@@ -32,9 +32,16 @@
                         @foreach ($aboutus as $keys => $items)
                             <tr>
                                 <th scope="row">{{ $keys + 1 }}</th>
-                                <td class="text-center">{{ $items->title }}</td>
-                                <td class="text-center">
-                                    {{ $items->description }}
+                                <td class="">
+                                    {{ $items->title['en'] }}
+                                    <hr>
+                                    {{ $items->title['ne'] }}
+                                </td>
+                                <td class="">
+                                    {{ $items->description['en'] }}
+                                    <hr>
+                                    {{ $items->description['ne'] }}
+
                                 </td>
                                 <td class="text-center">
                                     @if ($items->image)

@@ -45,8 +45,8 @@
                     <a href=" {{ route('frontend.about') }}">
                         <h2 align="center">About NEEEP</h2>
                     </a>
-                    <h4 align="center">{{ $data['aboutmain']->title }}</h4>
-                    <p>{{$data['aboutmain']->description}}</p>
+                    <h4 align="center">{{ $data['aboutmain']->title[session('locale')] }}</h4>
+                    <p>{{$data['aboutmain']->description[session('locale')]}}</p>
                 </div>
             </div>
         </div>

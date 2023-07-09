@@ -18,4 +18,9 @@ class AboutUs extends Model
     ];
 
     protected $guarded = [];
+
+    protected $casts = [
+        'title' => 'json',
+        'description' => 'json',
+    ];
 }
