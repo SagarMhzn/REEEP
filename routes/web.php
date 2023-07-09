@@ -40,25 +40,29 @@ Route::get('/', function () {
 
 Route::name('frontend.')->group(function () {
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::get('/about-us', [HomeController::class, 'about'])->name('about');
-Route::get('/areas', [HomeController::class, 'workingareas'])->name('workingareas');
-// Route::get('/about-us',[HomeController::class, 'viewNews'])->name('news');
-// Route::get('/about-us',[HomeController::class, 'viewContactUs'])->name('about');
-// Route::get('/about-us',[HomeController::class, 'viewAbout'])->name('about');
-// Route::get('/about-us',[HomeController::class, 'viewAbout'])->name('about');
-// Route::get('/about-us',[HomeController::class, 'viewAbout'])->name('about');
-// Route::get('/about-us',[HomeController::class, 'viewAbout'])->name('about');
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/about-us', [HomeController::class, 'about'])->name('about');
+    Route::get('/areas', [HomeController::class, 'workingareas'])->name('workingareas');
+
+    Route::name('news-and-events.')->group(function () {
+        Route::get('/news-and-events/{id}', [NewsAndEventController::class, 'viewArticle'])->name('view-article');
+    });
+    // Route::get('/about-us',[HomeController::class, 'viewNews'])->name('news');
+    // Route::get('/about-us',[HomeController::class, 'viewContactUs'])->name('about');
+    // Route::get('/about-us',[HomeController::class, 'viewAbout'])->name('about');
+    // Route::get('/about-us',[HomeController::class, 'viewAbout'])->name('about');
+    // Route::get('/about-us',[HomeController::class, 'viewAbout'])->name('about');
+    // Route::get('/about-us',[HomeController::class, 'viewAbout'])->name('about');
 });
 
-Route::get('/lang/home',[LangController::class, 'view']);
-Route::get('/lang/change',[LangController::class, 'change'])->name('changeLang');
+Route::get('/lang/home', [LangController::class, 'view']);
+Route::get('/lang/change', [LangController::class, 'change'])->name('changeLang');
 
 
 Route::prefix('/dashboard')->name('backend.')->middleware('auth')->group(function () {
-    
+
     Route::get('/home', [HomeController::class, 'admin_index'])->name('backend.home');
-    
+
     Route::name('menu.')->group(function () {
 
         Route::get('/menu/create', [MenuController::class, 'create'])->name('create');
@@ -72,7 +76,7 @@ Route::prefix('/dashboard')->name('backend.')->middleware('auth')->group(functio
 
         Route::get('/menu/delete/{id}', [MenuController::class, 'destroy'])->name('delete');
 
-        Route::get('/menu/toggle-status/{id}' , [MenuController::class, 'toggle'])->name('toggleStatus');
+        Route::get('/menu/toggle-status/{id}', [MenuController::class, 'toggle'])->name('toggleStatus');
     });
 
     Route::name('aboutus.')->group(function () {
@@ -112,8 +116,10 @@ Route::prefix('/dashboard')->name('backend.')->middleware('auth')->group(functio
         Route::put('/news-and-events/edit/{id}', [NewsAndEventController::class, 'update'])->name('update');
 
         Route::get('/news-and-events/delete/{id}', [NewsAndEventController::class, 'destroy'])->name('delete');
+
+        Route::post('/get-entry', [NewsAndEventController::class, 'getEntry'])->name('getEntry');
     });
-    
+
     Route::name('partners.')->group(function () {
 
         Route::get('/partners/create', [PartnerController::class, 'create'])->name('create');
@@ -127,16 +133,15 @@ Route::prefix('/dashboard')->name('backend.')->middleware('auth')->group(functio
         Route::get('/partners/delete/{partners}', [PartnerController::class, 'destroy'])->name('delete');
     });
 
-    Route::resource('knowledge',KnowledgeController::class);
+    Route::resource('knowledge', KnowledgeController::class);
     Route::put('/knowledge/update/{knowledge}', [KnowledgeController::class, 'update'])->name('knowledge.update');
 
-    Route::resource('banner',BannerController::class);
+    Route::resource('banner', BannerController::class);
     // Route::put('/banner/update/{banner}', [BannerController::class, 'update'])->name('banner.update');
-    
-    Route::resource('lang',LangController::class);
 
-    Route::resource('album',AlbumController::class);
+    Route::resource('lang', LangController::class);
 
-    Route::resource('gallery',GalleryController::class);
+    Route::resource('album', AlbumController::class);
+
+    Route::resource('gallery', GalleryController::class);
 });
-

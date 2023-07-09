@@ -14,4 +14,6 @@ class NewsAndEvent extends Model
     protected  $table = 'news_and_events';
 
     protected $guarded = [];
+
+    public $timestamps = true;
 }

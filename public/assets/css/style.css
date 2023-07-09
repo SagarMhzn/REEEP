@@ -649,13 +649,7 @@ section {
 }
 
 
-.working-img{
-    max-width: 10rem;
-    max-height: 10rem;
-    object-fit: cover;
-    justify-content: center;
-    margin:auto;
-}
+
 /*--------------------------------------------------------------
 # About
 --------------------------------------------------------------*/
@@ -2756,3 +2750,19 @@ padding: 1rem;
   .switch input:checked + .slider::after {
     transform: translateX(-150%);
   }
+
+  .modal-dialog {
+    max-width: 80%;
+}
+
+.modal-body {
+    overflow-y: scroll;
+    max-height: calc(100vh - 200px); /* Adjust the value based on your needs */
+}
+
+.modal-body img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+}
