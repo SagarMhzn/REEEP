@@ -117,8 +117,7 @@
                     <article class="entry">
 
                         <div class="entry-img">
-                            <img src="{{ asset('public/Image/news-and-events/' . $data['NaE_latest']->image) }}"
-                                alt="" class="img-fluid">
+                            <img src="{{ asset('public/Image/news-and-events/'. $data['NaE_latest']->image) }}" alt="" class="img-fluid">
                         </div>
 
                         <h2 class="entry-title">
@@ -129,8 +128,8 @@
                             <ul>
                                 {{-- <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="#">John
                                         Doe</a></li> --}}
-                                <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a
-                                        href="#"><time>{{ Str::substr($data['NaE_latest']->created_at, 0, 10) }}</time></a>
+                                <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="#"><time
+                                            >{{ Str::substr($data['NaE_latest']->created_at, 0, 10) }}</time></a>
                                 </li>
 
                             </ul>
@@ -142,9 +141,8 @@
                                 {{ mb_strlen($data['NaE_latest']->description, 'UTF-8') > 255 ? mb_substr($data['NaE_latest']->description, 0, 255, 'UTF-8') . '...' : $data['NaE_latest']->description }}
                             </p>
                             <div class="read-more">
-                                <a href="{{ route('frontend.news-and-events.view-article', ['id' => $data['NaE_latest']->id]) }}">Read More</a>
+                                <a href="#">Read More</a>
                             </div>
-                            
                         </div>
 
                     </article>
@@ -157,14 +155,12 @@
                         <h3 class="sidebar-title">Recent Posts</h3>
                         <div class="sidebar-item recent-posts">
 
-                            @foreach ($data['NaE_latest_five'] as $items)
-                                <div class="post-item clearfix" id="sidebar-item-{{ $items->id }}">
-                                    <img src="{{ asset('public/Image/news-and-events/' . $items->image) }}"
-                                        alt="">
-                                    <h4><a href="#" class="sidebar-item-link"
-                                            data-id="{{ $items->id }}">{{ $items->title }}</a></h4>
-                                    <time>{{ Str::substr($items->created_at, 0, 10) }}</time>
-                                </div>
+                            @foreach ($data['NaE_latest_five'] as $items)   
+                            <div class="post-item clearfix">
+                                <img src="{{ asset('public/Image/news-and-events/'. $items->image) }}" alt="">
+                                <h4><a href="#">{{ $items->title }}</a></h4>
+                                <time>{{ Str::substr($items->created_at, 0, 10) }}</time>
+                            </div>
                             @endforeach
                         </div>
 
@@ -509,45 +505,4 @@
             });
         });
     </script>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const sidebarItemLinks = document.querySelectorAll('.sidebar-item-link');
-        const entryContainer = document.querySelector('.entries');
-
-        sidebarItemLinks.forEach(function(link) {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const itemId = this.dataset.id;
-                loadEntry(itemId);
-            });
-        });
-
-        function loadEntry(itemId) {
-            const url = '{{ route("backend.news-and-events.getEntry") }}';
-            const formData = new FormData();
-            formData.append('itemId', itemId);
-
-            // Include CSRF token in headers
-            const headers = {
-                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-            };
-
-            fetch(url, {
-                method: 'POST',
-                body: formData,
-                headers: headers // Include headers
-            })
-            .then(response => response.text())
-            .then(data => {
-                entryContainer.innerHTML = data;
-            })
-            .catch(error => {
-                console.log('Error:', error);
-            });
-        }
-    });
-</script>
-
-
 @endsection

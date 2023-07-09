@@ -84,7 +84,7 @@
                     <div class="form-group">
                         {!! Form::label('category', 'Category') !!}
                         {!! Form::select('category', ['' => 'Select if the article is a news or an event',
-                         '1' => 'News', '0' => 'Event'], $nae->category, [ 'class' => 'form-control'
+                         '0' => 'News', '1' => 'Event'], $nae->category, [ 'class' => 'form-control'
                          ]) !!}
                     </div>
                 </div>

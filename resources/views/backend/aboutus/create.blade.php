@@ -25,8 +25,17 @@
                 <div class="col-sm-12">
                     <!-- text input -->
                     <div class="form-group">
-                        {!! Form::label('title', 'Title') !!}
-                        {!! Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'Enter Title']) !!}
+                        {!! Form::label('title[en]', 'Title(EN)') !!}
+                        {!! Form::text('title[en]', null, ['class' => 'form-control', 'placeholder' => 'Enter Title']) !!}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <!-- text input -->
+                    <div class="form-group">
+                        {!! Form::label('title[ne]', 'Title(NE)') !!}
+                        {!! Form::text('title[ne]', null, ['class' => 'form-control', 'placeholder' => 'Enter Title']) !!}
                     </div>
                 </div>
             </div>
@@ -35,8 +44,23 @@
                 <div class="col-sm-12">
                     <!-- text input -->
                     <div class="form-group">
-                        {!! Form::label('description', 'Description') !!}
-                        {!! Form::textarea('description', null, [
+                        {!! Form::label('description[en]', 'Description(EN)') !!}
+                        {!! Form::textarea('description[en]', null, [
+                            'class' => 'form-control',
+                            'placeholder' => 'Enter Description',
+                            'rows' => 4,
+                            'cols' => 50,
+                        ]) !!}
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <!-- text input -->
+                    <div class="form-group">
+                        {!! Form::label('description[ne]', 'Description(NE)') !!}
+                        {!! Form::textarea('description[ne]', null, [
                             'class' => 'form-control',
                             'placeholder' => 'Enter Description',
                             'rows' => 4,

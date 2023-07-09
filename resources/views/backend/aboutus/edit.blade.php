@@ -31,8 +31,17 @@
                 <div class="col-sm-12">
                     <!-- text input -->
                     <div class="form-group">
-                        {!! Form::label('title', 'Title') !!}
-                        {!! Form::text('title', $aboutus->title, ['class' => 'form-control', 'placeholder' => 'Enter Title']) !!}
+                        {!! Form::label('title[en]', 'Title(EN)') !!}
+                        {!! Form::text('title[en]', $aboutus->title['en'], ['class' => 'form-control', 'placeholder' => 'Enter Title']) !!}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <!-- text input -->
+                    <div class="form-group">
+                        {!! Form::label('title[ne]', 'Title(NE)') !!}
+                        {!! Form::text('title[ne]', $aboutus->title['ne'], ['class' => 'form-control', 'placeholder' => 'Enter Title']) !!}
                     </div>
                 </div>
             </div>
@@ -41,8 +50,23 @@
                 <div class="col-sm-12">
                     <!-- text input -->
                     <div class="form-group">
-                        {!! Form::label('description', 'Description') !!}
-                        {!! Form::textarea('description', $aboutus->description, [
+                        {!! Form::label('description[en]', 'Description(EN)') !!}
+                        {!! Form::textarea('description[en]', $aboutus->description['en'], [
+                            'class' => 'form-control',
+                            'placeholder' => 'Enter Description',
+                            'rows' => 4,
+                            'cols' => 50,
+                        ]) !!}
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <!-- text input -->
+                    <div class="form-group">
+                        {!! Form::label('description[ne]', 'Description(NE)') !!}
+                        {!! Form::textarea('description[ne]', $aboutus->description['ne'], [
                             'class' => 'form-control',
                             'placeholder' => 'Enter Description',
                             'rows' => 4,

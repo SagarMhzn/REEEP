@@ -53,7 +53,7 @@ class NewsAndEventController extends Controller
     public function show(NewsAndEvent $newsAndEvent)
     {
         $nae = NewsAndEvent::get();
-        return view('backend.news-and-events.list',compact('nae'));
+        return view('backend.news-and-events.list', compact('nae'));
     }
 
     /**
@@ -62,7 +62,7 @@ class NewsAndEventController extends Controller
     public function edit($id)
     {
         $nae = NewsAndEvent::findOrFail($id);
-        return view('backend.news-and-events.edit',compact('nae'));
+        return view('backend.news-and-events.edit', compact('nae'));
     }
 
     /**
@@ -91,7 +91,7 @@ class NewsAndEventController extends Controller
                 'image' => $filename,
             ]);
         }
-        
+
         $nae->save();
 
         return redirect(route('backend.news-and-events.list'));
@@ -114,4 +114,19 @@ class NewsAndEventController extends Controller
         $id->delete();
         return redirect(route('backend.news-and-events.list'));
     }
+
+    public function getEntry(Request $request)
+    {
+        $itemId = $request->itemId;
+        $entry = NewsAndEvent::find($itemId);
+
+        return view('partials.entry', compact('entry'))->render();
+    }
+
+    public function viewArticle($id)
+{
+    $entry = NewsAndEvent::findOrFail($id);
+    return view('frontend.news-and-events.view-article', compact('entry'));
+}
+
 }
