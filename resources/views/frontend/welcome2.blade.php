@@ -56,9 +56,9 @@
                     </div>
                 </div>
             </div>
+            
 
-            <div class="working_area_section" data-aos="fade-up">
-                <div class="row">
+            <div class="working_area_section row" data-aos="fade-up">
                     @foreach ($data['area'] as $item)
                         <div class="col-md-4">
                             <div class="card mb-3" type="button" data-bs-toggle="modal"
@@ -97,7 +97,6 @@
                             </div>
                         </div>
                     @endforeach
-                </div>
             </div>
         </section>
     </section>
@@ -117,22 +116,33 @@
                     <article class="entry">
 
                         <div class="entry-img">
-                            <img src="{{ asset('public/Image/news-and-events/'. $data['NaE_latest']->image) }}" alt="" class="img-fluid">
+                            <img src="{{ asset('public/Image/news-and-events/' . $data['NaE_latest']->image) }}"
+                                alt="" class="img-fluid">
                         </div>
+                        <div class="row">
+                            <div class="col">
 
-                        <h2 class="entry-title">
-                            <a href="#">{{ $data['NaE_latest']->title }}</a>
-                        </h2>
+                                <h2 class="entry-title">
+                                    <a href="#">{{ $data['NaE_latest']->title }}</a>
+                                </h2>
+                            </div>
 
-                        <div class="entry-meta">
-                            <ul>
-                                {{-- <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="#">John
-                                        Doe</a></li> --}}
-                                <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="#"><time
-                                            >{{ Str::substr($data['NaE_latest']->created_at, 0, 10) }}</time></a>
-                                </li>
+                            <div class="entry-meta col" style="float: right">
+                                <ul>
+                                    {{-- <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="#">John
+                                            Doe</a></li> --}}
+                                    <li class="d-flex"><i class="bi bi-clock"></i> <a
+                                            href="#"><time>{{ Str::substr($data['NaE_latest']->created_at, 0, 10) }}</time></a>
+                                    </li>
+                                    <li class="d-flex">
+                                        <span
+                                            class="badge rounded-pill {{ $data['NaE_latest']->category == 0 ? 'bg-primary' : 'bg-info text-dark' }}">
+                                            {{ $data['NaE_latest']->category == 0 ? 'News' : 'Events' }}
+                                        </span>
+                                    </li>
 
-                            </ul>
+                                </ul>
+                            </div>
                         </div>
 
                         <div class="entry-content">
@@ -141,8 +151,11 @@
                                 {{ mb_strlen($data['NaE_latest']->description, 'UTF-8') > 255 ? mb_substr($data['NaE_latest']->description, 0, 255, 'UTF-8') . '...' : $data['NaE_latest']->description }}
                             </p>
                             <div class="read-more">
-                                <a href="#">Read More</a>
+                                <a
+                                    href="{{ route('frontend.news-and-events.view-article', ['id' => $data['NaE_latest']->id]) }}">Read
+                                    More</a>
                             </div>
+
                         </div>
 
                     </article>
@@ -155,12 +168,14 @@
                         <h3 class="sidebar-title">Recent Posts</h3>
                         <div class="sidebar-item recent-posts">
 
-                            @foreach ($data['NaE_latest_five'] as $items)   
-                            <div class="post-item clearfix">
-                                <img src="{{ asset('public/Image/news-and-events/'. $items->image) }}" alt="">
-                                <h4><a href="#">{{ $items->title }}</a></h4>
-                                <time>{{ Str::substr($items->created_at, 0, 10) }}</time>
-                            </div>
+                            @foreach ($data['NaE_latest_five'] as $items)
+                                <div class="post-item clearfix" id="sidebar-item-{{ $items->id }}">
+                                    <img src="{{ asset('public/Image/news-and-events/' . $items->image) }}"
+                                        alt="">
+                                    <h4><a href="#" class="sidebar-item-link"
+                                            data-id="{{ $items->id }}">{{ $items->title }}</a></h4>
+                                    <time>{{ Str::substr($items->created_at, 0, 10) }}</time>
+                                </div>
                             @endforeach
                         </div>
 
@@ -488,21 +503,66 @@
 
     </section>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const components = document.querySelectorAll('.working_area_section .card');
-
-            components.forEach((component) => {
-                component.addEventListener('mouseenter', function() {
-                    const workBody = this.querySelector('.work-body');
-                    workBody.style.display = 'block';
+    {{-- <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.working_area_section .card');
+    
+            cards.forEach((card) => {
+                card.addEventListener('mouseenter', function() {
+                    const img = this.querySelector('.card-img-top');
+                    img.style.transform = 'scale(.8)';
+                    card.style.backgroundColor = 'rgba(0, 0, 0, 0.6)';
+                    card.classList.add('FadeIn-bottom');
                 });
-
-                component.addEventListener('mouseleave', function() {
-                    const workBody = this.querySelector('.work-body');
-                    workBody.style.display = 'none';
+    
+                card.addEventListener('mouseleave', function() {
+                    const img = this.querySelector('.card-img-top');
+                    img.style.transform = 'scale(1)';
+                    card.style.backgroundColor = 'transparent';
                 });
             });
+        });
+    </script> --}}
+    
+    
+    
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebarItemLinks = document.querySelectorAll('.sidebar-item-link');
+            const entryContainer = document.querySelector('.entries');
+
+            sidebarItemLinks.forEach(function(link) {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const itemId = this.dataset.id;
+                    loadEntry(itemId);
+                });
+            });
+
+            function loadEntry(itemId) {
+                const url = '{{ route('backend.news-and-events.getEntry') }}';
+                const formData = new FormData();
+                formData.append('itemId', itemId);
+
+                // Include CSRF token in headers
+                const headers = {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                };
+
+                fetch(url, {
+                        method: 'POST',
+                        body: formData,
+                        headers: headers // Include headers
+                    })
+                    .then(response => response.text())
+                    .then(data => {
+                        entryContainer.innerHTML = data;
+                    })
+                    .catch(error => {
+                        console.log('Error:', error);
+                    });
+            }
         });
     </script>
 @endsection

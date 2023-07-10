@@ -32,7 +32,13 @@
                         @foreach ($partners as $keys => $items)
                             <tr>
                                 <th scope="row">{{ $keys + 1 }}</th>
-                                <td class="text-center">{{ $items->title }} ({{ $items->abbreviations }})</td>
+                                <td class="text-center">
+                                    @if($items->abbreviations)
+                                    {{ $items->title }} ({{ $items->abbreviations }})
+                                    @else
+                                    {{ $items->title }} 
+                                    @endif
+                                </td>
                                 <td class="text-center">
                                     {{ $items->description }}
                                 </td>

@@ -47,6 +47,8 @@
         </div>
     </section>
 
+
+
     <section id="workingareas" @if (count($data['area']) == 0) style="display: none;" @endif>
         <section id="works" class="works">
             <div class="work-hero">
@@ -57,51 +59,47 @@
                 </div>
             </div>
 
-            <div class="working_area_section" data-aos="fade-up">
-                <div class="row">
-                    @foreach ($data['area'] as $item)
-                        <div class="col-md-4">
-                            <div class="card mb-3" type="button" data-bs-toggle="modal"
-                                data-bs-target="#modal{{ $item->id }}">
-                                <img src="{{ asset('public/Image/workingarea/' . $item->logo) }}" class="card-img-top"
-                                    alt="Working Area Image not Found" style="object-fit: cover; height: 200px;">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ $item->title }}</h5>
+            <div class="working_area_section row" data-aos="fade-up">
+                @foreach ($data['area'] as $item)
+                    <div class="col-md-4">
+                        <div class="card mb-3" type="button" data-bs-toggle="modal"
+                            data-bs-target="#modal{{ $item->id }}">
+                            <img src="{{ asset('public/Image/workingarea/' . $item->logo) }}" class="card-img-top"
+                                alt="Working Area Image not Found" style="object-fit: cover; height: 200px;">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $item->title }}</h5>
 
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="modal{{ $item->id }}" tabindex="-1"
+                        aria-labelledby="modalLabel{{ $item->id }}" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modalLabel{{ $item->id }}">{{ $item->title }}
+                                    </h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <img src="{{ asset('public/Image/workingarea/' . $item->logo) }}" class="img-fluid"
+                                        alt="Working Area Image not Found">
+                                    <p>{{ $item->description }}</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Learn More</button>
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Modal -->
-                        <div class="modal fade" id="modal{{ $item->id }}" tabindex="-1"
-                            aria-labelledby="modalLabel{{ $item->id }}" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="modalLabel{{ $item->id }}">{{ $item->title }}
-                                        </h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <img src="{{ asset('public/Image/workingarea/' . $item->logo) }}" class="img-fluid"
-                                            alt="Working Area Image not Found">
-                                        <p>{{ $item->description }}</p>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">Learn More</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
+                    </div>
+                @endforeach
             </div>
         </section>
     </section>
-    {{-- {{ dd($data['NaE_latest']->image) }} --}}
 
     <section id="blog " class="blog">
 
@@ -120,20 +118,30 @@
                             <img src="{{ asset('public/Image/news-and-events/' . $data['NaE_latest']->image) }}"
                                 alt="" class="img-fluid">
                         </div>
+                        <div class="row">
+                            <div class="col">
 
-                        <h2 class="entry-title">
-                            <a href="#">{{ $data['NaE_latest']->title }}</a>
-                        </h2>
+                                <h2 class="entry-title">
+                                    <a href="#">{{ $data['NaE_latest']->title }}</a>
+                                </h2>
+                            </div>
 
-                        <div class="entry-meta">
-                            <ul>
-                                {{-- <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="#">John
-                                        Doe</a></li> --}}
-                                <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a
-                                        href="#"><time>{{ Str::substr($data['NaE_latest']->created_at, 0, 10) }}</time></a>
-                                </li>
+                            <div class="entry-meta col" style="float: right">
+                                <ul>
+                                    {{-- <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="#">John
+                                            Doe</a></li> --}}
+                                    <li class="d-flex"><i class="bi bi-clock"></i> <a
+                                            href="#"><time>{{ Str::substr($data['NaE_latest']->created_at, 0, 10) }}</time></a>
+                                    </li>
+                                    <li class="d-flex">
+                                        <span
+                                            class="badge rounded-pill {{ $data['NaE_latest']->category == 0 ? 'bg-primary' : 'bg-info text-dark' }}">
+                                            {{ $data['NaE_latest']->category == 0 ? 'News' : 'Events' }}
+                                        </span>
+                                    </li>
 
-                            </ul>
+                                </ul>
+                            </div>
                         </div>
 
                         <div class="entry-content">
@@ -142,9 +150,11 @@
                                 {{ mb_strlen($data['NaE_latest']->description, 'UTF-8') > 255 ? mb_substr($data['NaE_latest']->description, 0, 255, 'UTF-8') . '...' : $data['NaE_latest']->description }}
                             </p>
                             <div class="read-more">
-                                <a href="{{ route('frontend.news-and-events.view-article', ['id' => $data['NaE_latest']->id]) }}">Read More</a>
+                                <a
+                                    href="{{ route('frontend.news-and-events.view-article', ['id' => $data['NaE_latest']->id]) }}">Read
+                                    More</a>
                             </div>
-                            
+
                         </div>
 
                     </article>
@@ -153,8 +163,15 @@
                 <div class="col-lg-4">
 
                     <div class="sidebar">
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <h3 class="sidebar-title">Recent Posts</h3>
 
-                        <h3 class="sidebar-title">Recent Posts</h3>
+                            </div>
+                            <div class="col-lg-4">
+                                <h6><a href="#">View All<i class="bi bi-arrow-right"></i></a></h6>
+                            </div>
+                        </div>
                         <div class="sidebar-item recent-posts">
 
                             @foreach ($data['NaE_latest_five'] as $items)
@@ -190,222 +207,81 @@
     <section class="gallery">
         <div class="gallery-body">
             <div class="gallery-section row">
-                <div class="card">
-                    <div class="gallery-item">
-                        <img src="{{ asset('logo/Emblem_of_Nepal.png') }}" class="modal-main-img" type="button"
-                            class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                            alt="">
-                        {{-- <div class="gallery-links d-flex align-items-center justify-content-center">
-                            <a href="assets/img/gallery/gallery-2.jpg" title="Gallery 2"
-                                class="glightbox preview-link"><i class="bi bi-arrows-angle-expand"></i></a>
-                            <a href="gallery-single.html" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                        </div> --}}
+                @foreach ($data['album'] as $item)
+                    @if (count($item->gallery) > 0)
+                        <div class="card">
+                            <div class="gallery-item">
+                                @if ($item->cover_image)
+                                    <img src="{{ asset('public/Image/albums/' . $item->cover_image) }}"
+                                        class="modal-main-img" type="button" class="btn btn-primary"
+                                        data-bs-toggle="modal" data-bs-target="#exampleModal{{ $item->id }}" alt="">
+                                @else
+                                    @if ($item->id == $item->gallery[0]->album_id)
+                                        <img src="{{ asset('public/Image/gallery/' . $item->gallery[0]->image) }}"
+                                            class="modal-main-img" type="button" class="btn btn-primary"
+                                            data-bs-toggle="modal" data-bs-target="#exampleModal{{ $item->id }}" alt="">
+                                    @endif
+                                @endif
 
 
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                            aria-hidden="true">
-                            <div class="modal-dialog modal-xl">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Gallery 1</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="container-fluid">
-                                            <div class="row">
-                                                <div class="col-md-4"><img src="{{ asset('logo/img1.jpg') }}"
-                                                        class="modal-img">
-                                                </div>
-                                                <div class="col-md-4"><img src="{{ asset('logo/img1.jpg') }}"
-                                                        class="modal-img">
-                                                </div>
-                                                <div class="col-md-4"><img src="{{ asset('logo/img1.jpg') }}"
-                                                        class="modal-img">
+                                <div class="modal fade" id="exampleModal{{ $item->id }}" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel{{ $item->id }}" aria-hidden="true">
+                                    <div class="modal-dialog modal-xl">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel{{ $item->id }}">{{ $item->title }}</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="container-fluid">
+                                                    <div id="carouselExampleControls{{ $item->id }}" class="carousel slide"
+                                                        data-bs-ride="carousel">
+                                                        <div class="carousel-inner">
+                                                            @foreach ($item->gallery as $key => $galleryItem)
+                                                                <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
+                                                                    <img src="{{ asset('public/Image/gallery/' . $galleryItem->image) }}"
+                                                                        class="modal-img">
+        <br>
+                                                                        <h5 class="modal-title text-center" id="exampleModalLabel{{ $item->id }}">{{ $galleryItem->title }}</h5>
+        
+                                                                </div>
+        
+                                                            @endforeach
+                                                        </div>
+                                                        <button class="carousel-control-prev" type="button"
+                                                            data-bs-target="#carouselExampleControls{{ $item->id }}"
+                                                            data-bs-slide="prev">
+                                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                            <span class="visually-hidden">Previous</span>
+                                                        </button>
+                                                        <button class="carousel-control-next" type="button"
+                                                            data-bs-target="#carouselExampleControls{{ $item->id }}"
+                                                            data-bs-slide="next">
+                                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                            <span class="visually-hidden">Next</span>
+                                                        </button>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-md-4"><img src="{{ asset('logo/img1.jpg') }}"
-                                                        class="modal-img">
-                                                </div>
-                                                <div class="col-md-4"><img src="{{ asset('logo/img1.jpg') }}"
-                                                        class="modal-img">
-                                                </div>
-                                                <div class="col-md-4"><img src="{{ asset('logo/img1.jpg') }}"
-                                                        class="modal-img">
-                                                </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Close</button>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-md-4"><img src="{{ asset('logo/img1.jpg') }}"
-                                                        class="modal-img">
-                                                </div>
-                                                <div class="col-md-4"><img src="{{ asset('logo/img1.jpg') }}"
-                                                        class="modal-img">
-                                                </div>
-                                                <div class="col-md-4"><img src="{{ asset('logo/img1.jpg') }}"
-                                                        class="modal-img">
-                                                </div>
-                                            </div>
-
                                         </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Close</button>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="gallery-title">
-                        <h3>Gallery 1</h3>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="gallery-item">
-                        <img src="{{ asset('logo/img1.jpg') }}" class="modal-main-img" type="button"
-                            class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                            alt="">
-                        {{-- <div class="gallery-links d-flex align-items-center justify-content-center">
-                            <a href="assets/img/gallery/gallery-2.jpg" title="Gallery 2"
-                                class="glightbox preview-link"><i class="bi bi-arrows-angle-expand"></i></a>
-                            <a href="gallery-single.html" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                        </div> --}}
-
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                            aria-hidden="true">
-                            <div class="modal-dialog modal-xl">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Gallery</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="container-fluid">
-                                            <div class="row">
-                                                <div class="col-md-4"><img src="{{ asset('logo/img1.jpg') }}"
-                                                        class="modal-img">
-                                                </div>
-                                                <div class="col-md-4"><img src="{{ asset('logo/img1.jpg') }}"
-                                                        class="modal-img">
-                                                </div>
-                                                <div class="col-md-4"><img src="{{ asset('logo/img1.jpg') }}"
-                                                        class="modal-img">
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-4"><img src="{{ asset('logo/img1.jpg') }}"
-                                                        class="modal-img">
-                                                </div>
-                                                <div class="col-md-4"><img src="{{ asset('logo/img1.jpg') }}"
-                                                        class="modal-img">
-                                                </div>
-                                                <div class="col-md-4"><img src="{{ asset('logo/img1.jpg') }}"
-                                                        class="modal-img">
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-4"><img src="{{ asset('logo/img1.jpg') }}"
-                                                        class="modal-img">
-                                                </div>
-                                                <div class="col-md-4"><img src="{{ asset('logo/img1.jpg') }}"
-                                                        class="modal-img">
-                                                </div>
-                                                <div class="col-md-4"><img src="{{ asset('logo/img1.jpg') }}"
-                                                        class="modal-img">
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Close</button>
-                                    </div>
-                                </div>
+                            <div class="gallery-title">
+                                <h5>{{ $item->title }}</h5>
                             </div>
                         </div>
-                    </div>
-                    <div class="gallery-title">
-                        <h3>Gallery 1</h3>
-                    </div>
-
-                </div>
-                <div class="card">
-                    <div class="gallery-item">
-                        <img src="{{ asset('logo/img1.jpg') }}" class="modal-main-img" type="button"
-                            class="btn btn-primary" alt="">
-                        {{-- <div class="gallery-links d-flex align-items-center justify-content-center">
-                            <span  title="Gallery 2"
-                                class="glightbox preview-link" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-arrows-angle-expand"></i></span>
-                            <span  class="details-link"><i class="bi bi-link-45deg"></i></span>
-                        </div> --}}
-
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                            aria-hidden="true">
-                            <div class="modal-dialog modal-xl">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Gallery</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="container-fluid">
-                                            <div class="row">
-                                                <div class="col-md-4"><img src="{{ asset('logo/img1.jpg') }}"
-                                                        class="modal-img">
-                                                </div>
-                                                <div class="col-md-4"><img src="{{ asset('logo/img1.jpg') }}"
-                                                        class="modal-img">
-                                                </div>
-                                                <div class="col-md-4"><img src="{{ asset('logo/img1.jpg') }}"
-                                                        class="modal-img">
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-4"><img src="{{ asset('logo/img1.jpg') }}"
-                                                        class="modal-img">
-                                                </div>
-                                                <div class="col-md-4"><img src="{{ asset('logo/img1.jpg') }}"
-                                                        class="modal-img">
-                                                </div>
-                                                <div class="col-md-4"><img src="{{ asset('logo/img1.jpg') }}"
-                                                        class="modal-img">
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-4"><img src="{{ asset('logo/img1.jpg') }}"
-                                                        class="modal-img">
-                                                </div>
-                                                <div class="col-md-4"><img src="{{ asset('logo/img1.jpg') }}"
-                                                        class="modal-img">
-                                                </div>
-                                                <div class="col-md-4"><img src="{{ asset('logo/img1.jpg') }}"
-                                                        class="modal-img">
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Close</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="gallery-title">
-                        <h3>Gallery 1</h3>
-                    </div>
-
-                </div>
+                    @endif
+                @endforeach
             </div>
         </div>
     </section>
-
+{{-- 
     <section id="breadcrumbs" class="breadcrumbs">
         <div class="breadcrumb-hero">
             <div class="container" data-aos="fade-up">
@@ -426,18 +302,16 @@
             </p>
         </div>
 
-    </section>
+    </section> --}}
+{{-- 
 
-
-    <section id="partners"></section>
+    <section id="partners"></section> --}}
 
     <section id="breadcrumbs" class="breadcrumbs">
         <div class="breadcrumb-hero">
             <div class="container" data-aos="fade-up">
                 <div class="breadcrumb-hero">
                     <h2>Our Patners</h2>
-                    <p>Est dolorum ut non facere possimus quibusdam eligendi voluptatem. Quia id aut similique quia voluptas
-                        sit quaerat debitis. Rerum omnis ipsam aperiam consequatur laboriosam nemo harum praesentium. </p>
                 </div>
             </div>
         </div>
@@ -447,10 +321,14 @@
     <section id="partner" class="partner section-bg">
         <div class="container" data-aos="fade-up">
             <div class="row">
+                @foreach ($data['partner'] as $item)
                 <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
                     <div class="member">
-                        <img src="{{ asset('logo/Emblem_of_Nepal.png') }}" alt="">
-                        <h4>Government Of Nepal</h4>
+                        <img src="{{ asset('public/Image/partners/' . $item->logo) }}"  width="300" height="150">
+                        <h4>{{ $item->title }}</h4>
+                        @if($item->abbreviations )
+                            <h6>{{ $item->abbreviations }}</h6>
+                        @endif
                         {{-- <span>Chief Executive Officer</span>
                         <p>
                             Magni qui quod omnis unde et eos fuga et exercitationem. Odio veritatis perspiciatis quaerat qui
@@ -458,31 +336,7 @@
                         </p> --}}
                     </div>
                 </div>
-
-                <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-                    <div class="member">
-                        <img src="{{ asset('logo/giz.png') }}" alt="">
-                        <h4>GIZ</h4>
-                        {{--   <span>Product Manager</span>
-                        <p>
-                            Repellat fugiat adipisci nemo illum nesciunt voluptas repellendus. In architecto rerum rerum
-                            temporibus
-                        </p> --}}
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-                    <div class="member">
-                        <img src="{{ asset('logo/nepal-germany.jpg') }}" alt="">
-                        {{-- <h4>William Anderson</h4>
-                        <span>CTO</span>
-                        <p>
-                            Voluptas necessitatibus occaecati quia. Earum totam consequuntur qui porro et laborum toro des
-                            clara
-                        </p> --}}
-                    </div>
-                </div>
-
+                @endforeach
             </div>
 
         </div>
@@ -492,62 +346,66 @@
 
     </section>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const components = document.querySelectorAll('.working_area_section .card');
-
-            components.forEach((component) => {
-                component.addEventListener('mouseenter', function() {
-                    const workBody = this.querySelector('.work-body');
-                    workBody.style.display = 'block';
+    {{-- <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.working_area_section .card');
+    
+            cards.forEach((card) => {
+                card.addEventListener('mouseenter', function() {
+                    const img = this.querySelector('.card-img-top');
+                    img.style.transform = 'scale(.8)';
+                    card.style.backgroundColor = 'rgba(0, 0, 0, 0.6)';
+                    card.classList.add('FadeIn-bottom');
                 });
-
-                component.addEventListener('mouseleave', function() {
-                    const workBody = this.querySelector('.work-body');
-                    workBody.style.display = 'none';
+    
+                card.addEventListener('mouseleave', function() {
+                    const img = this.querySelector('.card-img-top');
+                    img.style.transform = 'scale(1)';
+                    card.style.backgroundColor = 'transparent';
                 });
             });
+        });
+    </script> --}}
+
+
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebarItemLinks = document.querySelectorAll('.sidebar-item-link');
+            const entryContainer = document.querySelector('.entries');
+
+            sidebarItemLinks.forEach(function(link) {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const itemId = this.dataset.id;
+                    loadEntry(itemId);
+                });
+            });
+
+            function loadEntry(itemId) {
+                const url = '{{ route('backend.news-and-events.getEntry') }}';
+                const formData = new FormData();
+                formData.append('itemId', itemId);
+
+                // Include CSRF token in headers
+                const headers = {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                };
+
+                fetch(url, {
+                        method: 'POST',
+                        body: formData,
+                        headers: headers // Include headers
+                    })
+                    .then(response => response.text())
+                    .then(data => {
+                        entryContainer.innerHTML = data;
+                    })
+                    .catch(error => {
+                        console.log('Error:', error);
+                    });
+            }
         });
     </script>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const sidebarItemLinks = document.querySelectorAll('.sidebar-item-link');
-        const entryContainer = document.querySelector('.entries');
-
-        sidebarItemLinks.forEach(function(link) {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const itemId = this.dataset.id;
-                loadEntry(itemId);
-            });
-        });
-
-        function loadEntry(itemId) {
-            const url = '{{ route("backend.news-and-events.getEntry") }}';
-            const formData = new FormData();
-            formData.append('itemId', itemId);
-
-            // Include CSRF token in headers
-            const headers = {
-                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-            };
-
-            fetch(url, {
-                method: 'POST',
-                body: formData,
-                headers: headers // Include headers
-            })
-            .then(response => response.text())
-            .then(data => {
-                entryContainer.innerHTML = data;
-            })
-            .catch(error => {
-                console.log('Error:', error);
-            });
-        }
-    });
-</script>
-
-
 @endsection

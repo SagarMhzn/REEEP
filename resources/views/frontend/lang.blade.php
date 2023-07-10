@@ -19,13 +19,13 @@
         <h1>{{ __('messages.title') }}</h1>
     
     </div>
-    <script type="text/javascript">
+    {{-- <script type="text/javascript">
         var url = "{{ route('changeLang') }}";
     
         $(".changeLang").change(function() {
             var lang = $(this).is(":checked") ? 'ne' : 'en';
             window.location.href = url + "?lang=" + lang;
         });
-    </script>
+    </script> --}}
     
 @endsection

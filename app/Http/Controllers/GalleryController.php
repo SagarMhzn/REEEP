@@ -32,6 +32,8 @@ class GalleryController extends Controller
      */
     public function store(GalleryRequest $request)
     {
+
+        // dd($request->image);
         $albumId = $request->input('album_id');
         $images = $request->file('image');
         $titles = $request->input('title');

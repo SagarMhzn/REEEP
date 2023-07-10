@@ -40,6 +40,9 @@ Route::get('/', function () {
 
 Route::name('frontend.')->group(function () {
 
+
+    Route::get('/test', [HomeController::class, 'test'])->name('test');
+    Route::get('/gallerytest', [HomeController::class, 'galleryTest']);
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/about-us', [HomeController::class, 'about'])->name('about');
     Route::get('/areas', [HomeController::class, 'workingareas'])->name('workingareas');

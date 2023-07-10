@@ -8,7 +8,7 @@
         <h2 style="text-align: center;">Gallery List</h2>
 
 
-        <a href="{{ route('backend.album.create') }}" class="btn btn-primary btn-menu">
+        <a href="{{ route('backend.gallery.create') }}" class="btn btn-primary btn-menu">
             <i class="fas fa-plus"></i>
         </a>
     </div>

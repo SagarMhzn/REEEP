@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\AboutUs;
+use App\Models\Album;
 use App\Models\Banner;
+use App\Models\Gallery;
 use App\Models\NewsAndEvent;
+use App\Models\Partner;
 use App\Models\WorkingArea;
 use Illuminate\Http\Request;
 use PHPUnit\Framework\MockObject\ReturnValueNotConfiguredException;
@@ -18,12 +21,23 @@ class HomeController extends Controller
         $data['aboutmain'] = AboutUs::first();
         $data['NaE_latest'] = NewsAndEvent::latest()->take(1)->first();
         $data['NaE_latest_five'] = NewsAndEvent::latest()->limit(5)->get();
-        // dd($data['NaE_latest_five']);
+        $data['album'] = Album::latest()->with('gallery')->limit(3)->get();
+        $data['partner'] = Partner::limit(3)->get();
         return view('frontend.welcome', compact('data'));
     }
     
     public function admin_index(){
         return view('backend.home');
+    }
+
+    public function galleryTest(){
+        $data['album'] = Album::latest()->with('gallery')->limit(3)->get();
+        return view('frontend.gallerytest', compact('data'));
+    }
+
+    public function test(){
+        $data['area'] = WorkingArea::get();
+        return view('frontend.test', compact('data'));
     }
     
 

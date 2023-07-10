@@ -3,9 +3,9 @@
         <a class="nav-link" href="{{ $menuItem['slug'] }}">
             {{ $menuItem['title'] }}
             @if(count($menuItem['children']) > 0)
-                <div class=" dropdown-toggle"></div>
+                <div class="dropdown-toggle"></div>
             @endif
-        </a>
+        </a> 
         <ul class="dropdown-menu">
             @foreach($menuItem['children'] as $childItem)
                 @include('partials.home-menu-item', ['menuItem' => $childItem])

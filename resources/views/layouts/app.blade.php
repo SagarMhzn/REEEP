@@ -71,7 +71,7 @@
                         <li><a href="#partners">Partners</a></li>
                         <li><a href="#KaR">Knowledge <br />and resources</a></li>
                         <li><a href="#contactus">Contact Us</a></li> --}}
-
+                        <i class="bi bi-list mobile-nav-toggle"></i>
                         <label class="switch mx-4" >
                             <input type="checkbox" class="changeLang"
                                 {{ session()->get('locale') == 'ne' ? 'checked' : '' }}>
