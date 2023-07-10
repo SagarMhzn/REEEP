@@ -5,7 +5,7 @@
     {{-- {{ dd($parent_id) }} --}}
     <div class="d-flex justify-content-between menu-header">
 
-        <h2 style="text-align: center;">About-Us List</h2>
+        <h2 style="text-align: center;">Album List</h2>
 
 
         <a href="{{ route('backend.album.create') }}" class="btn btn-primary btn-menu">

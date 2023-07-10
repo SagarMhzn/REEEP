@@ -13,7 +13,7 @@ class Gallery extends Model
 
     function album()
     {
-        return $this->hasOne(Album::class, 'id','album_id');
+        return $this->belongsTo(Album::class,'album_id');
     }
 }
 
