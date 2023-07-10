@@ -180,7 +180,14 @@
                                         alt="">
                                     <h4><a href="#" class="sidebar-item-link"
                                             data-id="{{ $items->id }}">{{ $items->title }}</a></h4>
-                                    <time>{{ Str::substr($items->created_at, 0, 10) }}</time>
+                                    <div class="d-flex justify-content-between">
+
+                                        <time>{{ Str::substr($items->created_at, 0, 10) }}</time>
+                                        <span
+                                            class="badge rounded-pill {{ $items->category == 0 ? 'bg-primary' : 'bg-info text-dark' }}">
+                                            {{ $items->category == 0 ? 'News' : 'Events' }}
+                                        </span>
+                                    </div>
                                 </div>
                             @endforeach
                         </div>
@@ -214,12 +221,14 @@
                                 @if ($item->cover_image)
                                     <img src="{{ asset('public/Image/albums/' . $item->cover_image) }}"
                                         class="modal-main-img" type="button" class="btn btn-primary"
-                                        data-bs-toggle="modal" data-bs-target="#exampleModal{{ $item->id }}" alt="">
+                                        data-bs-toggle="modal" data-bs-target="#exampleModal{{ $item->id }}"
+                                        alt="">
                                 @else
                                     @if ($item->id == $item->gallery[0]->album_id)
                                         <img src="{{ asset('public/Image/gallery/' . $item->gallery[0]->image) }}"
                                             class="modal-main-img" type="button" class="btn btn-primary"
-                                            data-bs-toggle="modal" data-bs-target="#exampleModal{{ $item->id }}" alt="">
+                                            data-bs-toggle="modal" data-bs-target="#exampleModal{{ $item->id }}"
+                                            alt="">
                                     @endif
                                 @endif
 
@@ -229,36 +238,41 @@
                                     <div class="modal-dialog modal-xl">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel{{ $item->id }}">{{ $item->title }}</h5>
+                                                <h5 class="modal-title" id="exampleModalLabel{{ $item->id }}">
+                                                    {{ $item->title }}</h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
                                                 <div class="container-fluid">
-                                                    <div id="carouselExampleControls{{ $item->id }}" class="carousel slide"
-                                                        data-bs-ride="carousel">
+                                                    <div id="carouselExampleControls{{ $item->id }}"
+                                                        class="carousel slide" data-bs-ride="carousel">
                                                         <div class="carousel-inner">
                                                             @foreach ($item->gallery as $key => $galleryItem)
-                                                                <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
+                                                                <div
+                                                                    class="carousel-item {{ $key === 0 ? 'active' : '' }}">
                                                                     <img src="{{ asset('public/Image/gallery/' . $galleryItem->image) }}"
                                                                         class="modal-img">
-        <br>
-                                                                        <h5 class="modal-title text-center" id="exampleModalLabel{{ $item->id }}">{{ $galleryItem->title }}</h5>
-        
+                                                                    <br>
+                                                                    <h5 class="modal-title text-center"
+                                                                        id="exampleModalLabel{{ $item->id }}">
+                                                                        {{ $galleryItem->title }}</h5>
+
                                                                 </div>
-        
                                                             @endforeach
                                                         </div>
                                                         <button class="carousel-control-prev" type="button"
                                                             data-bs-target="#carouselExampleControls{{ $item->id }}"
                                                             data-bs-slide="prev">
-                                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                            <span class="carousel-control-prev-icon"
+                                                                aria-hidden="true"></span>
                                                             <span class="visually-hidden">Previous</span>
                                                         </button>
                                                         <button class="carousel-control-next" type="button"
                                                             data-bs-target="#carouselExampleControls{{ $item->id }}"
                                                             data-bs-slide="next">
-                                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                            <span class="carousel-control-next-icon"
+                                                                aria-hidden="true"></span>
                                                             <span class="visually-hidden">Next</span>
                                                         </button>
                                                     </div>
@@ -281,7 +295,7 @@
             </div>
         </div>
     </section>
-{{-- 
+    {{-- 
     <section id="breadcrumbs" class="breadcrumbs">
         <div class="breadcrumb-hero">
             <div class="container" data-aos="fade-up">
@@ -303,7 +317,7 @@
         </div>
 
     </section> --}}
-{{-- 
+    {{-- 
 
     <section id="partners"></section> --}}
 
@@ -322,20 +336,21 @@
         <div class="container" data-aos="fade-up">
             <div class="row">
                 @foreach ($data['partner'] as $item)
-                <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-                    <div class="member">
-                        <img src="{{ asset('public/Image/partners/' . $item->logo) }}"  width="300" height="150">
-                        <h4>{{ $item->title }}</h4>
-                        @if($item->abbreviations )
-                            <h6>{{ $item->abbreviations }}</h6>
-                        @endif
-                        {{-- <span>Chief Executive Officer</span>
+                    <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                        <div class="member">
+                            <img src="{{ asset('public/Image/partners/' . $item->logo) }}" width="300"
+                                height="150">
+                            <h4>{{ $item->title }}</h4>
+                            @if ($item->abbreviations)
+                                <h6>{{ $item->abbreviations }}</h6>
+                            @endif
+                            {{-- <span>Chief Executive Officer</span>
                         <p>
                             Magni qui quod omnis unde et eos fuga et exercitationem. Odio veritatis perspiciatis quaerat qui
                             aut aut aut
                         </p> --}}
+                        </div>
                     </div>
-                </div>
                 @endforeach
             </div>
 

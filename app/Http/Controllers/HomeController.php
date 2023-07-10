@@ -35,6 +35,10 @@ class HomeController extends Controller
         return view('frontend.gallerytest', compact('data'));
     }
 
+    public function contactTest(){
+        return view('frontend.testcontact');
+    }
+
     public function test(){
         $data['area'] = WorkingArea::get();
         return view('frontend.test', compact('data'));
