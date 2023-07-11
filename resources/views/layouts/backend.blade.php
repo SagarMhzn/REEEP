@@ -368,28 +368,38 @@
                     </li>
 
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="{{route('backend.contact.create')}}" class="nav-link">
                             <i class="nav-icon fas fa-th"></i>
                             <p>
                                 Contact 
+                               
+                            </p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-th"></i>
+                            <p>
+                                Socials 
                                 <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="{{route('backend.contact.create')}}" class="nav-link">
+                                <a href="{{route('backend.socials.create')}}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Create</p>
                                 </a>
                             </li>
 
                             
-                            <li class="nav-item">
-                                <a href="{{route('backend.gallery.index')}}" class="nav-link">
+                            {{-- <li class="nav-item">
+                                <a href="{{route('backend.socials.index')}}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>List</p>
                                 </a>
-                            </li>
+                            </li> --}}
 
                         </ul>
                     </li>

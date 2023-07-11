@@ -21,6 +21,7 @@ use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\KnowledgeController;
 use App\Http\Controllers\WorkingAreaController;
 use App\Http\Controllers\NewsAndEventController;
+use App\Http\Controllers\SocialController;
 
 /*
 |--------------------------------------------------------------------------
@@ -155,4 +156,6 @@ Route::prefix('/dashboard')->name('backend.')->middleware('auth')->group(functio
     Route::resource('gallery', GalleryController::class);
 
     Route::resource('contact', ContactController::class);
+
+    Route::resource('socials', SocialController::class);
 });

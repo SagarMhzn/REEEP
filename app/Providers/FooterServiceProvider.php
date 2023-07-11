@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\View;
 use App\View\Composers\FooterComposer;
 use Illuminate\Support\ServiceProvider;
 
-class FooterProvider extends ServiceProvider
+class FooterServiceProvider extends ServiceProvider
 {
     /**
      * Register services.

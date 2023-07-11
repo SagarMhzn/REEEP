@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class SocialRequest extends FormRequest
@@ -11,7 +12,7 @@ class SocialRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,8 +22,20 @@ class SocialRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            //
+        $rules = [
+            'network_title.*' => 'required|string',
+            'source_url.*' => 'required|url',
+            'slug.*' => 'nullable|string',
         ];
+
+        if ($this->isMethod('PUT')) {
+            $rules = [
+                'network_title.*' => [
+                    'string',
+                    Rule::unique('socials')->ignore($this->route('id')),
+                ],
+            ];
+        }
+        return $rules;
     }
 }
