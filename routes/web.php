@@ -2,6 +2,7 @@
 
 use App\Models\Lang;
 use App\Models\Banner;
+use App\Models\Contact;
 use App\Models\Gallery;
 use App\Models\WorkingArea;
 use App\Models\NewsAndEvent;
@@ -13,7 +14,9 @@ use App\Http\Controllers\MenuController;
 use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\AboutUsController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\KnowledgeController;
 use App\Http\Controllers\WorkingAreaController;
@@ -51,6 +54,8 @@ Route::name('frontend.')->group(function () {
     Route::name('news-and-events.')->group(function () {
         Route::get('/news-and-events/{id}', [NewsAndEventController::class, 'viewArticle'])->name('view-article');
     });
+
+    Route::resource('message', MessageController::class);
     // Route::get('/about-us',[HomeController::class, 'viewNews'])->name('news');
     // Route::get('/about-us',[HomeController::class, 'viewContactUs'])->name('about');
     // Route::get('/about-us',[HomeController::class, 'viewAbout'])->name('about');
@@ -148,4 +153,6 @@ Route::prefix('/dashboard')->name('backend.')->middleware('auth')->group(functio
     Route::resource('album', AlbumController::class);
 
     Route::resource('gallery', GalleryController::class);
+
+    Route::resource('contact', ContactController::class);
 });

@@ -212,7 +212,7 @@
         </div>
     </section>
     <section class="gallery">
-        <div class="gallery-body">
+        <div class="gallery-body" data-aos="fade-up">
             <div class="gallery-section row">
                 @foreach ($data['album'] as $item)
                     @if (count($item->gallery) > 0)
@@ -295,31 +295,120 @@
             </div>
         </div>
     </section>
-    {{-- 
+
+
     <section id="breadcrumbs" class="breadcrumbs">
         <div class="breadcrumb-hero">
-            <div class="container" data-aos="fade-up">
+            <div class="container">
                 <div class="breadcrumb-hero">
-                    <h2>Map</h2>
+                    <h2>Contact</h2>
                 </div>
             </div>
         </div>
-    </section>
+    </section><!-- End Breadcrumbs -->
 
-    <section class="map-section">
-        <div class="w-100">
-            <p>
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.8668701992387!2d85.34139027536844!3d27.690509276192206!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb199225ddb01b%3A0x5bdcec622a9c4d75!2sYoung%20Minds%20Creation%20(P)%20Ltd!5e0!3m2!1sen!2snp!4v1687168123371!5m2!1sen!2snp"
-                    width="20%" height="100" style="border:0;" allowfullscreen="" loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </p>
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact mt-1">
+        <div class="container">
+
+            <div>
+                <iframe style="border:0; width: 100%; height: 270px;" src="{{ $contact->url }}" frameborder="0"
+                    allowfullscreen></iframe>
+            </div>
+
+            <div class="row mt-5">
+
+                <div class="col-lg-4" data-aos="fade-right">
+                    <div class="info">
+                        <div class="address">
+                            <i class="bi bi-geo-alt"></i>
+                            <h4>Location:</h4>
+                            <p>{{ $contact->location }}</p>
+                        </div>
+
+                        <div class="email">
+                            <i class="bi bi-envelope"></i>
+                            <h4>Email:</h4>
+                            <p>{{ $contact->email }}</p>
+                        </div>
+
+                        <div class="phone">
+                            <i class="bi bi-phone"></i>
+                            <h4>Call:</h4>
+                            <p>{{ $contact->phone }}</p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-lg-8 mt-5 mt-lg-0" data-aos="fade-left">
+
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    {!! Form::open([
+                        'route' => 'frontend.message.store',
+                        'method' => 'POST',
+                        'role' => 'form',
+                        'class' => 'php-email-form',
+                    ]) !!}
+                    <div class="col-md-12 form-group">
+                        {!! Form::text('name', null, [
+                            'class' => 'form-control',
+                            'id' => 'name',
+                            'placeholder' => 'Your Name',
+                            'required',
+                        ]) !!}
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            {!! Form::text('phone', null, [
+                                'class' => 'form-control',
+                                'id' => 'phone',
+                                'placeholder' => 'Your Phone number',
+                            ]) !!}
+                        </div>
+                        <div class="col-md-6 form-group mt-3 mt-md-0">
+                            {!! Form::email('email', null, ['class' => 'form-control', 'id' => 'email', 'placeholder' => 'Your Email']) !!}
+                        </div>
+                    </div>
+                    <div class="form-group mt-3">
+                        {!! Form::text('subject', null, [
+                            'class' => 'form-control',
+                            'id' => 'subject',
+                            'placeholder' => 'Subject',
+                            'required',
+                        ]) !!}
+                    </div>
+                    <div class="form-group mt-3">
+                        {!! Form::textarea('message', null, [
+                            'class' => 'form-control',
+                            'rows' => '5',
+                            'placeholder' => 'Message',
+                            'required',
+                        ]) !!}
+                    </div>
+                    <div class="text-center">
+                        {!! Form::submit('Send Message', ['class' => 'btn btn-primary']) !!}
+                        {!! Form::reset('Clear Message', ['class' => 'btn btn-warning']) !!}
+                    </div>
+                    {!! Form::close() !!}
+
+
+                </div>
+
+            </div>
+
         </div>
-
-    </section> --}}
-    {{-- 
-
-    <section id="partners"></section> --}}
+    </section>
 
     <section id="breadcrumbs" class="breadcrumbs">
         <div class="breadcrumb-hero">
@@ -360,28 +449,6 @@
     <section class="knowledge">
 
     </section>
-
-    {{-- <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const cards = document.querySelectorAll('.working_area_section .card');
-    
-            cards.forEach((card) => {
-                card.addEventListener('mouseenter', function() {
-                    const img = this.querySelector('.card-img-top');
-                    img.style.transform = 'scale(.8)';
-                    card.style.backgroundColor = 'rgba(0, 0, 0, 0.6)';
-                    card.classList.add('FadeIn-bottom');
-                });
-    
-                card.addEventListener('mouseleave', function() {
-                    const img = this.querySelector('.card-img-top');
-                    img.style.transform = 'scale(1)';
-                    card.style.backgroundColor = 'transparent';
-                });
-            });
-        });
-    </script> --}}
-
 
 
 

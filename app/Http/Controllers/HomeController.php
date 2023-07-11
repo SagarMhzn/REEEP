@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\AboutUs;
 use App\Models\Album;
 use App\Models\Banner;
+use App\Models\Contact;
 use App\Models\Gallery;
 use App\Models\NewsAndEvent;
 use App\Models\Partner;
@@ -23,7 +24,8 @@ class HomeController extends Controller
         $data['NaE_latest_five'] = NewsAndEvent::latest()->limit(5)->get();
         $data['album'] = Album::latest()->with('gallery')->limit(3)->get();
         $data['partner'] = Partner::limit(3)->get();
-        return view('frontend.welcome', compact('data'));
+        $contact = Contact::first();
+        return view('frontend.welcome', compact('data','contact'));
     }
     
     public function admin_index(){
@@ -36,7 +38,8 @@ class HomeController extends Controller
     }
 
     public function contactTest(){
-        return view('frontend.testcontact');
+        $contact = Contact::first();
+        return view('frontend.testcontact',compact('contact'));
     }
 
     public function test(){
