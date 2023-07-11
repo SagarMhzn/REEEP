@@ -16,7 +16,7 @@
             </a>
             <ul class="dropdown-menu">
                 @foreach($menuItems as $index => $menuItem)
-                    @if($index >= 4)
+                    @if($index >= 7)
                         @include('partials.home-menu-item', ['menuItem' => $menuItem])
                     @endif
                 @endforeach
