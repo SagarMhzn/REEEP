@@ -3,6 +3,7 @@
 use App\Providers\MenuServiceProvider;
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
+use App\Providers\FooterServiceProvider;
 
 return [
 
@@ -170,6 +171,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         MenuServiceProvider::class,
+        FooterServiceProvider::class,
     ])->toArray(),
 
     /*

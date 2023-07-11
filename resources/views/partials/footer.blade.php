@@ -22,12 +22,11 @@
 
             <div class="col-lg-3 col-md-6 footer-contact">
                 <h4>Contact Us</h4>
+                {{-- {{ dd( $data['contact']->location) }} --}}
                 <p>
-                    location<br>
-                    city<br>
-                    Nepal <br>
-                    <strong>Phone:</strong> +977 1234567890<br>
-                    <strong>Email:</strong> info@example.com<br>
+                    {{ $data['contact']->location }}<br>
+                    <strong>Phone:</strong> {{ $data['contact']->phone }}<br>
+                    <strong>Email:</strong> {{ $data['contact']->email }}<br>
                 </p>
 
                 <div class="social-links">
@@ -35,6 +34,8 @@
                     <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
                     <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
                     <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                    <a href="#" class="youtube"><i class="bi bi-youtube"></i></a>
+                    <a href="#" class="tiktok"><i class="bi bi-tiktok"></i></a>
                 </div>
 
             </div>

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Social;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Http\Requests\SocialRequest;
 
 class SocialController extends Controller
 {
@@ -12,7 +14,8 @@ class SocialController extends Controller
      */
     public function index()
     {
-        //
+        $data['social'] = Social::get();
+        return view('backend.socials.list',compact('data'));
     }
 
     /**
@@ -20,15 +23,29 @@ class SocialController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.socials.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(SocialRequest $request)
     {
-        //
+
+        $network_titles = $request->input('network_title');
+        $source_urls = $request->input('source_url');
+
+        foreach ($network_titles as $key => $title) {
+
+            $socials = [
+                'network_title' => $title,
+                'source_url' => $source_urls[$key],
+                'slug' => Str::slug($title),
+            ];
+            
+            Social::create($socials);
+        }
+        return redirect()->route('backend.socials.index');
     }
 
     /**
@@ -44,15 +61,21 @@ class SocialController extends Controller
      */
     public function edit(Social $social)
     {
-        //
+        return view('backend.socials.edit',compact('social'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Social $social)
+    public function update(SocialRequest $request, Social $social)
     {
-        //
+        $social->network_title = $request->network_title;
+        $social->slug = Str::slug($request->network_title);
+        $social->source_url = $request->source_url;
+
+        $social->save();
+
+        return redirect(route('backend.socials.index'));
     }
 
     /**
@@ -60,6 +83,7 @@ class SocialController extends Controller
      */
     public function destroy(Social $social)
     {
-        //
+        $social->delete();
+        return redirect(route('backend.socials.index'));
     }
 }
