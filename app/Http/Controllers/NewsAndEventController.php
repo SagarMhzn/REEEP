@@ -124,9 +124,14 @@ class NewsAndEventController extends Controller
     }
 
     public function viewArticle($id)
-{
-    $entry = NewsAndEvent::findOrFail($id);
-    return view('frontend.news-and-events.view-article', compact('entry'));
-}
+    {
+        $entry = NewsAndEvent::findOrFail($id);
+        return view('frontend.news-and-events.view-article', compact('entry'));
+    }
 
+    public function viewMain()
+    {
+        $data['nae'] = NewsAndEvent::get();
+        return view('frontend.news-and-events.main', compact('data'));
+    }
 }
