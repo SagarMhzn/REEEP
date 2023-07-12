@@ -58,6 +58,12 @@ class HomeController extends Controller
         return view('frontend.about.page', compact('data'));
     }
     public function workingareas(){
-        return view('frontend.workingareas');
+        $data['area'] = WorkingArea::get();
+        return view('frontend.working-areas.workingareas',compact('data'));
+    }
+
+    public function viewArea($id){
+        $data['area'] = WorkingArea::findOrFail($id);
+        return view('frontend.working-areas.areas.area',compact('data'));
     }
 }

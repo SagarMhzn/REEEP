@@ -71,20 +71,21 @@
                         <li><a href="#partners">Partners</a></li>
                         <li><a href="#KaR">Knowledge <br />and resources</a></li>
                         <li><a href="#contactus">Contact Us</a></li> --}}
-                        <i class="bi bi-list mobile-nav-toggle"></i>
-                        <label class="switch mx-4" >
+                        <label class="switch mx-4">
                             <input type="checkbox" class="changeLang"
                                 {{ session()->get('locale') == 'ne' ? 'checked' : '' }}>
                             <span class="slider"></span>
                         </label>
+                    <i class="bi bi-list mobile-nav-toggle"></i>
+                 
                     
+
                 </nav><!-- .navbar -->
             </div>
         </div>
     </header><!-- End Header -->
 
-    <main class="" style="margin-top:60px">
-        <div class="py-3"></div>
+    <main class="py-5">
         @yield('content')
     </main>
 
@@ -107,15 +108,15 @@
     <script src="{{ asset('assets/vendor/php-email-form/validate.js') }}"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBfFgGrcAobgjJjdMgIXsQMIfm_VlBDaXM&callback=initMap" async
         defer></script>
-    
-        <script type="text/javascript">
-            var url = "{{ route('changeLang') }}";
-        
-            $(".changeLang").change(function() {
-                var lang = $(this).is(":checked") ? 'ne' : 'en';
-                window.location.href = url + "?lang=" + lang;
-            });
-        </script>
+
+    <script type="text/javascript">
+        var url = "{{ route('changeLang') }}";
+
+        $(".changeLang").change(function() {
+            var lang = $(this).is(":checked") ? 'ne' : 'en';
+            window.location.href = url + "?lang=" + lang;
+        });
+    </script>
 
     <script>
         function initMap() {

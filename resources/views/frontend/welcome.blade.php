@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <section id="home"></section>
+    
     <section id="hero" style="margin-bottom: 2rem">
         <div class="hero-container" data-aos="fade-up">
             <div id="carouselSection" class="carousel slide" data-bs-ride="carousel">
