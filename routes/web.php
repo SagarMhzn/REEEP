@@ -50,7 +50,11 @@ Route::name('frontend.')->group(function () {
     Route::get('/contacttest', [HomeController::class, 'contactTest']);
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/about-us', [HomeController::class, 'about'])->name('about');
-    Route::get('/areas', [HomeController::class, 'workingareas'])->name('workingareas');
+    
+    Route::name('workingareas.')->group(function () {
+        Route::get('/areas', [HomeController::class, 'workingareas'])->name('workingareas');
+        Route::get('/areas/{id}', [HomeController::class, 'viewArea'])->name('area');
+    });
 
     Route::name('news-and-events.')->group(function () {
         Route::get('/news-and-events/{id}', [NewsAndEventController::class, 'viewArticle'])->name('view-article');
