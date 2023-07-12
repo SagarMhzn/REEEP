@@ -12,11 +12,10 @@
             <div class="col-lg-3 col-md-6 footer-links">
                 <h4>Useful Links</h4>
                 <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About us</a></li>
-                    <li><a href="#">Partners</a></li>
-                    <li><a href="#">News and Events</a></li>
-                    <li><a href="#">Knowledge and Resources</a></li>
+                    @foreach ($data['menu'] as $item)
+                    <li><a href="{{ $item->slug }}">{{ $item->title }}</a></li>
+                        
+                    @endforeach
                 </ul>
             </div>
 
@@ -30,12 +29,21 @@
                 </p>
 
                 <div class="social-links">
-                    <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-                    <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-                    <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-                    <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
-                    <a href="#" class="youtube"><i class="bi bi-youtube"></i></a>
-                    <a href="#" class="tiktok"><i class="bi bi-tiktok"></i></a>
+                    @foreach ($data['social'] as $item )
+                        
+                    @endforeach
+                    <a href="{{ $item->source_url }}" class="{{ $item['slug'] }}"><i class="bi bi-{{ $item['slug'] }}"></i></a>
+                </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-6 footer-contact">
+                <h4>Our Map</h4>
+                {{-- {{ dd( $data['contact']->location) }} --}}
+                
+                <div>
+                    <iframe style="border:0; width: 100%; height: 180px;" src="{{ $data['contact']->url }}" frameborder="0"
+                        allowfullscreen></iframe>
                 </div>
 
             </div>

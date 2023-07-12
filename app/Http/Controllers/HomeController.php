@@ -7,6 +7,7 @@ use App\Models\Album;
 use App\Models\Banner;
 use App\Models\Contact;
 use App\Models\Gallery;
+use App\Models\Knowledge;
 use App\Models\NewsAndEvent;
 use App\Models\Partner;
 use App\Models\WorkingArea;
@@ -24,8 +25,9 @@ class HomeController extends Controller
         $data['NaE_latest_five'] = NewsAndEvent::latest()->limit(5)->get();
         $data['album'] = Album::latest()->with('gallery')->limit(3)->get();
         $data['partner'] = Partner::limit(3)->get();
-        $contact = Contact::first();
-        return view('frontend.welcome', compact('data','contact'));
+        $data['knowledge'] = Knowledge::latest()->limit(3)->get();
+        $data['contact'] = Contact::first();
+        return view('frontend.welcome', compact('data'));
     }
     
     public function admin_index(){
@@ -49,8 +51,11 @@ class HomeController extends Controller
     
 
     public function about(){
-        $about = AboutUs::get();
-        return view('frontend.about', compact('about'));
+        $data['about-first'] = AboutUs::first();
+        $data['about-second'] = AboutUs::skip(1)->first();
+        $data['about'] = AboutUs::get()->slice(2);
+        // dd($data['about']);
+        return view('frontend.about.page', compact('data'));
     }
     public function workingareas(){
         return view('frontend.workingareas');

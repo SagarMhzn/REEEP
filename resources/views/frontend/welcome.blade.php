@@ -58,54 +58,65 @@
                     </div>
                 </div>
             </div>
+        </section>
 
-            <div class="working_area_section row" data-aos="fade-up">
-                @foreach ($data['area'] as $item)
-                    <div class="col-md-4">
-                        <div class="card mb-3" type="button" data-bs-toggle="modal"
-                            data-bs-target="#modal{{ $item->id }}">
-                            <img src="{{ asset('public/Image/workingarea/' . $item->logo) }}" class="card-img-top"
-                                alt="Working Area Image not Found" style="object-fit: cover; height: 200px;">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ $item->title }}</h5>
+        <section id="portfolio" class="portfolio">
+            <div class="container">
 
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Modal -->
-                    <div class="modal fade" id="modal{{ $item->id }}" tabindex="-1"
-                        aria-labelledby="modalLabel{{ $item->id }}" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="modalLabel{{ $item->id }}">{{ $item->title }}
-                                    </h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <img src="{{ asset('public/Image/workingarea/' . $item->logo) }}" class="img-fluid"
-                                        alt="Working Area Image not Found">
-                                    <p>{{ $item->description }}</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Learn More</button>
+                <div class="row portfolio-container" data-aos="fade-up">
+                    @foreach ($data['area'] as $item)
+                        <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                            <div class="portfolio-wrap"  type="button" data-bs-toggle="modal"
+                                data-bs-target="#modal{{ $item->id }}">
+                                <img src="{{ asset('public/Image/workingarea/' . $item->logo) }}" class="card-img-top"
+                                    alt="Working Area Image not Found" style="object-fit: cover; height: 200px;">
+                                <div class="portfolio-info">
+                                    <h4>{{ $item->title }}</h4>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                @endforeach
+
+                        <div class="modal fade" id="modal{{ $item->id }}" tabindex="-1"
+                            aria-labelledby="modalLabel{{ $item->id }}" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modalLabel{{ $item->id }}">{{ $item->title }}
+                                        </h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <img src="{{ asset('public/Image/workingarea/' . $item->logo) }}" class="img-fluid"
+                                            alt="Working Area Image not Found">
+                                        <p>{{ $item->description }}</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Learn More</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+
             </div>
         </section>
     </section>
 
     <section id="blog " class="blog">
 
-        <div class="n_e-heading" data-aos="fade-up">
-            <h2>News and Events</h2>
-        </div>
+        <section id="works" class="works">
+            <div class="work-hero">
+                <div class="container" data-aos="fade-up">
+                    <div class="work-hero">
+                        <h2>News and Events</h2>
+                    </div>
+                </div>
+            </div>
+        </section>
         <div class="container" data-aos="fade-up">
 
             <div class="row">
@@ -312,7 +323,7 @@
         <div class="container">
 
             <div>
-                <iframe style="border:0; width: 100%; height: 270px;" src="{{ $contact->url }}" frameborder="0"
+                <iframe style="border:0; width: 100%; height: 270px;" src="{{ $data['contact']->url }}" frameborder="0"
                     allowfullscreen></iframe>
             </div>
 
@@ -323,19 +334,19 @@
                         <div class="address">
                             <i class="bi bi-geo-alt"></i>
                             <h4>Location:</h4>
-                            <p>{{ $contact->location }}</p>
+                            <p>{{ $data['contact']->location }}</p>
                         </div>
 
                         <div class="email">
                             <i class="bi bi-envelope"></i>
                             <h4>Email:</h4>
-                            <p>{{ $contact->email }}</p>
+                            <p>{{ $data['contact']->email }}</p>
                         </div>
 
                         <div class="phone">
                             <i class="bi bi-phone"></i>
                             <h4>Call:</h4>
-                            <p>{{ $contact->phone }}</p>
+                            <p>{{ $data['contact']->phone }}</p>
                         </div>
 
                     </div>
@@ -446,11 +457,43 @@
         </div>
     </section>
 
-    <section class="knowledge">
+    <section id="workingareas" @if (count($data['knowledge']) == 0) style="display: none;" @endif class="workingareas py-4">
+        <section id="works" class="works">
+            <div class="work-hero">
+                <div class="container" data-aos="fade-up">
+                    <div class="work-hero">
+                        <h2>Knowledge and Resources</h2>
+                    </div>
+                </div>
+            </div>
+        </section>
 
+        <section id="portfolio" class="portfolio py-3">
+            <div class="container">
+
+                <div class="row portfolio-container" data-aos="fade-up">
+                    @foreach ($data['knowledge'] as $item)
+                    <div class="col-lg-4 col-md-6 portfolio-item">
+                        <div class="portfolio-wrap ">
+                            <img src="{{ asset('public/Image/knowledge-and-resources/images/' . $item->image) }}" width="100%"
+                            height="300">
+                          <div class="portfolio-info">
+                              <a href="">
+                                  <h4>{{ $item->title }}</h4>
+                            </a>
+                              <div class="portfolio-links">
+                              <a href="{{ asset('public/Image/knowledge-and-resources/documents/' . $item->documents) }}"  target="_blank" title="{{ substr($item->documents, 12) }}"><i class="bi bi-filetype-pdf"></i></a>
+                              <a href="{{ asset('public/Image/knowledge-and-resources/documents/' . $item->documents) }}" title="{{ substr($item->documents, 12) }}" download=""><i class="bi bi-download"></i></a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    @endforeach
+                </div>
+
+            </div>
+        </section>
     </section>
-
-
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {

@@ -84,6 +84,7 @@
     </header><!-- End Header -->
 
     <main class="" style="margin-top:60px">
+        <div class="py-3"></div>
         @yield('content')
     </main>
 
