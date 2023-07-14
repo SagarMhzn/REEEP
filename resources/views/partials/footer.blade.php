@@ -30,9 +30,8 @@
 
                 <div class="social-links">
                     @foreach ($data['social'] as $item )
-                        
+                    <a href="{{ $item->source_url }}" class="{{ $item['slug'] }}" target="_blank"><i class="bi bi-{{ $item['slug'] }}"></i></a>
                     @endforeach
-                    <a href="{{ $item->source_url }}" class="{{ $item['slug'] }}"><i class="bi bi-{{ $item['slug'] }}"></i></a>
                 </div>
 
             </div>

@@ -474,7 +474,7 @@ section {
 }
 
 .section-title {
-    text-align: center;
+    /* text-align: center; */
     padding-bottom: 30px;
 }
 
@@ -1304,9 +1304,9 @@ section {
     opacity: 1;
 }
 
-.portfolio .portfolio-wrap:hover img {
+/* .portfolio .portfolio-wrap:hover img {
     transform: scale(0.7);
-}
+} */
 
 .portfolio .portfolio-wrap:hover .portfolio-info {
     opacity: 1;

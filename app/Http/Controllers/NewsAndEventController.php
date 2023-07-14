@@ -123,15 +123,24 @@ class NewsAndEventController extends Controller
         return view('partials.entry', compact('entry'))->render();
     }
 
+    public function getEntryInner(Request $request)
+    {
+        $itemId = $request->itemId;
+        $entry = NewsAndEvent::find($itemId);
+
+        return view('partials.entry-inner', compact('entry'))->render();
+    }
+
     public function viewArticle($id)
     {
-        $entry = NewsAndEvent::findOrFail($id);
-        return view('frontend.news-and-events.view-article', compact('entry'));
+        $data['NaE_latest'] = NewsAndEvent::findOrFail($id);
+        $data['NaE_latest_five'] = NewsAndEvent::latest()->limit(8)->get();
+        return view('frontend.news-and-events.view-article', compact('data'));
     }
 
     public function viewMain()
     {
-        $data['nae'] = NewsAndEvent::get();
+        $data['nae'] = NewsAndEvent::latest()->get();
         return view('frontend.news-and-events.main', compact('data'));
     }
 }

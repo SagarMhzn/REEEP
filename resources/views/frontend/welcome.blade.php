@@ -180,7 +180,7 @@
 
                             </div>
                             <div class="col-lg-4">
-                                <h6><a href="#">View All<i class="bi bi-arrow-right"></i></a></h6>
+                                <h6><a href="{{ route('frontend.news-and-events.main') }}">View All<i class="bi bi-arrow-right"></i></a></h6>
                             </div>
                         </div>
                         <div class="sidebar-item recent-posts">
@@ -300,7 +300,7 @@
                             <div class="gallery-title">
                                 <h5>{{ $item->title }}</h5>
                             </div>
-                        </div>
+                        </div> 
                     @endif
                 @endforeach
             </div>
@@ -509,7 +509,7 @@
             });
 
             function loadEntry(itemId) {
-                const url = '{{ route('backend.news-and-events.getEntry') }}';
+                const url = '{{ route('frontend.news-and-events.getEntry') }}';
                 const formData = new FormData();
                 formData.append('itemId', itemId);
 
