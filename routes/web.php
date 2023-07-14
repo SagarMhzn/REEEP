@@ -51,17 +51,24 @@ Route::name('frontend.')->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/about-us', [HomeController::class, 'about'])->name('about');
     
+    
+    Route::name('gallery.')->group(function () {
+        Route::get('/gallery', [GalleryController::class, 'view'])->name('index');
+        Route::get('/gallery/album/{id}', [GalleryController::class, 'viewAlbum'])->name('album');
+    });
 
-    Route::name('news-and-events.')->group(function () {
+    Route::name('workingareas.')->group(function () {
         Route::get('/areas', [HomeController::class, 'workingareas'])->name('workingareas');
         Route::get('/areas/{id}', [HomeController::class, 'viewArea'])->name('area');
     });
-
+    
     Route::name('news-and-events.')->group(function () {
         Route::get('/news-and-events', [NewsAndEventController::class, 'viewMain'])->name('main');
         Route::get('/news-and-events/{id}', [NewsAndEventController::class, 'viewArticle'])->name('view-article');
+        Route::post('/get-entry', [NewsAndEventController::class, 'getEntry'])->name('getEntry');
+        Route::post('/get-entry-inner', [NewsAndEventController::class, 'getEntryInner'])->name('getEntry-inner');
     });
-
+    
     Route::resource('message', MessageController::class);
     // Route::get('/about-us',[HomeController::class, 'viewNews'])->name('news');
     // Route::get('/about-us',[HomeController::class, 'viewContactUs'])->name('about');
@@ -133,7 +140,6 @@ Route::prefix('/dashboard')->name('backend.')->middleware('auth')->group(functio
 
         Route::get('/news-and-events/delete/{id}', [NewsAndEventController::class, 'destroy'])->name('delete');
 
-        Route::post('/get-entry', [NewsAndEventController::class, 'getEntry'])->name('getEntry');
     });
 
     Route::name('partners.')->group(function () {

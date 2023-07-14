@@ -18,6 +18,19 @@ class GalleryController extends Controller
         return view('backend.gallery.list', compact('gallery'));
     }
 
+    public function view()
+    {
+        $data['album'] = Album::latest()->with('gallery')->get();
+        return view('frontend.gallery.all-albums', compact('data'));
+    }
+    
+    public function viewAlbum($id)
+    {
+        $album = Album::with('gallery')->findOrFail($id);
+        // $data['album'] = Album::latest()->with('gallery')->get();
+        return view('frontend.gallery.album', compact('album'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */

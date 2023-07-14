@@ -28,7 +28,7 @@
                 <div class="col-lg-5 content">
                     <h2>{{ $data['area']->title }}</h2>
                     <p class="fst-italic py-3">
-                        {{ $data['area']->description }}
+                        {!! nl2br( $data['area']->description) !!}
                     </p>
 
                 </div>

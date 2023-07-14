@@ -25,7 +25,7 @@
                     <h2 align="center">About NEEP</h2>
                     </a>
                     <h4>{{ $data['about-first']->title[session('locale')] }}</h4>
-                    <p>{{ $data['about-first']->description[session('locale')] }}</p>
+                    <p>{!! nl2br($data['about-first']->description[session('locale')]) !!}</p>
                 </div>
             </div>
         </div>
@@ -37,8 +37,8 @@
         <div class="container">
 
             <div class="section-title" data-aos="fade-up">
-                <h2>{{ $data['about-second']->title[session('locale')] }}</h2>
-                <p>{{ $data['about-second']->description[session('locale')] }}</p>
+                <h2 class="text-center">{{ $data['about-second']->title[session('locale')] }}</h2>
+                <p>{!! nl2br($data['about-second']->description[session('locale')]) !!}</p>
             </div>
 
             @foreach ($data['about'] as $key => $item)
@@ -50,7 +50,7 @@
                         <div class="col-md-7 pt-4" data-aos="fade-left">
                             <h3>{{ $item->title[session('locale')] }}</h3>
                                 <p class="fst-italic">
-                                    {{ $item->description[session('locale')] }}
+                                    {!! nl2br($item->description[session('locale')]) !!}
                                 </p>
                         </div>
 
@@ -63,7 +63,7 @@
                         <div class="col-md-7 pt-5 order-2 order-md-1" data-aos="fade-right">
                             <h3>{{ $item->title[session('locale')] }}</h3>
                                 <p class="fst-italic">
-                                    {{ $item->description[session('locale')] }}
+                                    {!! nl2br($item->description[session('locale')]) !!}
                                 </p>
                         </div>
 

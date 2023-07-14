@@ -42,10 +42,10 @@
                                     <p><i class="bi bi-clock"></i> <time>{{ Str::substr($item->created_at, 0, 10) }}</time>
                                     </p>
                                     <div class="portfolio-links">
-                                        <a href="assets/img/portfolio/portfolio-4.jpg" data-gallery="portfolioGallery"
+                                        <a href="{{ asset('public/Image/news-and-events/' . $item->image) }}" data-gallery="portfolioGallery"
                                             class="portfolio-lightbox" title="{{ $item->title }}"><i
                                                 class="bx bx-plus"></i></a>
-                                        <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                                        <a href="{{ route('frontend.news-and-events.view-article', ['id' => $item->id]) }}" title="More Details"><i class="bx bx-link"></i></a>
                                     </div>
                                     
                                         <span
@@ -65,10 +65,10 @@
                                     <p><i class="bi bi-clock"></i> <time>{{ Str::substr($item->created_at, 0, 10) }}</time>
                                     </p>
                                     <div class="portfolio-links">
-                                        <a href="assets/img/portfolio/portfolio-4.jpg" data-gallery="portfolioGallery"
+                                        <a href="{{ asset('public/Image/news-and-events/' . $item->image) }}" data-gallery="portfolioGallery"
                                             class="portfolio-lightbox" title="{{ $item->title }}"><i
                                                 class="bx bx-plus"></i></a>
-                                        <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                                        <a href="{{ route('frontend.news-and-events.view-article', ['id' => $item->id]) }}" title="More Details"><i class="bx bx-link"></i></a>
                                     </div>
                                     
                                         <span
