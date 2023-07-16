@@ -41,7 +41,7 @@ class HomeController extends Controller
 
     public function contactTest(){
         $contact = Contact::first();
-        return view('frontend.testcontact',compact('contact'));
+        return view('frontend.test-blades.testcontact',compact('contact'));
     }
 
     public function test(){

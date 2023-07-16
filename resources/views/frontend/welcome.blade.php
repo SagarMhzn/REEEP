@@ -370,6 +370,7 @@
                         'method' => 'POST',
                         'role' => 'form',
                         'class' => 'php-email-form',
+                        'id' => 'contactUSForm',
                     ]) !!}
                     <div class="col-md-12 form-group">
                         {!! Form::text('name', null, [
@@ -406,6 +407,17 @@
                             'placeholder' => 'Message',
                             'required',
                         ]) !!}
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <strong>ReCaptcha:</strong>
+                                <div class="g-recaptcha" data-sitekey="{{ env('GOOGLE_RECAPTCHA_KEY') }}"></div>
+                                @if ($errors->has('g-recaptcha-response'))
+                                    <span class="text-danger">{{ $errors->first('g-recaptcha-response') }}</span>
+                                @endif
+                            </div>  
+                        </div>
                     </div>
                     <div class="text-center">
                         {!! Form::submit('Send Message', ['class' => 'btn btn-primary']) !!}
@@ -494,7 +506,7 @@
             </div>
         </section>
     </section>
-
+    <script src='https://www.google.com/recaptcha/api.js'></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const sidebarItemLinks = document.querySelectorAll('.sidebar-item-link');
