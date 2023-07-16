@@ -22,6 +22,8 @@ use App\Http\Controllers\KnowledgeController;
 use App\Http\Controllers\WorkingAreaController;
 use App\Http\Controllers\NewsAndEventController;
 use App\Http\Controllers\SocialController;
+use App\Models\Knowledge;
+use App\Models\Message;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,6 +71,11 @@ Route::name('frontend.')->group(function () {
         Route::post('/get-entry-inner', [NewsAndEventController::class, 'getEntryInner'])->name('getEntry-inner');
     });
     
+    Route::name('resources.')->group(function () {
+        Route::get('/resources', [KnowledgeController::class, 'view'])->name('index');
+    });
+
+
     Route::resource('message', MessageController::class);
     // Route::get('/about-us',[HomeController::class, 'viewNews'])->name('news');
     // Route::get('/about-us',[HomeController::class, 'viewContactUs'])->name('about');
@@ -168,6 +175,8 @@ Route::prefix('/dashboard')->name('backend.')->middleware('auth')->group(functio
     Route::resource('gallery', GalleryController::class);
 
     Route::resource('contact', ContactController::class);
+
+    Route::resource('message', MessageController::class);
 
     Route::resource('socials', SocialController::class);
 });

@@ -17,7 +17,8 @@ class MessageController extends Controller
      */
     public function index()
     {
-        //
+        $message = Message::latest()->get();
+        return view('backend.contact-us.feedback', compact('message'));
     }
 
     /**
@@ -55,7 +56,7 @@ class MessageController extends Controller
      */
     public function show(Message $message)
     {
-        //
+        return view('backend.contact-us.message', compact('message'));
     }
 
     /**
@@ -79,6 +80,7 @@ class MessageController extends Controller
      */
     public function destroy(Message $message)
     {
-        //
+        $message->delete();
+        return redirect(route('backend.message.index'));
     }
 }

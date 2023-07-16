@@ -366,15 +366,31 @@
 
                         </ul>
                     </li>
-
                     <li class="nav-item">
-                        <a href="{{route('backend.contact.create')}}" class="nav-link">
+                        <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-th"></i>
                             <p>
                                 Contact 
-                               
+                                <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{route('backend.contact.create')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Contact </p>
+                                </a>
+                            </li>
+
+                            
+                            <li class="nav-item">
+                                <a href="{{route('backend.message.index')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>FeedBack</p>
+                                </a>
+                            </li>
+
+                        </ul>
                     </li>
 
                     <li class="nav-item">

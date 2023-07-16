@@ -142,4 +142,9 @@ class KnowledgeController extends Controller
         $knowledge->delete();
         return redirect()->back();
     }
+
+    public function view(){
+        $knowledge = Knowledge::get();
+        return view('frontend.resources.resources',compact('knowledge'));
+    }
 }
