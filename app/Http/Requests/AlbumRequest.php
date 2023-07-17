@@ -35,7 +35,7 @@ class AlbumRequest extends FormRequest
             $rule2 = [
                 'title' => [
                     'string',
-                    Rule::unique('albums')->ignore($this->route('id')),
+                    Rule::unique('albums')->ignore($this->route('album')),
                 ],
             ];
         }

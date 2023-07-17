@@ -32,7 +32,7 @@ class SocialRequest extends FormRequest
             $rules = [
                 'network_title.*' => [
                     'string',
-                    Rule::unique('socials')->ignore($this->route('id')),
+                    Rule::unique('socials')->ignore($this->route('socials')),
                 ],
             ];
         }

@@ -21,9 +21,13 @@
         <div class="form-group">
             <strong>Permissions:</strong>
             @if(!empty($rolePermissions))
+            <ul>
                 @foreach($rolePermissions as $v)
-                    <label class="label label-success">{{ $v->name }},</label>
-                @endforeach
+                    <li>
+                        <label class="label label-success">{{ $v->name }}</label>
+                    </li>
+                    @endforeach
+                </ul>
             @endif
         </div>
     </div>

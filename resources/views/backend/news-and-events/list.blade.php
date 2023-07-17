@@ -12,7 +12,7 @@
         <div class="card card-warning">
             <div class="card-body">
                 <table class="table">
-                    <thead class="table-dark text-center">
+                    <thead class="table-dark">
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Title</th>
@@ -27,22 +27,21 @@
                             <tr>
                                 <th scope="row">{{ $keys + 1 }}</th>
                                 <td>{{ $items->title }}</td>
-                                <td>
+                            
                                 <td>
                                     @if (mb_strlen($items->description, 'UTF-8') > 255)
-                                          <div class="description" style="display:block">
+                                        <div class="description" style="display:block">
                                             <div class="truncated-description">
-                                              {{ nl2br(mb_strlen($items->description, 'UTF-8') > 255 ? mb_substr($items->description, 0, 255, 'UTF-8') . '...' : $items->description) }}
+                                                {{ nl2br(mb_strlen($items->description, 'UTF-8') > 255 ? mb_substr($items->description, 0, 255, 'UTF-8') . '...' : $items->description) }}
                                             </div>
                                             <div class="full-description" style="display: none">
                                                 {!! nl2br($items->description) !!}
                                             </div>
-                                          </div>
-                                         
-                                        @else
+                                        </div>
+                                    @else
                                         {!! nl2br($items->description) !!}
-                                        @endif
-                                    
+                                    @endif
+
                                 </td>
 
                                 </td>
@@ -97,12 +96,12 @@
                         '...';
 
                     var showMoreButton = document.createElement('button');
-                    showMoreButton.classList.add('show-more','btn','btn-warning');
+                    showMoreButton.classList.add('show-more', 'btn', 'btn-warning');
                     showMoreButton.innerText = 'Show More';
                     showMoreButton.style.display = 'inline';
 
                     var showLessButton = document.createElement('button');
-                    showLessButton.classList.add('show-less','btn','btn-warning');
+                    showLessButton.classList.add('show-less', 'btn', 'btn-warning');
                     showLessButton.innerText = 'Show Less';
                     showLessButton.style.display = 'none';
 
