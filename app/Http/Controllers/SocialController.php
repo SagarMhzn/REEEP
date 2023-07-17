@@ -12,6 +12,15 @@ class SocialController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+     function __construct()
+     {
+          $this->middleware('permission:social-list|social-create|social-edit|social-delete', ['only' => ['index','show']]);
+          $this->middleware('permission:social-create', ['only' => ['create','store']]);
+          $this->middleware('permission:social-edit', ['only' => ['edit','update']]);
+          $this->middleware('permission:social-delete', ['only' => ['destroy']]);
+     }
+
     public function index()
     {
         $data['social'] = Social::get();

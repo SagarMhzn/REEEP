@@ -4,6 +4,8 @@ use App\Models\Lang;
 use App\Models\Banner;
 use App\Models\Contact;
 use App\Models\Gallery;
+use App\Models\Message;
+use App\Models\Knowledge;
 use App\Models\WorkingArea;
 use App\Models\NewsAndEvent;
 use Illuminate\Support\Facades\Auth;
@@ -11,8 +13,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LangController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\BannerController;
+use App\Http\Controllers\SocialController;
 use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\GalleryController;
@@ -21,9 +26,6 @@ use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\KnowledgeController;
 use App\Http\Controllers\WorkingAreaController;
 use App\Http\Controllers\NewsAndEventController;
-use App\Http\Controllers\SocialController;
-use App\Models\Knowledge;
-use App\Models\Message;
 
 /*
 |--------------------------------------------------------------------------
@@ -179,4 +181,8 @@ Route::prefix('/dashboard')->name('backend.')->middleware('auth')->group(functio
     Route::resource('message', MessageController::class);
 
     Route::resource('socials', SocialController::class);
+
+    Route::resource('roles', RoleController::class);
+    
+    Route::resource('users', UserController::class);
 });

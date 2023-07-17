@@ -15,6 +15,7 @@ class MessageController extends Controller
     /**
      * Display a listing of the resource.
      */
+    
     public function index()
     {
         $message = Message::latest()->get();

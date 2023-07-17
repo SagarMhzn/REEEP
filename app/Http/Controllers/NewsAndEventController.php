@@ -11,6 +11,15 @@ class NewsAndEventController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+     function __construct()
+     {
+          $this->middleware('permission:news-and-events-list|news-and-events-create|news-and-events-edit|news-and-events-delete', ['only' => ['index','show']]);
+          $this->middleware('permission:news-and-events-create', ['only' => ['create','store']]);
+          $this->middleware('permission:news-and-events-edit', ['only' => ['edit','update']]);
+          $this->middleware('permission:news-and-events-delete', ['only' => ['destroy']]);
+     }
+
     public function index()
     {
         //

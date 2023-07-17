@@ -25,7 +25,7 @@
                     <tr>
                         <th>Network Title</th>
                         <th>Source Link</th>
-                        <th>Action</th>
+
                     </tr>
                     <tr>
                         <td><input type="text" name="network_title" class="form-control" placeholder="Enter Network Title" 
@@ -41,9 +41,7 @@
                             @enderror
                         </td>
                     
-                        <td>
-                            <a class="btn btn-block btn-warning sa-warning remove_row "><i class="fa fa-trash"></i></a>
-                        </td>
+                       
                     </tr>
                 </table>
                 
@@ -64,12 +62,4 @@
     </section>
     <!-- /.content -->
 @endsection
-@section('js')
-    <script>
-        $(image_wrapper).on("click", ".remove_row", function(e) {
-            e.preventDefault();
-            $(this).parents("tr").remove();
-            x--;
-        });
-    </script>
-@endsection
+

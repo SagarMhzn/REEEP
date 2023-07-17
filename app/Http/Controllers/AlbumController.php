@@ -11,6 +11,15 @@ class AlbumController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+     function __construct()
+     {
+          $this->middleware('permission:album-list|album-create|album-edit|album-delete', ['only' => ['index','show']]);
+          $this->middleware('permission:album-create', ['only' => ['create','store']]);
+          $this->middleware('permission:album-edit', ['only' => ['edit','update']]);
+          $this->middleware('permission:album-delete', ['only' => ['destroy']]);
+     }
+
     public function index()
     {
         $album = Album::get();

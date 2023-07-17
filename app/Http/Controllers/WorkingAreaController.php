@@ -11,6 +11,15 @@ class WorkingAreaController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+     function __construct()
+     {
+          $this->middleware('permission:working-areas-list|working-areas-create|working-areas-edit|working-areas-delete', ['only' => ['index','show']]);
+          $this->middleware('permission:working-areas-create', ['only' => ['create','store']]);
+          $this->middleware('permission:working-areas-edit', ['only' => ['edit','update']]);
+          $this->middleware('permission:working-areas-delete', ['only' => ['destroy']]);
+     }
+
     public function index()
     {
         //

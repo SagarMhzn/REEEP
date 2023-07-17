@@ -12,6 +12,15 @@ class GalleryController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+     function __construct()
+     {
+          $this->middleware('permission:gallery-list|gallery-create|gallery-edit|gallery-delete', ['only' => ['index','show']]);
+          $this->middleware('permission:gallery-create', ['only' => ['create','store']]);
+          $this->middleware('permission:gallery-edit', ['only' => ['edit','update']]);
+          $this->middleware('permission:gallery-delete', ['only' => ['destroy']]);
+     }
+
     public function index()
     {
         $gallery = Gallery::orderBy('album_id')->get();

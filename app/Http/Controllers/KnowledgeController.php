@@ -11,6 +11,15 @@ class KnowledgeController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+     function __construct()
+     {
+          $this->middleware('permission:knowledge-list|knowledge-create|knowledge-edit|knowledge-delete', ['only' => ['index','show']]);
+          $this->middleware('permission:knowledge-create', ['only' => ['create','store']]);
+          $this->middleware('permission:knowledge-edit', ['only' => ['edit','update']]);
+          $this->middleware('permission:knowledge-delete', ['only' => ['destroy']]);
+     }
+
     public function index()
     {
         $knowledge = Knowledge::get();
