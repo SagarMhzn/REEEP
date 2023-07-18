@@ -1,7 +1,7 @@
 @extends('layouts.backend')
 @section('content')
 <div class="row">
-    <div class="col-lg-12 margin-tb">
+    <div class="col-lg-8 margin-tb mx-auto">
         <div class="pull-left">
             <h2>Users Management</h2>
         </div>
@@ -15,7 +15,7 @@
     <p>{{ $message }}</p>
 </div>
 @endif
-<table class="table table-bordered">
+<table class="table table-bordered col-lg-8 mx-auto">
     <tr>
         <th>No</th>
         <th>Name</th>

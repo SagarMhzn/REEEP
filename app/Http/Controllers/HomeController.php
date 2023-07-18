@@ -2,18 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AboutUs;
+use App\Models\Menu;
+use App\Models\User;
 use App\Models\Album;
 use App\Models\Banner;
+use App\Models\Social;
+use App\Models\AboutUs;
 use App\Models\Contact;
 use App\Models\Gallery;
-use App\Models\Knowledge;
-use App\Models\NewsAndEvent;
+use App\Models\Message;
 use App\Models\Partner;
+use App\Models\Knowledge;
+use ReturnTypeWillChange;
 use App\Models\WorkingArea;
+use App\Models\NewsAndEvent;
 use Illuminate\Http\Request;
 use PHPUnit\Framework\MockObject\ReturnValueNotConfiguredException;
-use ReturnTypeWillChange;
 
 class HomeController extends Controller
 {
@@ -31,7 +35,19 @@ class HomeController extends Controller
     }
     
     public function admin_index(){
-        return view('backend.home');
+        $data['menu'] = Menu::count();
+        $data['about'] = Aboutus::count();
+        $data['album'] = Album::count();
+        $data['banner'] = Banner::count();
+        $data['Contact'] = Contact::count();
+        $data['knowledge'] = Knowledge::count();
+        $data['message'] = Message::count();
+        $data['NaE'] = NewsAndEvent::count();
+        $data['partner'] = Partner::count();
+        $data['social'] = Social::count();
+        $data['workingarea'] = Workingarea::count();
+        $data['user'] = User::count();
+        return view('backend.home', compact('data'));
     }
 
     public function galleryTest(){

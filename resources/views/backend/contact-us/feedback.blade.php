@@ -5,7 +5,7 @@
 
     @if (count($message) != 0)
         <div class="card card-warning">
-
+            @include('backend.includes.flash')
             <div class="card-body">
                 <table class="table">
                     <thead class="table-dark text-center">
