@@ -1,22 +1,18 @@
 @extends('layouts.backend')
+@section('Heading', 'About Us')
 
 @section('content')
-
-    {{-- {{ dd($parent_id) }} --}}
-    <div class="d-flex justify-content-between menu-header">
-
-        <h2 style="text-align: center;">About-Us List</h2>
-
-
+    <div class="flex-end" style="float:right">
         <a href="{{ route('backend.aboutus.create') }}" class="btn btn-primary btn-menu">
-            <i class="fas fa-plus"></i>
+            Add more <i class="fas fa-plus"></i>
         </a>
     </div>
-
+    <br><br>
+    
 
     @if (count($aboutus) != 0)
-        <div class="card card-warning">
-
+        <div class="card">
+            @include('backend.includes.flash')
             <div class="card-body">
                 <table class="table">
                     <thead class="table-dark text-center">
@@ -45,12 +41,13 @@
                                 </td>
                                 <td class="text-center">
                                     @if ($items->image)
-                                        <img src="{{ url('public/Image/aboutus/' . $items->image) }}" class="image-prev" alt="Image" />
+                                        <img src="{{ url('public/Image/aboutus/' . $items->image) }}" class="image-prev"
+                                            alt="Image" />
                                     @else
                                         {{-- <img src="{{ url('public/Image/no-image.jpg') }}" width="250px" height="200px"
                                             style="object-fit: cover" alt="Image" /> --}}
 
-                                            <i >~~~ No Image ~~~</i>
+                                        <i>~~~ No Image ~~~</i>
                                     @endif
                                 </td>
                                 <td class="d-flex text-center justify-content-xl-between">
@@ -73,9 +70,6 @@
                 </table>
             </div>
         </div>
-        {{-- <div class="d-flex row w-100 justify-content-between h-20" style="margin:auto;">
-    {{ $menus->links() }}
-</div> --}}
     @else
         <div class="card-header">
             {{ __('There are currently no About Us Articles! ') }} </div>

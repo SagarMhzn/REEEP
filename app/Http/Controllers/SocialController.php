@@ -54,7 +54,7 @@ class SocialController extends Controller
             
             Social::create($socials);
         }
-        return redirect()->route('backend.socials.index');
+        return redirect()->route('backend.socials.index')->with('success', 'Socials created successfully');
     }
 
     /**
@@ -84,7 +84,7 @@ class SocialController extends Controller
 
         $social->save();
 
-        return redirect(route('backend.socials.index'));
+        return redirect(route('backend.socials.index'))->with('update', 'Socials updated successfully');
     }
 
     /**
@@ -93,6 +93,6 @@ class SocialController extends Controller
     public function destroy(Social $social)
     {
         $social->delete();
-        return redirect(route('backend.socials.index'));
+        return redirect(route('backend.socials.index'))->with('delete', 'Socials deleted successfully');
     }
 }

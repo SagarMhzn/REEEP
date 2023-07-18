@@ -463,7 +463,6 @@
                                 </a>
                             </li>
 
-                            
                             <li class="nav-item">
                                 <a href="{{route('backend.roles.index')}}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
@@ -482,6 +481,12 @@
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
+        <h1 class="text-center">@yield('Heading', 'Admin Dashboard')</h1>
+        @if($errors->any())
+            @foreach($errors as $error)
+                <p class="text-danger">{{$error}}</p>
+            @endforeach
+        @endif
         @yield('content')
     </div>
     <!-- /.content-wrapper -->

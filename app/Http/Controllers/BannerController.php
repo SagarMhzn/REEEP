@@ -54,7 +54,7 @@ class BannerController extends Controller
 
         $banner->save();
 
-        return redirect(route('backend.banner.index'));
+        return redirect(route('backend.banner.index'))->with('success', 'Banners created successfully');
     }
 
     /**
@@ -100,7 +100,7 @@ class BannerController extends Controller
 
         $banner->save();
 
-        return redirect(route('backend.banner.index'));
+        return redirect(route('backend.banner.index'))->with('update', 'Banners updated successfully');
     }
 
     /**
@@ -115,6 +115,6 @@ class BannerController extends Controller
             }
         }
         $banner->delete();
-        return redirect(route('backend.banner.index'));
+        return redirect(route('backend.banner.index'))->with('delete', 'Banners deleted successfully');
     }
 }

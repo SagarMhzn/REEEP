@@ -53,7 +53,7 @@ class PartnerController extends Controller
 
         $partners->save();
 
-        return redirect(route('backend.partners.list'));
+        return redirect(route('backend.partners.list'))->with('success', 'Partners created successfully');
     }
 
     /**
@@ -103,7 +103,7 @@ class PartnerController extends Controller
         
         $partners->save();
 
-        return redirect(route('backend.partners.list'));
+        return redirect(route('backend.partners.list'))->with('update', 'Partners updated successfully');
     }
 
     /**
@@ -120,6 +120,6 @@ class PartnerController extends Controller
         }
 
         $partners->delete();
-        return redirect(route('backend.partners.list'));
+        return redirect(route('backend.partners.list'))->with('delete', 'Partners deleted successfully');
     }
 }

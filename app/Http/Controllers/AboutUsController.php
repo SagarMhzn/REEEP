@@ -6,6 +6,7 @@ use App\Models\AboutUs;
 use Illuminate\Http\Request;
 use App\Http\Requests\AboutUsRequest;
 use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\Session;
 
 class AboutUsController extends Controller
 {
@@ -59,7 +60,7 @@ class AboutUsController extends Controller
 
         $aboutus->save();
 
-        return redirect(route('backend.aboutus.list'));
+        return redirect(route('backend.aboutus.list'))->with('success', 'About Us created successfully');
     }
 
     /**
@@ -114,7 +115,9 @@ class AboutUsController extends Controller
         
         $aboutus->save();
 
-        return redirect(route('backend.aboutus.list'));
+        // Session::flash('update', 'About Us updated successfully');
+
+        return redirect(route('backend.aboutus.list'))->with('update', 'About Us updated successfully');
     }
 
     /**
@@ -131,6 +134,6 @@ class AboutUsController extends Controller
         }
 
         $id->delete();
-        return redirect(route('backend.aboutus.list'));
+        return redirect(route('backend.aboutus.list'))->with('delete', 'About Us deleted successfully');
     }
 }

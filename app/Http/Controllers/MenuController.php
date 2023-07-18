@@ -49,9 +49,9 @@ class MenuController extends Controller
         $menu->save();
 
         if ($parent_id != Null) {
-            return redirect(route('backend.menu.childlist', $parent_id));
+            return redirect(route('backend.menu.childlist', $parent_id))->with('success', 'Menu created successfully');
         } elseif ($parent_id == Null) {
-            return redirect(route('backend.menu.list'));
+            return redirect(route('backend.menu.list'))->with('success', 'Menu created successfully');
         }
 
 
@@ -105,9 +105,9 @@ class MenuController extends Controller
         $update->save();
 
         if ($parent_id != Null) {
-            return redirect(route('backend.menu.childlist', $parent_id));
+            return redirect(route('backend.menu.childlist', $parent_id))->with('update', 'Menu updated successfully');
         } elseif ($parent_id == Null) {
-            return redirect(route('backend.menu.list'));
+            return redirect(route('backend.menu.list'))->with('update', 'Menu updated successfully');
         }
     }
 
@@ -131,6 +131,6 @@ class MenuController extends Controller
         Menu::where('parent_id', $id->id)->update(['parent_id' => $parentId]);
         $id->delete();
 
-        return redirect(route('backend.menu.list'));
+        return redirect(route('backend.menu.list'))->with('delete', 'Menu deleted successfully');
     }
 }

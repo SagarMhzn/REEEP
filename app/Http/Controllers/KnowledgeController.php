@@ -62,7 +62,7 @@ class KnowledgeController extends Controller
 
         $knowledge->save();
 
-        return redirect(route('backend.knowledge.index'));
+        return redirect(route('backend.knowledge.index'))->with('success', 'Knowledge and Resources created successfully');
     }
 
     /**
@@ -125,7 +125,7 @@ class KnowledgeController extends Controller
         
         $knowledge->save();
 
-        return redirect(route('backend.knowledge.index'));
+        return redirect(route('backend.knowledge.index'))->with('update', 'Knowledge and Resources updated successfully');
     }
 
     /**
@@ -149,7 +149,7 @@ class KnowledgeController extends Controller
         }
 
         $knowledge->delete();
-        return redirect()->back();
+        return redirect()->back()->with('delete', 'Knowledge and Resources deleted successfully');
     }
 
     public function view(){

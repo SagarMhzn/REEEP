@@ -49,7 +49,7 @@ class MessageController extends Controller
         Mail::to($mes->email)->send(new MessageMail($uname));
 
 
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Your message was sent successfully!');
     }
 
     /**

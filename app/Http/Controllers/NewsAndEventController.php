@@ -53,7 +53,7 @@ class NewsAndEventController extends Controller
 
         $nae->save();
 
-        return redirect(route('backend.news-and-events.list'));
+        return redirect(route('backend.news-and-events.list'))->with('success', 'News and Events created successfully');
     }
 
     /**
@@ -103,7 +103,7 @@ class NewsAndEventController extends Controller
 
         $nae->save();
 
-        return redirect(route('backend.news-and-events.list'));
+        return redirect(route('backend.news-and-events.list'))->with('update', 'News and Events updated successfully');
     }
 
     /**
@@ -121,7 +121,7 @@ class NewsAndEventController extends Controller
         }
 
         $id->delete();
-        return redirect(route('backend.news-and-events.list'));
+        return redirect(route('backend.news-and-events.list'))->with('delete', 'News and Events deleted successfully');
     }
 
     public function getEntry(Request $request)

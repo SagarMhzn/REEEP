@@ -1,16 +1,13 @@
 @extends('layouts.backend')
+@section('Heading', 'Menu')
 
 @section('content')
-
-    {{-- {{ dd($parent_id) }} --}}
-    <div class="d-flex justify-content-between menu-header">
-
-        <h2 style="text-align: center;">{{ $parent_title ?? 'Menu List' }}</h2>
+    <div class="flex-end" style="float:right">
         <a href="{{ route('backend.menu.create') }}" class="btn btn-primary btn-menu">
-            <i class="fas fa-plus"></i>
+            Add more <i class="fas fa-plus"></i>
         </a>
-
     </div>
+    <br><br>
 
 
     @if (count($menus) != 0)

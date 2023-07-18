@@ -76,7 +76,7 @@ class GalleryController extends Controller
             }
             Gallery::create($galleyData);
         }
-        return redirect()->route('backend.gallery.index');
+        return redirect()->route('backend.gallery.index')->with('create', 'Gallery updated successfully');
     }
 
     /**
@@ -123,7 +123,7 @@ class GalleryController extends Controller
 
         $gallery->save();
 
-        return redirect(route('backend.gallery.index'));
+        return redirect(route('backend.gallery.index'))->with('update', 'Gallery updated successfully');
     }
 
     /**
@@ -139,6 +139,6 @@ class GalleryController extends Controller
         }
 
         $gallery->delete();
-        return redirect(route('backend.gallery.index'));
+        return redirect(route('backend.gallery.index'))->with('delete', 'Gallery deleted successfully');
     }
 }

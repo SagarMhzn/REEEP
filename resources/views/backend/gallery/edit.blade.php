@@ -1,16 +1,6 @@
 @extends('layouts.backend')
-
+@section('Heading', 'Gallery')
 @section('content')
-
-    <div class="errors" style="text-align: center">
-        @if ($errors->any())
-            @foreach ($errors->all() as $error)
-                <h4 class="text-danger " style="color:red;">{{ $error }}</h4>
-            @endforeach
-        @endif
-    </div>
-    {{-- {{ dd($gallery) }} --}}
-    <h2 style="text-align: center;">Galleries</h2>
 
     <div class="card card-warning">
         <div class="card-header">

@@ -1,17 +1,13 @@
 @extends('layouts.backend')
+@section('Heading', 'Banners')
 
 @section('content')
-
-    {{-- {{ dd($parent_id) }} --}}
-    <div class="d-flex justify-content-between menu-header">
-
-        <h2 style="text-align: center;">Banner List</h2>
-
-
+    <div class="flex-end" style="float:right">
         <a href="{{ route('backend.banner.create') }}" class="btn btn-primary btn-menu">
-            <i class="fas fa-plus"></i>
+            Add more <i class="fas fa-plus"></i>
         </a>
     </div>
+    <br><br>
 
 
     @if (count($banner) != 0)

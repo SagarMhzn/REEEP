@@ -1,18 +1,7 @@
 @extends('layouts.backend')
+@section('Heading', 'FeedBack List')
 
 @section('content')
-
-    {{-- {{ dd($parent_id) }} --}}
-    <div class="d-flex justify-content-between menu-header">
-
-        <h2 style="text-align: center;">Feedback List</h2>
-
-
-        <a href="{{ route('backend.contact.create') }}" class="btn btn-primary btn-menu" title="Update Contacts">
-            <i class="fas fa-pencil-alt" aria-hidden="true"></i>
-        </a>
-    </div>
-
 
     @if (count($message) != 0)
         <div class="card card-warning">

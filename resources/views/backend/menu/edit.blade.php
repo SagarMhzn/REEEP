@@ -1,8 +1,7 @@
 @extends('layouts.backend')
+@section('Heading', 'Menu')
 
 @section('content')
-    <h2 style="text-align: center;">Menus</h2>
-    {{-- {{ dd($menus ->title) }} --}}
     <div class="card card-warning">
         <div class="card-header">
             <h3 class="card-title">Update Menu</h3>

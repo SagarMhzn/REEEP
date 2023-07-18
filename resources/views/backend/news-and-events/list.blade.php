@@ -1,12 +1,13 @@
 @extends('layouts.backend')
+@section('Heading', 'News and Events')
 
 @section('content')
-    <div class="d-flex justify-content-between menu-header">
-        <h2 style="text-align: center;">News and Events List</h2>
+    <div class="flex-end" style="float:right">
         <a href="{{ route('backend.news-and-events.create') }}" class="btn btn-primary btn-menu">
-            <i class="fas fa-plus"></i>
+            Add more <i class="fas fa-plus"></i>
         </a>
     </div>
+    <br><br>
 
     @if (count($nae) != 0)
         <div class="card card-warning">

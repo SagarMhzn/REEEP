@@ -53,7 +53,7 @@ class AlbumController extends Controller
         // dd($album->cover_image);
         $album->save();
 
-        return redirect(route('backend.album.index'));
+        return redirect(route('backend.album.index'))->with('success', 'Album created successfully');
     }
 
     /**
@@ -97,7 +97,7 @@ class AlbumController extends Controller
         
         $album->save();
 
-        return redirect(route('backend.album.index'));
+        return redirect(route('backend.album.index'))->with('update', 'Album updated successfully');
     }
 
     /**
@@ -113,6 +113,6 @@ class AlbumController extends Controller
         }
 
         $album->delete();
-        return redirect(route('backend.album.index'));
+        return redirect(route('backend.album.index'))->with('delete', 'Album deleted successfully');
     }
 }

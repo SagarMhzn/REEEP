@@ -52,7 +52,7 @@ class WorkingAreaController extends Controller
 
         $workingarea->save();
 
-        return redirect(route('backend.workingareas.list'));
+        return redirect(route('backend.workingareas.list'))->with('success', 'Working Areas created successfully');
     }
 
     /**
@@ -101,7 +101,7 @@ class WorkingAreaController extends Controller
         
         $workingarea->save();
 
-        return redirect(route('backend.workingareas.list'));
+        return redirect(route('backend.workingareas.list'))->with('update', 'Working Areas updated successfully');
     }
 
     /**
@@ -117,6 +117,6 @@ class WorkingAreaController extends Controller
             }
         }
         $id->delete();
-        return redirect(route('backend.workingareas.list'));
+        return redirect(route('backend.workingareas.list'))->with('delete', 'Working Areas deleted successfully');
     }
 }

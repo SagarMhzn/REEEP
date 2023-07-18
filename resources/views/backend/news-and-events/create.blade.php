@@ -1,18 +1,7 @@
 @extends('layouts.backend')
+@section('Heading', 'News and Events')
 
 @section('content')
-
-    <div class="errors" style="text-align: center">
-        @if ($errors->any())
-            @foreach ($errors->all() as $errors)
-                <h4 class="text-danger " style="color:red;">{{ $errors }}
-                </h4>
-            @endforeach
-        @endif
-    </div>
-
-    <h2 style="text-align: center;">News and Events</h2>
-    {{-- {{ dd($Working Areass ->title) }} --}}
     <div class="card card-warning">
         <div class="card-header">
             <h3 class="card-title">Create New News and Events</h3>

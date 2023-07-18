@@ -1,18 +1,8 @@
 @extends('layouts.backend')
+@section('Heading', 'Knowledge and Resources')
 
 @section('content')
 
-    <div class="errors" style="text-align: center">
-        @if ($errors->any())
-            @foreach ($errors->all() as $errors)
-                <h4 class="text-danger " style="color:red;">{{ $errors }}
-                </h4>
-            @endforeach
-        @endif
-    </div>
-
-    <h2 style="text-align: center;">Knowledge and Resources</h2>
-    {{-- {{ dd($Knowledge and Resourcess ->title) }} --}}
     <div class="card card-warning">
         <div class="card-header">
             <h3 class="card-title">Create New Knowledge and Resources</h3>
