@@ -21,12 +21,12 @@
     <section id="about" class="about">
         <div class="container">
 
-            <div class="row gy-4 justify-content-center">
-                <div class="col-lg-4">
+            <div class="row gy-4">
+                <div class="col-lg-4 text-center">
                     <img src="{{ asset('public/Image/workingarea/'.  $data['area']->logo ) }}" class="img-fluid" alt="">
                 </div>
                 <div class="col-lg-5 content">
-                    <h2>{{ $data['area']->title }}</h2>
+                    <h2 class="text-center">{{ $data['area']->title }}</h2>
                     <p class="fst-italic py-3">
                         {!! nl2br( $data['area']->description) !!}
                     </p>

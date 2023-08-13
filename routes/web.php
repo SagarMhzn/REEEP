@@ -19,6 +19,7 @@ use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\SocialController;
 use App\Http\Controllers\AboutUsController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\MessageController;
@@ -93,8 +94,13 @@ Route::get('/lang/change', [LangController::class, 'change'])->name('changeLang'
 
 Route::prefix('/dashboard')->name('backend.')->middleware('auth')->group(function () {
 
-    Route::get('/home', [HomeController::class, 'admin_index'])->name('backend.home');
+    Route::get('/home', [HomeController::class, 'admin_index'])->name('home');
 
+    Route::name('admin.')->group(function () {
+        Route::get('/profile', [AdminController::class, 'admin_profile'])->name('profile');
+        Route::put('/profile/{id}', [AdminController::class, 'updateProfile'])->name('update-profile');
+        Route::put('/password/{id}', [AdminController::class, 'updatePassword'])->name('update-password');
+    });
     Route::name('menu.')->group(function () {
 
         Route::get('/menu/create', [MenuController::class, 'create'])->name('create');

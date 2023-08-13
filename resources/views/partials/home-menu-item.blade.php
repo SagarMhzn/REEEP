@@ -21,7 +21,7 @@
 
 @if(isset($menuItem['children']) && count($menuItem['children']) > 0)
     <li class="nav-item dropdown">
-        <a class="nav-link" href="{{ $menuItem['slug'] }}">
+        <a class="nav-link" href="/{{ $menuItem['slug'] }}">
             {{ $menuItem['title'] }}
             <div class="dropdown-toggle"></div>
         </a> 
@@ -33,6 +33,6 @@
     </li>
 @else
     <li class="nav-item">
-        <a class="nav-link" href="{{ $menuItem['slug'] }}">{{ $menuItem['title'] }}</a>
+        <a class="nav-link" href="/{{ $menuItem['slug'] }}">{{ $menuItem['title'] }}</a>
     </li>
 @endif

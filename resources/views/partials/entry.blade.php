@@ -1,5 +1,5 @@
 <article class="entry">
-    <div class="entry-img">
+    <div class="entry-img" data-aos="fade-up">
         <img src="{{ asset('public/Image/news-and-events/'. $entry->image) }}" alt="" class="img-fluid">
     </div>
 

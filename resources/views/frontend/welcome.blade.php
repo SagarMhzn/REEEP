@@ -2,8 +2,8 @@
 
 @section('content')
     
-    <section id="hero" style="margin-bottom: 2rem">
-        <div class="hero-container" data-aos="fade-up">
+    <section id="hero" style="margin-bottom: 2rem" height="100">
+        <div class="hero-container" data-aos="fade-up"> 
             <div id="carouselSection" class="carousel slide" data-bs-ride="carousel">
 
                 <div class="carousel-inner col-8">
@@ -33,7 +33,7 @@
 
     </section>
 
-    <section id="about" class="about">
+    <section id="about" class="about py-2">
         <div class="about-hero">
             <div class="container" data-aos="fade-up">
                 <div class="about-hero">
@@ -60,7 +60,7 @@
             </div>
         </section>
 
-        <section id="portfolio" class="portfolio">
+        <section id="portfolio" class="portfolio py-2">
             <div class="container">
 
                 <div class="row portfolio-container" data-aos="fade-up">
@@ -117,13 +117,13 @@
                 </div>
             </div>
         </section>
-        <div class="container" data-aos="fade-up">
+        <div class="container py-2" data-aos="fade-up">
 
             <div class="row">
 
                 <div class="col-lg-8 entries">
 
-                    <article class="entry">
+                    <article class="entry" data-aos="fade-up">
 
                         <div class="entry-img">
                             <img src="{{ asset('public/Image/news-and-events/' . $data['NaE_latest']->image) }}"
@@ -175,12 +175,12 @@
 
                     <div class="sidebar">
                         <div class="row">
-                            <div class="col-lg-8">
+                            <div class="col">
                                 <h3 class="sidebar-title">Recent Posts</h3>
 
                             </div>
-                            <div class="col-lg-4">
-                                <h6><a href="{{ route('frontend.news-and-events.main') }}">View All<i class="bi bi-arrow-right"></i></a></h6>
+                            <div class="col-lg-4 ">
+                                <small><a href="{{ route('frontend.news-and-events.main') }}">View All<i class="bi bi-arrow-right"></i></a></small>
                             </div>
                         </div>
                         <div class="sidebar-item recent-posts">
@@ -190,10 +190,10 @@
                                     <img src="{{ asset('public/Image/news-and-events/' . $items->image) }}"
                                         alt="">
                                     <h4><a href="#" class="sidebar-item-link"
-                                            data-id="{{ $items->id }}">{{ $items->title }}</a></h4>
-                                    <div class="d-flex justify-content-between">
+                                            data-id="{{ $items->id }}">{{ mb_strlen($items->title, 'UTF-8') > 25 ? mb_substr($items->title, 0, 25, 'UTF-8') . '...' : $items->title }}</a></h4>
+                                    <div class="d-flex mx-4">
 
-                                        <time>{{ Str::substr($items->created_at, 0, 10) }}</time>
+                                        <small class="mx-3 text-secondary">{{ Str::substr($items->created_at, 0, 10) }}</small>
                                         <span
                                             class="badge rounded-pill {{ $items->category == 0 ? 'bg-primary' : 'bg-info text-dark' }}">
                                             {{ $items->category == 0 ? 'News' : 'Events' }}
@@ -433,7 +433,7 @@
         </div>
     </section>
 
-    <section id="breadcrumbs" class="breadcrumbs">
+    <section id="breadcrumbs" class="breadcrumbs py-2">
         <div class="breadcrumb-hero">
             <div class="container" data-aos="fade-up">
                 <div class="breadcrumb-hero">

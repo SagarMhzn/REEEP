@@ -13,7 +13,7 @@
                 <h4>Useful Links</h4>
                 <ul>
                     @foreach ($data['menu'] as $item)
-                    <li><a href="{{ $item->slug }}">{{ $item->title }}</a></li>
+                    <li><a href="/{{ $item->slug }}">{{ $item->title }}</a></li>
                         
                     @endforeach
                 </ul>

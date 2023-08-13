@@ -17,7 +17,7 @@ class LangController extends Controller
      */
     public function view()
     {
-        return view('frontend.lang');
+        return view('frontend.test-blades.lang');
     }
 
     public function index()

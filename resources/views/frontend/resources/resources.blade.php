@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <section id="breadcrumbs" class="breadcrumbs py-4">
+    <section id="breadcrumbs" class="breadcrumbs py-2">
         <div class="breadcrumb-hero">
             <div class="container">
                 <div class="breadcrumb-hero">

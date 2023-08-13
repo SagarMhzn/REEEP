@@ -16,7 +16,7 @@
 
             <div class="row">
 
-                <div class="col-lg-8 entries">
+                <div class="col-lg-8 entries" >
 
                     <article class="entry">
 
@@ -34,10 +34,8 @@
 
                             <div class="entry-meta col  float-end" >
                                 <ul>
-                                    {{-- <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="#">John
-                                        Doe</a></li> --}}
                                     <li><i class="bi bi-clock"></i> <a
-                                            href="#"><time>{{ Str::substr($data['NaE_latest']->created_at, 0, 10) }}</time></a>
+                                            href="#"><small>{{ Str::substr($data['NaE_latest']->created_at, 0, 10) }}</small></a>
                                     </li>
                                     <li>
                                         <span
@@ -68,8 +66,8 @@
 
                             </div>
                             <div class="col-lg-4">
-                                <h6><a href="{{ route('frontend.news-and-events.main') }}">View All<i
-                                            class="bi bi-arrow-right"></i></a></h6>
+                                <small><a href="{{ route('frontend.news-and-events.main') }}">View All<i
+                                            class="bi bi-arrow-right"></i></a></small>
                             </div>
                         </div>
                         <div class="sidebar-item recent-posts">
@@ -78,10 +76,10 @@
                                 <div class="post-item clearfix" id="sidebar-item-{{ $items->id }}">
                                     <img src="{{ asset('public/Image/news-and-events/' . $items->image) }}" alt="">
                                     <h4><a href="#" class="sidebar-item-link"
-                                            data-id="{{ $items->id }}">{{ $items->title }}</a></h4>
-                                    <div class="d-flex justify-content-between">
-
-                                        <time>{{ Str::substr($items->created_at, 0, 10) }}</time>
+                                            data-id="{{ $items->id }}">{{ mb_strlen($items->title, 'UTF-8') > 25 ? mb_substr($items->title, 0, 25, 'UTF-8') . '...' : $items->title }}</a></h4>
+                                            <div class="d-flex mx-4">
+                                  
+                                        <small class="mx-3 text-secondary">{{ Str::substr($items->created_at, 0, 10) }}</small>
                                         <span
                                             class="badge rounded-pill {{ $items->category == 0 ? 'bg-primary' : 'bg-info text-dark' }}">
                                             {{ $items->category == 0 ? 'News' : 'Events' }}
